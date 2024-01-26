@@ -1,0 +1,39 @@
+.header {
+    color: #5981F3;
+    background-color: #192134;
+}
+button{
+    background-color: #243056;
+    color: #5981F3!important;
+    border-radius: 100px;
+    transition: 0.3s;
+    padding: 10px;
+}
+.nav-link {
+    color: white!important;
+}
+.form-control {
+    width: 300px!important;
+}
+
+.headerItem {
+    font-weight: 500!important;
+    color: white!important
+}
+.headerItem:hover {
+    border-radius: 5px;
+    transition: 0.2s;
+    align-items: center!important;
+    background-color: #243056!important;
+    padding-left: 2rem;
+}
+
+.navbar-toggler {
+    background-color:cornflowerblue!important;
+}
+
+.dropdown-menu {
+    background-color: #243056!important;
+    width: 14rem;
+}
+
