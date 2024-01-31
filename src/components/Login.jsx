@@ -13,7 +13,7 @@ function Login() {
             <div className="mask d-flex align-items-center h-100 gradient-custom-3">
               <div className="container h-100">
                 <div className="row d-flex align-items-center h-100">
-                  <div className="col-12 col-md-9 col-lg-7 col-xl-6">
+                  <div className="col-12 col-md-9 col-lg-7 col-xl-6 overflow-hidden mb-5">
                     <div className="card login-bg" style={{ borderRadius: '15px' }}>
                       <div className="card-body p-5">
                         <h2 className="text-uppercase text-center mb-4">Login</h2>
@@ -43,7 +43,7 @@ function Login() {
                     </div>
                   </div>
 
-                  <div className="col-12 col-md-9 col-lg-7 col-xl-6 l">
+                  <div className="col-12 col-md-9 col-lg-7 col-xl-6 overflow-hidden mb-5">
                   <div className="card login-bg" style={{ borderRadius: '15px' }}>
                       <div className="card-body p-5">
                         <h2 className="text-uppercase text-center mb-4">Connect a Wallet</h2>
@@ -81,7 +81,7 @@ function Login() {
                           </div>
 
                           <div className="d-flex justify-content-center">
-                            <p className="text-center text-light mt-4 mb-0">Don't have a wallet?</p>
+                            <p className="text-center text-light mt-2 mb-0">Don't have a wallet?</p>
                           </div>
 
                           <div className="d-flex justify-content-center">
