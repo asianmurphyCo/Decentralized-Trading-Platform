@@ -43,9 +43,9 @@ function Login() {
                     </div>
                   </div>
 
-                  <div className="col-12 col-md-9 col-lg-7 col-xl-6 overflow-hidden mb-5">
+                  <div className="col-12 col-md-9 col-lg-6 col-xl-5 overflow-hidden mb-5 mt-5">
                   <div className="card login-bg" style={{ borderRadius: '15px' }}>
-                      <div className="card-body p-5">
+                      <div className="card-body p-4">
                         <h2 className="text-uppercase text-center mb-4">Connect a Wallet</h2>
 
                           <div className="form-outline mb-3">

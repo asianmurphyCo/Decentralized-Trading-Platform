@@ -29,15 +29,15 @@ body {
 }
 
 .wallet-item {
-    position: relative;
+    /* position: relative;
     left: 10%;
-    right: 50%;
+    right: 50%; */
     border-radius: 10px;
     font-weight: 700;
-    /* font-size: 1.3rem; */
+    font-size: 1.3rem;
     color: white!important;
     background-color: #1F2544!important;
-    width: 70%;
+    width: auto;
     border-color: transparent!important;
     text-align: left;
 }
