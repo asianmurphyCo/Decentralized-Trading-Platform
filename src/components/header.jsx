@@ -30,9 +30,9 @@ function Header() {
                         <Nav.Link className=' text-white headerItem2 mx-3'><Link className='headerItem' to="/dashboard">Dashboard</Link></Nav.Link>
 
                         <NavDropdown title="More" id="navbarScrollingDropdown" className='headerItem mx-3'>
-                        <NavDropdown.Item href="#action3" className='text-light headerItem'>Action</NavDropdown.Item>
+                        <NavDropdown.Item href="#action3" className='text-light headerItem'>Trade</NavDropdown.Item>
                         <NavDropdown.Item href="#action4" className='text-light headerItem'>
-                            Another action
+                            Swap
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action5" className='text-light headerItem'>

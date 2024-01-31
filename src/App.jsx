@@ -6,7 +6,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './components/header';
 import Footer from './components/footer';
-import Login from './components/login';
+import Login from './components/Login';
 import Home from './components/Home';
 import Dashboard from './components/dashboard';
 
