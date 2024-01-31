@@ -50,7 +50,7 @@ function Login() {
 
                           <div className="form-outline mb-3">
                             <button className="wallet-item">
-                              <div>
+                              <div className="wallet-name">
                                 <img src={metamask} className='logo'></img> MetaMask
                               </div>
                               </button>
@@ -58,7 +58,7 @@ function Login() {
 
                           <div className="form-outline mb-3">
                             <button className="wallet-item">
-                              <div>
+                              <div className="wallet-name">
                                 <img src={rainbow} className='logo'></img> Rainbow
                                 </div>
                             </button>
@@ -66,7 +66,7 @@ function Login() {
 
                           <div className="form-outline mb-3">
                             <button className="wallet-item">
-                              <div>
+                              <div className="wallet-name">
                                 <img src={walletconnect} className='logo'></img> WalletConnect
                               </div>
                             </button>
@@ -74,7 +74,7 @@ function Login() {
 
                           <div className="form-outline mb-3">
                             <button className="wallet-item">
-                              <div>
+                              <div className="wallet-name">
                                 <img src={trustwallet} className='logo'></img> TrustWallet
                               </div>
                             </button>

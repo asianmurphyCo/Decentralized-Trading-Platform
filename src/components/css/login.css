@@ -41,6 +41,10 @@ body {
     border-color: transparent!important;
     text-align: left;
 }
+.wallet-name {
+    position: relative;
+    left: 20%;
+}
 .wallet-item:hover {
     background-color: #474F7A!important;
 }
