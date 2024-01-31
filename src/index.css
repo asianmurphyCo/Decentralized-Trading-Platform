@@ -1,8 +1,8 @@
 :root {
   margin: 0;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   /* color-scheme: light dark; */
   /* color: rgba(255, 255, 255, 0.87); */
   background: rgb(25, 33, 52);
@@ -12,8 +12,4 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  color: white;
 }

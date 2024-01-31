@@ -21,23 +21,3 @@
   }
 }
 
-/* make the GIF stay in the left corner */
-.assist-sector {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-}
-.notification {
-  display: none;
-  background-color: aliceblue;
-  transition: opacity 0.5s ease-out;
-  border-radius: 10px;
-  position: absolute;
-  bottom: 4.5rem;
-  left: 4rem;
-  padding: 10px;
-}
-.assistant {
-  width: 50%;
-  z-index: 1000;
-}

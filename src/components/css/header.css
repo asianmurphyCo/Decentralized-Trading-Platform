@@ -9,6 +9,12 @@ button{
     transition: 0.3s;
     padding: 10px;
 }
+button a{
+    color: #5981F3!important;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+}
 .nav-link {
     color: white!important;
 }
@@ -18,9 +24,17 @@ button{
 
 .headerItem {
     font-weight: 500!important;
-    color: white!important
+    color: white!important;
+    text-decoration: none;
+    
 }
 .headerItem:hover {
+    border-radius: 5px;
+    transition: 0.2s;
+    align-items: center!important;
+    background-color: #243056!important;
+}
+.headerItem2:hover {
     border-radius: 5px;
     transition: 0.2s;
     align-items: center!important;
