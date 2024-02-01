@@ -26,12 +26,7 @@ function Dashboard() {
   
 
     //  Change URL later due to being broke, cannot afford good api
-<<<<<<< HEAD
     const url = '/data/markets.json';
-=======
-    const url =
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en";
->>>>>>> d095eea045bd60d25dacb878f3c67f2e66ff6b1a
 
 
     //  Fetch data from url
