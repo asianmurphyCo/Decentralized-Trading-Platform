@@ -1,6 +1,6 @@
 // import
 import { useState } from 'react'
-import './css/login.css'
+import './css/style.css'
 import rainbow from '../components/assets/rainbow-icon.png'
 import metamask from '../components/assets/metamask.jpg'
 import trustwallet from '../components/assets/trustwallet.jpg'
