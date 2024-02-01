@@ -15,167 +15,295 @@ function Login() {
 
 
     return (
-        <div>
-              
-          <section className="vh-100 bg-image">
-            <div className="mask d-flex align-items-center h-100 gradient-custom-3">
-              <div className="container h-100">
-                <div className="row d-flex align-items-center h-100">
-
-                  <div className="col-12 col-md-9 col-lg-7 col-xl-6 overflow-hidden mb-5 mt-5">
-
-                    {isLoginForm ? (
+      <div>
+        <section className="vh-100 bg-image">
+          <div className="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div className="container h-100">
+              <div className="row d-flex align-items-center h-100">
+                <div className="col-12 col-md-9 col-lg-7 col-xl-6 overflow-hidden mb-5 mt-5">
+                  {isLoginForm ? (
                     <>
+                      <div
+                        className="card login-bg"
+                        style={{ borderRadius: "15px" }}
+                      >
+                        <div className="card-body p-5">
+                          <h2 className="text-uppercase text-center mb-4">
+                            Login
+                          </h2>
 
-                    <div className="card login-bg" style={{ borderRadius: '15px' }}>
-                      <div className="card-body p-5">
-                        <h2 className="text-uppercase text-center mb-4">Login</h2>
-
-                        <form method="post" action="http://mercury.swin.edu.au/it000000/cos10005/formtest.php">
-
-                          <div className="form-outline mb-3">
-                            <input type="text" id="name" name="username" className="form-control form-control-lg" autoFocus/>
-                            <label className="form-label" htmlFor="name">Your Name</label>
-                          </div>
-
-                          <div className="form-outline mb-3">
-                            <input type="password" id="password" name="password" className="form-control form-control-lg" />
-                            <label className="form-label" htmlFor="password">Password</label>
-                          </div>
-
-                          <div className="d-flex justify-content-center">
-                            <button type="submit" className="btn btn-outline-primary my-2 my-sm-2 btn-lg login">Login</button>
-                          </div>
-
-                          <p className="text-center text-light mt-4 mb-0 ">Don't have an account? 
-                          <a href="#register" className="direct-link" onClick={handleToggle}><u>Register here</u></a>
-                          </p>
-                        </form>
-                      </div>
-                    </div>
-                    </>
-                    ) : (
-                    <>
-                    <div className="card login-bg" style={{ borderRadius: '15px' }}>
-                      <div className="card-body p-5">
-                        <h2 className="text-uppercase text-center mb-4">Create an account</h2>
-
-                        <form method="post" action="http://mercury.swin.edu.au/it000000/cos10005/formtest.php">
-
-                          <div className="form-outline mb-3">
-                            <input type="text" id="name" name="username" className="form-control form-control-lg" autoFocus/>
-                            <label className="form-label" htmlFor="name">Username</label>
-                          </div>
-
-                          <div className="form-outline mb-3">
-                            <label className="form-label">Gender</label>
-                            <div className="form-check form-check-inline">
-                              <input className="form-check-input" id="genderf" type="radio" name="gender" value="female"></input>
-                              <label className="form-check-label" htmlFor="genderf">Female</label>
+                          <form
+                            method="post"
+                            action="http://mercury.swin.edu.au/it000000/cos10005/formtest.php"
+                          >
+                            <div className="form-outline mb-3">
+                              <input
+                                type="text"
+                                id="name"
+                                name="username"
+                                className="form-control form-control-lg"
+                                autoFocus
+                              />
+                              <label className="form-label" htmlFor="name">
+                                Your Name
+                              </label>
                             </div>
-          
-                            <div className="form-check form-check-inline">
-                              <input className="form-check-input" id="genderm" type="radio" name="gender" value="male"></input>
-                              <label className="form-check-label" htmlFor="genderm">Male</label>
+
+                            <div className="form-outline mb-3">
+                              <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                className="form-control form-control-lg"
+                              />
+                              <label className="form-label" htmlFor="password">
+                                Password
+                              </label>
                             </div>
-                          </div>
 
-                          <div className="form-outline mb-3">
-                            <input type="email" id="email" name="email" className="form-control form-control-lg"></input>
-                            <label className="form-label" htmlFor="email">Your Email</label>
-                          </div>
-
-                          <div className="form-outline mb-3">
-                            <input type="password" id="password" name="password" className="form-control form-control-lg" />
-                            <label className="form-label" htmlFor="password">Password</label>
-                          </div>
-
-                          <div className="form-outline mb-3">
-                            <input type="password" id="password" name="password" className="form-control form-control-lg" />
-                            <label className="form-label" htmlFor="password">Repeat password</label>
-                          </div>
-
-                          <div className="form-check d-flex justify-content-center mb-3">
-                            <input className="form-check-input me-1" type="checkbox" name="term_service" id="term_service"></input>
-                            <label className="form-check-label" htmlFor="term_service">
-                              I agree all statements in <a href="#!" className="direct-link"><u>Terms of service</u></a>
-                            </label>
-                          </div>
-
-                          <div className="d-flex justify-content-center">
-                            <button type="submit" className="btn btn-outline-primary my-2 my-sm-2 btn-lg login">Sign up</button>
-                          </div>
-
-                          <p className="text-center text-light mt-4 mb-0 ">Already have an account? 
-                          <a href="#login" className="direct-link" onClick={handleToggle}><u>Login</u></a>
-                          </p>
-                        </form>
-                      </div>
-                    </div>
-                    </>
-                    )}
-                  </div>
-
-                  <div className="col-12 col-md-9 col-lg-6 col-xl-5 overflow-hidden mb-5 mt-5">
-                  <div className="card login-bg" style={{ borderRadius: '15px' }}>
-                      <div className="card-body p-4">
-                        <h2 className="text-uppercase text-center mb-4">Connect a Wallet</h2>
-
-                          <div className="form-outline mb-3">
-                            <button className="wallet-item">
-                              <div className="wallet-name">
-                                <img src={metamask} className='logo'></img> MetaMask
-                              </div>
+                            <div className="d-flex justify-content-center">
+                              <button
+                                type="submit"
+                                className="btn btn-outline-primary my-2 my-sm-2 btn-lg login"
+                              >
+                                Login
                               </button>
-                          </div>
+                            </div>
 
-                          <div className="form-outline mb-3">
-                            <button className="wallet-item">
-                              <div className="wallet-name">
-                                <img src={rainbow} className='logo'></img> Rainbow
-                                </div>
-                            </button>
-                          </div>
+                            <p className="text-center text-light mt-4 mb-0 ">
+                              Don&apos;t have an account?
+                              <a
+                                href="#register"
+                                className="direct-link"
+                                onClick={handleToggle}
+                              >
+                                <u>Register here</u>
+                              </a>
+                            </p>
+                          </form>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div
+                        className="card login-bg"
+                        style={{ borderRadius: "15px" }}
+                      >
+                        <div className="card-body p-5">
+                          <h2 className="text-uppercase text-center mb-4">
+                            Create an account
+                          </h2>
 
-                          <div className="form-outline mb-3">
-                            <button className="wallet-item">
-                              <div className="wallet-name">
-                                <img src={walletconnect} className='logo'></img> WalletConnect
+                          <form
+                            method="post"
+                            action="http://mercury.swin.edu.au/it000000/cos10005/formtest.php"
+                          >
+                            <div className="form-outline mb-3">
+                              <input
+                                type="text"
+                                id="name"
+                                name="username"
+                                className="form-control form-control-lg"
+                                autoFocus
+                              />
+                              <label className="form-label" htmlFor="name">
+                                Username
+                              </label>
+                            </div>
+
+                            <div className="form-outline mb-3">
+                              <label className="form-label">Gender</label>
+                              <div className="form-check form-check-inline">
+                                <input
+                                  className="form-check-input"
+                                  id="genderf"
+                                  type="radio"
+                                  name="gender"
+                                  value="female"
+                                ></input>
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="genderf"
+                                >
+                                  Female
+                                </label>
                               </div>
-                            </button>
-                          </div>
 
-                          <div className="form-outline mb-3">
-                            <button className="wallet-item">
-                              <div className="wallet-name">
-                                <img src={trustwallet} className='logo'></img> TrustWallet
+                              <div className="form-check form-check-inline">
+                                <input
+                                  className="form-check-input"
+                                  id="genderm"
+                                  type="radio"
+                                  name="gender"
+                                  value="male"
+                                ></input>
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="genderm"
+                                >
+                                  Male
+                                </label>
                               </div>
-                            </button>
-                          </div>
+                            </div>
 
-                          <div className="d-flex justify-content-center">
-                            <p className="text-center text-light mt-2 mb-0">Don't have a wallet?</p>
-                          </div>
+                            <div className="form-outline mb-3">
+                              <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                className="form-control form-control-lg"
+                              ></input>
+                              <label className="form-label" htmlFor="email">
+                                Your Email
+                              </label>
+                            </div>
 
-                          <div className="d-flex justify-content-center">
-                            <button className="btn my-2 my-sm-2 btn-lg get-wallet">Get a Wallet</button>
-                          </div>
+                            <div className="form-outline mb-3">
+                              <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                className="form-control form-control-lg"
+                              />
+                              <label className="form-label" htmlFor="password">
+                                Password
+                              </label>
+                            </div>
 
-                          <div className="d-flex justify-content-center">
-                            <p className="text-center text-light mt-4 mb-0">By connecting wallet you agree to the <a href='#terms' className="direct-link">Terms of Service</a> and <a href='#policy' className="direct-link">Privacy Policy</a></p>
+                            <div className="form-outline mb-3">
+                              <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                className="form-control form-control-lg"
+                              />
+                              <label className="form-label" htmlFor="password">
+                                Repeat password
+                              </label>
+                            </div>
+
+                            <div className="form-check d-flex justify-content-center mb-3">
+                              <input
+                                className="form-check-input me-1"
+                                type="checkbox"
+                                name="term_service"
+                                id="term_service"
+                              ></input>
+                              <label
+                                className="form-check-label"
+                                htmlFor="term_service"
+                              >
+                                I agree all statements in{" "}
+                                <a href="#!" className="direct-link">
+                                  <u>Terms of service</u>
+                                </a>
+                              </label>
+                            </div>
+
+                            <div className="d-flex justify-content-center">
+                              <button
+                                type="submit"
+                                className="btn btn-outline-primary my-2 my-sm-2 btn-lg login"
+                              >
+                                Sign up
+                              </button>
+                            </div>
+
+                            <p className="text-center text-light mt-4 mb-0 ">
+                              Already have an account?
+                              <a
+                                href="#login"
+                                className="direct-link"
+                                onClick={handleToggle}
+                              >
+                                <u>Login</u>
+                              </a>
+                            </p>
+                          </form>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                <div className="col-12 col-md-9 col-lg-6 col-xl-5 overflow-hidden mb-5 mt-5">
+                  <div
+                    className="card login-bg"
+                    style={{ borderRadius: "15px" }}
+                  >
+                    <div className="card-body p-4">
+                      <h2 className="text-uppercase text-center mb-4">
+                        Connect a Wallet
+                      </h2>
+
+                      <div className="form-outline mb-3">
+                        <button className="wallet-item">
+                          <div className="wallet-name">
+                            <img src={metamask} className="logo"></img> MetaMask
                           </div>
+                        </button>
                       </div>
 
+                      <div className="form-outline mb-3">
+                        <button className="wallet-item">
+                          <div className="wallet-name">
+                            <img src={rainbow} className="logo"></img> Rainbow
+                          </div>
+                        </button>
+                      </div>
+
+                      <div className="form-outline mb-3">
+                        <button className="wallet-item">
+                          <div className="wallet-name">
+                            <img src={walletconnect} className="logo"></img>{" "}
+                            WalletConnect
+                          </div>
+                        </button>
+                      </div>
+
+                      <div className="form-outline mb-3">
+                        <button className="wallet-item">
+                          <div className="wallet-name">
+                            <img src={trustwallet} className="logo"></img>{" "}
+                            TrustWallet
+                          </div>
+                        </button>
+                      </div>
+
+                      <div className="d-flex justify-content-center">
+                        <p className="text-center text-light mt-2 mb-0">
+                          Don&apos;t have a wallet?
+                        </p>
+                      </div>
+
+                      <div className="d-flex justify-content-center">
+                        <button className="btn my-2 my-sm-2 btn-lg get-wallet">
+                          Get a Wallet
+                        </button>
+                      </div>
+
+                      <div className="d-flex justify-content-center">
+                        <p className="text-center text-light mt-4 mb-0">
+                          By connecting wallet you agree to the{" "}
+                          <a href="#terms" className="direct-link">
+                            Terms of Service
+                          </a>{" "}
+                          and{" "}
+                          <a href="#policy" className="direct-link">
+                            Privacy Policy
+                          </a>
+                        </p>
+                      </div>
                     </div>
-
                   </div>
-
                 </div>
               </div>
             </div>
-          </section>
-        </div>
-    )
+          </div>
+        </section>
+      </div>
+    );
 
 }
 export default Login

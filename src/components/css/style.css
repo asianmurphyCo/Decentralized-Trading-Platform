@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Kaushan+Script&family=Lato:wght@300;400;700&family=Open+Sans:wght@400;600&family=Oswald:wght@200;400;500&family=Poppins&family=Raleway:wght@100&family=Space+Mono:wght@400;700&display=swap');
 
+
+/* BODY */
+body {
+    height: auto;
+    color: white !important;
+    background: rgb(25, 33, 52);
+    background: linear-gradient( 180deg, rgba(25, 33, 52, 1) 28%, rgba(7, 8, 21, 1) 75% );
+    background-repeat: no-repeat;
+    /* background: rgba(25, 33, 52, 1) !important; */
+}
 /* HEADER */
 .header {
     color: #5981F3;
@@ -77,6 +87,9 @@ footer {
 /* END OF FOOTER */
 
 /* HOMEPAGE */
+.banner-img {
+    width: 100%;
+}
 /* make the GIF stay in the left corner */
 .assist-sector {
     position: fixed;
@@ -93,6 +106,7 @@ footer {
     bottom: 4.5rem;
     right: 4rem;
     padding: 10px;
+    color: #192134;
 }
 
 .assistant {
@@ -105,12 +119,6 @@ footer {
 
 
 /* LOGIN PAGE */
-body {
-    height: auto;
-    /* background: rgb(25, 33, 52);
-    background: linear-gradient( 180deg, rgba(25, 33, 52, 1) 28%, rgba(7, 8, 21, 1) 75% ); */
-    background: rgba(25, 33, 52, 1) !important;
-}
 
 .card {
     width: 75%;

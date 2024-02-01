@@ -4,7 +4,6 @@ import "./css/style.css"
 function Footer() {
   return (
     <footer className="text-center text-white">
-      <section>
         <div className="container text-center text-md-start mt-5">
           <div className="row mt-3">
             {/* CONTENTS */}
@@ -35,7 +34,6 @@ function Footer() {
           </div>
         </div>
         {/* Copyright */}
-      </section>
       <div className="text-center p-3 copy-right">
         © 2024 COS30049: &nbsp;
         <a
