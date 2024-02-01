@@ -1,6 +1,6 @@
 // import React from 'react'
 import assistant from '../components/assets/kiana-kiana-wave.gif'
-import './css/home.css'
+import './css/style.css'
 
 const Home = () => {
     // add 0.2s delay before pop up the chatbox

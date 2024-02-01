@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Kaushan+Script&family=Lato:wght@300;400;700&family=Open+Sans:wght@400;600&family=Oswald:wght@200;400;500&family=Poppins&family=Raleway:wght@100&family=Space+Mono:wght@400;700&display=swap');
+
+/* HEADER */
+.header {
+    color: #5981F3;
+    background-color: #192134;
+}
+
+button {
+    background-color: #243056;
+    color: #5981F3 !important;
+    border-radius: 100px;
+    transition: 0.3s;
+    padding: 10px;
+}
+
+button a {
+    color: #5981F3 !important;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.form-control {
+    width: 300px !important;
+}
+
+.headerItem {
+    font-weight: 500 !important;
+    color: white !important;
+    text-decoration: none;
+
+}
+
+.headerItem:hover {
+    border-radius: 5px;
+    transition: 0.2s;
+    align-items: center !important;
+    background-color: #243056 !important;
+}
+
+.headerItem2:hover {
+    border-radius: 5px;
+    transition: 0.2s;
+    align-items: center !important;
+    background-color: #243056 !important;
+    padding-left: 2rem;
+}
+
+.navbar-toggler {
+    background-color: cornflowerblue !important;
+}
+
+.dropdown-menu {
+    background-color: #243056 !important;
+    width: 14rem;
+}
+
+/* END OF HEADER */
+
+/* FOOTER */
+footer {
+    background-color: #474F7A;
+    /* position: absolute; */
+    width: 100%;
+    bottom: 0;
+    transition: all .3s ease;
+}
+
+.copy-right {
+    background-color: #3d4670;
+}
+/* END OF FOOTER */
+
+/* HOMEPAGE */
+/* make the GIF stay in the left corner */
+.assist-sector {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
+
+.notification {
+    display: none;
+    background-color: aliceblue;
+    transition: opacity 0.5s ease-out;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 4.5rem;
+    right: 4rem;
+    padding: 10px;
+}
+
+.assistant {
+    height: 6rem;
+    z-index: 1000;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+/* END OF HOMEPAGE */
+
+
+/* LOGIN PAGE */
+body {
+    height: auto;
+    /* background: rgb(25, 33, 52);
+    background: linear-gradient( 180deg, rgba(25, 33, 52, 1) 28%, rgba(7, 8, 21, 1) 75% ); */
+    background: rgba(25, 33, 52, 1) !important;
+}
+
+.card {
+    width: 75%;
+}
+
+.form-control {
+    width: 100% !important;
+}
+
+.logo {
+    width: 13%;
+    margin-right: 5px;
+}
+
+.login-bg {
+    background-color: #1F2544 !important;
+    color: white !important;
+    border-color: #70747c !important;
+    position: relative;
+    left: 13%;
+}
+
+.wallet-item {
+    /* position: relative;
+    left: 10%;
+    right: 50%; */
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: white !important;
+    background-color: #1F2544 !important;
+    width: auto;
+    border-color: transparent !important;
+    text-align: left;
+}
+
+.wallet-name {
+    position: relative;
+    left: 20%;
+}
+
+.wallet-item:hover {
+    background-color: #474F7A !important;
+}
+
+.get-wallet {
+    background-color: #9488F0 !important;
+    font-weight: 600 !important;
+    color: white !important;
+}
+
+.login {
+    background-color: #9488F0 !important;
+    font-weight: 600 !important;
+    color: white !important;
+}
+
+.direct-link {
+    color: #9488F0;
+}
+/* END OF LOGIN PAGE */

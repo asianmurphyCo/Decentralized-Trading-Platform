@@ -27,8 +27,10 @@ function App(routes) {
   
   return (
     <>
-      <RouterProvider router={router}/>
-      <Footer/>
+      <div>
+        <RouterProvider router={router}/>
+        <Footer />
+      </div>
     </>
   )
 }

@@ -71,18 +71,18 @@ function Login() {
                             <label className="form-label">Gender</label>
                             <div className="form-check form-check-inline">
                               <input className="form-check-input" id="genderf" type="radio" name="gender" value="female"></input>
-                              <label className="form-check-label" for="genderf">Female</label>
+                              <label className="form-check-label" htmlFor="genderf">Female</label>
                             </div>
           
                             <div className="form-check form-check-inline">
                               <input className="form-check-input" id="genderm" type="radio" name="gender" value="male"></input>
-                              <label className="form-check-label" for="genderm">Male</label>
+                              <label className="form-check-label" htmlFor="genderm">Male</label>
                             </div>
                           </div>
 
                           <div className="form-outline mb-3">
                             <input type="email" id="email" name="email" className="form-control form-control-lg"></input>
-                            <label className="form-label" for="email">Your Email</label>
+                            <label className="form-label" htmlFor="email">Your Email</label>
                           </div>
 
                           <div className="form-outline mb-3">
@@ -97,7 +97,7 @@ function Login() {
 
                           <div className="form-check d-flex justify-content-center mb-3">
                             <input className="form-check-input me-1" type="checkbox" name="term_service" id="term_service"></input>
-                            <label className="form-check-label" for="term_service">
+                            <label className="form-check-label" htmlFor="term_service">
                               I agree all statements in <a href="#!" className="direct-link"><u>Terms of service</u></a>
                             </label>
                           </div>
