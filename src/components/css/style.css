@@ -75,9 +75,9 @@ button a {
 /* FOOTER */
 footer {
     background-color: #474F7A;
-    /* position: absolute; */
+    position: absolute;
     width: 100%;
-    bottom: 0;
+    /* bottom: 0; */
     transition: all .3s ease;
 }
 
@@ -87,22 +87,60 @@ footer {
 /* END OF FOOTER */
 
 /* HOMEPAGE */
+
+.homepage {
+    /* background: url('../assets/stockchart.jpeg'); */
+    background-repeat: no-repeat;
+    padding: 0px 0 180px 0;
+    background-size: cover;
+    background-position: top center;
+}
+
+.homepage .container {
+    padding-top: 3rem;
+}
+
+.tagline {
+    font-weight: 700;
+    padding: 8px 0px;
+    font-size: 20px;
+    margin-bottom: 16px;
+    display: inline-block;
+}
+
 .banner-img {
     width: 100%;
+    border-radius: 10px;
+    box-shadow: 10px 10px 40px 25px #060E21;
+}
+
+.features h2{
+    text-align: center;
+}
+
+.accordion-item {
+    color: white!important;
+}
+.accordion-button {
+    font-weight: 700!important;
+    color: white !important;
+    background-color: #060E21!important;
 }
 /* make the GIF stay in the left corner */
 .assist-sector {
     position: fixed;
     right: 0;
     bottom: 0;
+    z-index: 999;
 }
 
 .notification {
+    position: fixed;
+    z-index: 998;
     display: none;
     background-color: aliceblue;
     transition: opacity 0.5s ease-out;
     border-radius: 10px;
-    position: absolute;
     bottom: 4.5rem;
     right: 4rem;
     padding: 10px;

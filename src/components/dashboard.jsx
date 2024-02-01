@@ -22,7 +22,8 @@ function Dashboard() {
   
 
     //  Change URL later due to being broke, cannot afford good api
-    const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en1';
+    const url =
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en";
 
     useEffect(() => {
         axios.get(url).then((response) => {
