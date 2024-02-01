@@ -1,8 +1,4 @@
-import { useState } from 'react'
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
-
-import reactLogo from './components/assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './components/header';
 import Footer from './components/footer';
@@ -22,9 +18,7 @@ const router = createBrowserRouter(
   )
 )
 
-function App(routes) {
-  const [count, setCount] = useState(0)
-  
+function App() {
   return (
     <>
       <div>
