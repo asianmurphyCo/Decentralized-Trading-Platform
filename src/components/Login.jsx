@@ -6,14 +6,55 @@ import metamask from '../components/assets/metamask.jpg'
 import trustwallet from '../components/assets/trustwallet.jpg'
 import walletconnect from '../components/assets/wallet-connect-logo.png'
 
+// import axios from 'axios' (will use if have api endpoint)
+
+
 function Login() {
   const [isLoginForm, setIsLoginForm] = useState(true);
+
+  //  Setting up useState for username, password
+  const [username,setUsername] = useState('');
+  const [password,setPassword] = useState('');
+
+  //  Set Error
+  const [error,setError] = useState('');
+
+
 
   const handleToggle = () => {
     setIsLoginForm(!isLoginForm);
   };
 
 
+  const handleSubmit = async (e) =>{
+    e.preventDefault();
+
+    try{
+      const res = await fetch('/data/fake_user.json');
+      const data = await res.json();
+      console.log(data[username]);
+
+      const user = data[username];
+
+      if(user && user.password === password){
+        console.log('Login successful!');
+        setError('');
+       
+      }
+      else {
+        // Authentication failed
+        console.error('Login failed');
+        setError('Invalid username or password');
+
+      }
+      } catch (fetchError) {
+        console.error('Error fetching data:', fetchError);
+      }
+      
+  };
+
+
+  
     return (
         <div>
               
@@ -31,26 +72,28 @@ function Login() {
                       <div className="card-body p-5">
                         <h2 className="text-uppercase text-center mb-4">Login</h2>
 
-                        <form method="post" action="http://mercury.swin.edu.au/it000000/cos10005/formtest.php">
+                        <form onSubmit={handleSubmit} >
 
                           <div className="form-outline mb-3">
-                            <input type="text" id="name" name="username" className="form-control form-control-lg" autoFocus/>
+                            <input onChange={(e) => setUsername(e.target.value)} type="text" id="name" name="username" className="form-control form-control-lg" autoFocus/>
                             <label className="form-label" htmlFor="name">Your Name</label>
                           </div>
 
                           <div className="form-outline mb-3">
-                            <input type="password" id="password" name="password" className="form-control form-control-lg" />
+                            <input onChange={(e) => setPassword(e.target.value)} type="password" id="password" name="password" className="form-control form-control-lg" />
                             <label className="form-label" htmlFor="password">Password</label>
                           </div>
 
                           <div className="d-flex justify-content-center">
                             <button type="submit" className="btn btn-outline-primary my-2 my-sm-2 btn-lg login">Login</button>
                           </div>
-
+                          {error && <div style={{color:'red', textAlign:'center'}}>{error}</div>}
                           <p className="text-center text-light mt-4 mb-0 ">Don't have an account? 
                           <a href="#register" className="direct-link" onClick={handleToggle}><u>Register here</u></a>
                           </p>
                         </form>
+
+                        
                       </div>
                     </div>
                     </>
@@ -71,18 +114,18 @@ function Login() {
                             <label className="form-label">Gender</label>
                             <div className="form-check form-check-inline">
                               <input className="form-check-input" id="genderf" type="radio" name="gender" value="female"></input>
-                              <label className="form-check-label" for="genderf">Female</label>
+                              <label className="form-check-label" htmlFor="genderf">Female</label>
                             </div>
           
                             <div className="form-check form-check-inline">
                               <input className="form-check-input" id="genderm" type="radio" name="gender" value="male"></input>
-                              <label className="form-check-label" for="genderm">Male</label>
+                              <label className="form-check-label" htmlFor="genderm">Male</label>
                             </div>
                           </div>
 
                           <div className="form-outline mb-3">
                             <input type="email" id="email" name="email" className="form-control form-control-lg"></input>
-                            <label className="form-label" for="email">Your Email</label>
+                            <label className="form-label" htmlFor="email">Your Email</label>
                           </div>
 
                           <div className="form-outline mb-3">
@@ -97,7 +140,7 @@ function Login() {
 
                           <div className="form-check d-flex justify-content-center mb-3">
                             <input className="form-check-input me-1" type="checkbox" name="term_service" id="term_service"></input>
-                            <label className="form-check-label" for="term_service">
+                            <label className="form-check-label" htmlFor="term_service">
                               I agree all statements in <a href="#!" className="direct-link"><u>Terms of service</u></a>
                             </label>
                           </div>

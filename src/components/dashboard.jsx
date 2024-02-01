@@ -8,7 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box } from '@mui/material';
+import { Box,Container,TablePagination } from '@mui/material';
 import { useEffect, useState } from 'react';
 
 
@@ -17,13 +17,19 @@ import { useEffect, useState } from 'react';
 
 function Dashboard() {
 
-    // Fetching data from CoinGecko API
+    // Fetching data from Client-Side Data for Front-end
     const [data,setData] = useState(null);
+    const [page,setPage] = useState(0);
+
+    //  Setting up rowsPerPage useState
+    const [rowsPerPage,setRowsPerPage] = useState(10);
   
 
     //  Change URL later due to being broke, cannot afford good api
-    const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en1';
+    const url = '/data/markets.json';
 
+
+    //  Fetch data from url
     useEffect(() => {
         axios.get(url).then((response) => {
             setData(response.data)
@@ -35,7 +41,16 @@ function Dashboard() {
     //  If no response data, return null
     if(!data) return null;
 
-  
+    //  Handle change page for pagination
+    const handleChangePage = (e,p) =>{
+        setPage(p);
+    }
+
+    //  Handle change row per page
+    const handleChangeRowsPerPage = (e) => {
+        setRowsPerPage(parseInt(e.target.value, 10));
+        setPage(0);
+    }
 
 
     // Format JSON data about prices into readable amount of money in USD
@@ -52,24 +67,25 @@ function Dashboard() {
 
     return (
     
+        <Container sx={{py:5}}>
         <div>
             <TableContainer component={Paper}>
                 <Table aria-label="crypto dashboard">
 
                     {/*Table Head */}
-                    <TableHead>
+                    <TableHead >
                         <TableRow>
-                            <TableCell align="center">Name</TableCell> {/* Image + Symbol + Name*/}
-                            <TableCell align="center">Price</TableCell>
-                            <TableCell align="center">% Change (24h)</TableCell>
-                            <TableCell align="center">24h Volume</TableCell>
-                            <TableCell align="center">Market Cap</TableCell>
+                            <TableCell sx={{width:2}} align="center">Name</TableCell> {/* Image + Symbol + Name*/}
+                            <TableCell  align="center">Price</TableCell>
+                            <TableCell  align="center">% Change (24h)</TableCell>
+                            <TableCell  align="center">24h Volume</TableCell>
+                            <TableCell  align="center">Market Cap</TableCell>
                         </TableRow>
                     </TableHead>
 
                     {/*Table Body */}
                     <TableBody>
-                    {data.map((d) => (
+                    {data.slice(page * rowsPerPage, page* rowsPerPage + rowsPerPage).map((d) => (
                         <TableRow
                         key={d.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -79,9 +95,10 @@ function Dashboard() {
                            <>
                            <Box component="img"
                            sx={{
-                            height: 30,
-                            width:30,
+                            maxWidth:30,
+                            maxHeight:30
                            }}
+                           
                             src={d.image}></Box> {d.name} 
                             </>
                         </TableCell>
@@ -93,9 +110,28 @@ function Dashboard() {
                     ))}
                     </TableBody>
 
+                           <TableRow align="right">
+                           <Box>
+                           
+                           <TablePagination
+                                rowsPerPageOptions={[10,20,30]}
+                                component="div"
+                                count={(data.length)}
+                                rowsPerPage={rowsPerPage}
+                                page={page}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
+                                variant='outlined'
+                            />
+                           </Box>
+                           
+                           </TableRow>
                 </Table>
             </TableContainer>
+
+            
         </div>
+        </Container>
         
     )
 
