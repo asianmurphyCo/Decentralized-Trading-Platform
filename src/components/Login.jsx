@@ -23,7 +23,7 @@ function Login() {
   //  Set Error
   const [error,setError] = useState('');
   // Login state
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn] = useState(false);
 
 // Switch between Login and Register
   const handleToggle = () => {
@@ -43,11 +43,16 @@ function Login() {
 
       if(user && user.password === password){
         console.log('Login successful!');
+        console.log(username);
         setError('');
       // PASS THIS VARIABLE STATUS TO OTHER PAGES SO USERS DONT GET LOGGED OUT WHEN SWITCHING TAB
       
       //  REDIRECT USER TO PROFILE PAGE
-        setIsLoggedIn(true);
+        // localStorage.removeItem("isLoggedIn");
+
+        // PUSH username key and login state to localstorage
+        // localStorage.setItem('username', username);
+        localStorage.setItem("isLoggedIn", "true");
 
         // Redirect to the profile page
         navigate("/profile");
