@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./css/style.css";
 import profile_pic from "../components/assets/profile.png";
 import cat from "../components/assets/mya-thurston-waffles.gif";
+import {CircularProgress,Box} from '@mui/material';
 
 // PASS Username key from Local Storage
 const Username = localStorage.getItem("username");
@@ -31,7 +32,11 @@ function Profile() {
 
   if (!userData) {
     // If userData is still null, return a loading page
-    return <div>Loading...</div>;
+    return <div>
+       <Box sx={{ display: 'flex' , alignContent:'center'}}>
+                    <CircularProgress />
+                </Box>
+    </div>;
   }
 
   // Check if user is logged in

@@ -6,6 +6,7 @@ import rainbow from '../components/assets/rainbow-icon.png'
 import metamask from '../components/assets/metamask.jpg'
 import trustwallet from '../components/assets/trustwallet.jpg'
 import walletconnect from '../components/assets/wallet-connect-logo.png'
+import {CircularProgress} from '@mui/material'
 
 // import axios from 'axios' (will use if have api endpoint)
 
