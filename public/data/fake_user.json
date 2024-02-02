@@ -1,0 +1,10 @@
+{
+    "admin": {
+      "username": "admin",
+      "password": "admin",
+      "email": "admin@example.com",
+      "wallet": "0x1ABC7154748D1CE5144478CDEB574AE244B939B5",
+      "balance": "14.03"
+    }
+  }
+  
