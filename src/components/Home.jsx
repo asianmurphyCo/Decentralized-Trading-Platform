@@ -78,30 +78,30 @@ const Home = () => {
                     <h2>Secure</h2>
                     <p>
                       Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book.
+                      typesetting industry. Lorem Ipsum has been the
+                      industry&apos;s standard dummy text ever since the 1500s,
+                      when an unknown printer took a galley of type and
+                      scrambled it to make a type specimen book.
                     </p>
                   </div>
                   <div className="col-xl-4 col-md-4 col-12 mb-3">
                     <h2>Fast trading</h2>
                     <p>
                       Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book.
+                      typesetting industry. Lorem Ipsum has been the
+                      industry&apos;s standard dummy text ever since the 1500s,
+                      when an unknown printer took a galley of type and
+                      scrambled it to make a type specimen book.
                     </p>
                   </div>
                   <div className="col-xl-4 col-md-4 col-12 mb-3">
                     <h2>Up-to-date</h2>
                     <p>
                       Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book.
+                      typesetting industry. Lorem Ipsum has been the
+                      industry&apos;s standard dummy text ever since the 1500s,
+                      when an unknown printer took a galley of type and
+                      scrambled it to make a type specimen book.
                     </p>
                   </div>
                 </div>
@@ -127,7 +127,7 @@ const Home = () => {
                   <Accordion.Item eventKey="0">
                     {/* QUESTION 1 */}
                     <Accordion.Header className="">
-                      What&apos;s is Wallet ?
+                      What&apos;s is Crypto Wallet ?
                     </Accordion.Header>
                     {/* ANSWER 1 */}
                     <Accordion.Body className="bg-primary">
@@ -176,9 +176,9 @@ const Home = () => {
                     <Accordion.Body className="bg-primary">
                       To get started, visit our website and create an account.
                       Make sure to securely store your private key or seed
-                      phrase, as it's crucial for accessing your funds. Once
-                      your account is set up, you can deposit cryptocurrencies
-                      and start trading on the platform.
+                      phrase, as it&apos;s crucial for accessing your funds.
+                      Once your account is set up, you can deposit
+                      cryptocurrencies and start trading on the platform.
                     </Accordion.Body>
                   </Accordion.Item>
                   <Accordion.Item eventKey="4">
@@ -192,20 +192,6 @@ const Home = () => {
                       platforms and intermediaries, Web3 aims to empower users
                       by putting them in control of their data, identity, and
                       digital interactions.
-                    </Accordion.Body>
-                  </Accordion.Item>
-                  <Accordion.Item eventKey="5">
-                    {/* QUESTION 6 */}
-                    <Accordion.Header>
-                      What is a Crypto Wallet ?
-                    </Accordion.Header>
-                    {/* ANSWER 6 */}
-                    <Accordion.Body className="bg-primary">
-                      A DEX wallet, short for Decentralized Exchange wallet, is
-                      a digital wallet specifically tailored for use with
-                      decentralized exchanges (DEXs). It serves as a secure
-                      repository for your cryptocurrencies and facilitates
-                      direct interaction with decentralized trading platforms
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
