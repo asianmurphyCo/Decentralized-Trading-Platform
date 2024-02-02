@@ -5,7 +5,9 @@ import "./css/style.css";
 import profile_pic from "../components/assets/profile.png";
 import cat from "../components/assets/mya-thurston-waffles.gif";
 
+// PASS Username key from Local Storage
 const Username = localStorage.getItem("username");
+// DEBUG LINE
 console.log(Username);
 function Profile() {
   const [userData, setUserData] = useState(null);
@@ -15,8 +17,8 @@ function Profile() {
         const response = await fetch("/data/fake_user.json");
         const data = await response.json();
 
-        // Assuming you have a user key in your JSON file
-        setUserData(data[Username]); // Change 'admin' to the actual user key
+        // ACCESS user key in your JSON file
+        setUserData(data[Username]); // Change to any user key in json file
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -25,7 +27,7 @@ function Profile() {
     fetchData();
   }, []);
   if (!userData) {
-    // If userData is still null, return a loading indicator or handle accordingly
+    // If userData is still null, return a loading page
     return <div>Loading...</div>;
   }
 

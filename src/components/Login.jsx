@@ -51,7 +51,7 @@ function Login() {
         // localStorage.removeItem("isLoggedIn");
 
         // PUSH username key and login state to localstorage
-        // localStorage.setItem('username', username);
+        localStorage.setItem('username', username);
         localStorage.setItem("isLoggedIn", "true");
 
         // Redirect to the profile page
