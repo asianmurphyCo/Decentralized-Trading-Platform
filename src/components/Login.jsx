@@ -44,6 +44,8 @@ function Login() {
       if(user && user.password === password){
         console.log('Login successful!');
         setError('');
+      // PASS THIS VARIABLE STATUS TO OTHER PAGES SO USERS DONT GET LOGGED OUT WHEN SWITCHING TAB
+      
       //  REDIRECT USER TO PROFILE PAGE
         setIsLoggedIn(true);
 
