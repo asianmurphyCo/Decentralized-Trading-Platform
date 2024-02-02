@@ -66,11 +66,11 @@ function Login() {
   // Render page
     return (
       <div>
-        <section className="vh-100 bg-image">
+        <section className="vh-1000 bg-image">
           <div className="mask d-flex align-items-center h-100 gradient-custom-3">
             <div className="container h-100">
               <div className="row d-flex align-items-center h-100">
-                <div className="col-sm-12 col-md-12 col-lg-6 mx-auto mb-5 mt-5">
+                <div className="col-sm-12 col-md-12 col-lg-6 mb-5 mt-5">
                   {isLoginForm ? (
                     <>
                       {/* LOGIN FORM */}
@@ -288,7 +288,7 @@ function Login() {
                   )}
                 </div>
 
-                <div className="col-sm-12 col-md-12 col-lg-6 mx-auto mb-5 mt-5">
+                <div className="col-sm-12 col-md-12 col-lg-6 mb-5 mt-5">
                   <div
                     className="card login-bg"
                     style={{ borderRadius: "15px" }}
