@@ -8,9 +8,4 @@
   /* background: rgb(25, 33, 52);
   background: linear-gradient( 180deg, rgba(25, 33, 52, 1) 28%, rgba(7, 8, 21, 1) 75% ); */
   /* background: rgba(25, 33, 52, 1); */
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }

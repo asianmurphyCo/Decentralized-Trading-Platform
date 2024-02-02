@@ -1,5 +1,6 @@
 // import
 import { useState } from 'react'
+import { Link, useNavigate } from "react-router-dom";
 import './css/style.css'
 import rainbow from '../components/assets/rainbow-icon.png'
 import metamask from '../components/assets/metamask.jpg'
@@ -10,6 +11,9 @@ import walletconnect from '../components/assets/wallet-connect-logo.png'
 
 
 function Login() {
+
+  const navigate = useNavigate();
+
   const [isLoginForm, setIsLoginForm] = useState(true);
 
   //  Setting up useState for username, password
@@ -18,7 +22,8 @@ function Login() {
 
   //  Set Error
   const [error,setError] = useState('');
-
+  // Login state
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 // Switch between Login and Register
   const handleToggle = () => {
@@ -39,7 +44,11 @@ function Login() {
       if(user && user.password === password){
         console.log('Login successful!');
         setError('');
-       
+      //  REDIRECT USER TO PROFILE PAGE
+        setIsLoggedIn(true);
+
+        // Redirect to the profile page
+        navigate("/profile");
       }
       else {
         // Authentication failed
@@ -61,7 +70,7 @@ function Login() {
           <div className="mask d-flex align-items-center h-100 gradient-custom-3">
             <div className="container h-100">
               <div className="row d-flex align-items-center h-100">
-                <div className="col-12 col-md-9 col-lg-7 col-xl-6 overflow-hidden mb-5 mt-5">
+                <div className="col-sm-12 col-md-12 col-lg-6 mx-auto mb-5 mt-5">
                   {isLoginForm ? (
                     <>
                       {/* LOGIN FORM */}
@@ -134,8 +143,8 @@ function Login() {
                       </div>
                     </>
                   ) : (
-                      <>
-                        {/* REGISTER FORM */}
+                    <>
+                      {/* REGISTER FORM */}
                       <div
                         className="card login-bg"
                         style={{ borderRadius: "15px" }}
@@ -146,8 +155,8 @@ function Login() {
                           </h2>
 
                           <form
-                              method="post"
-                              // FORM ENDPOINT 
+                            method="post"
+                            // FORM ENDPOINT
                             action="#"
                           >
                             <div className="form-outline mb-3">
@@ -239,8 +248,8 @@ function Login() {
                                 className="form-check-input me-1"
                                 type="checkbox"
                                 name="term_service"
-                                  id="term_service"
-                                  required
+                                id="term_service"
+                                required
                               ></input>
                               <label
                                 className="form-check-label"
@@ -279,7 +288,7 @@ function Login() {
                   )}
                 </div>
 
-                <div className="col-12 col-md-9 col-lg-6 col-xl-5 overflow-hidden mb-5 mt-5">
+                <div className="col-sm-12 col-md-12 col-lg-6 mx-auto mb-5 mt-5">
                   <div
                     className="card login-bg"
                     style={{ borderRadius: "15px" }}
@@ -292,7 +301,12 @@ function Login() {
                       <div className="form-outline mb-3">
                         <button className="wallet-item">
                           <div className="wallet-name">
-                            <img src={metamask} className="logo" alt='metamask'></img> MetaMask
+                            <img
+                              src={metamask}
+                              className="logo"
+                              alt="metamask"
+                            ></img>{" "}
+                            MetaMask
                           </div>
                         </button>
                       </div>
@@ -300,7 +314,12 @@ function Login() {
                       <div className="form-outline mb-3">
                         <button className="wallet-item">
                           <div className="wallet-name">
-                            <img src={rainbow} className="logo" alt='rainbow'></img> Rainbow
+                            <img
+                              src={rainbow}
+                              className="logo"
+                              alt="rainbow"
+                            ></img>{" "}
+                            Rainbow
                           </div>
                         </button>
                       </div>
@@ -308,7 +327,11 @@ function Login() {
                       <div className="form-outline mb-3">
                         <button className="wallet-item">
                           <div className="wallet-name">
-                            <img src={walletconnect} className="logo" alt='wallet connect'></img>{" "}
+                            <img
+                              src={walletconnect}
+                              className="logo"
+                              alt="wallet connect"
+                            ></img>{" "}
                             WalletConnect
                           </div>
                         </button>
@@ -317,7 +340,11 @@ function Login() {
                       <div className="form-outline mb-3">
                         <button className="wallet-item">
                           <div className="wallet-name">
-                            <img src={trustwallet} className="logo" alt='trustwallet'></img>{" "}
+                            <img
+                              src={trustwallet}
+                              className="logo"
+                              alt="trustwallet"
+                            ></img>{" "}
                             TrustWallet
                           </div>
                         </button>
