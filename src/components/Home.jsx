@@ -58,39 +58,35 @@ const Home = () => {
               </div>
 
               <div className="row justify-content-left align-content-start mt-4">
-                <div className="col-md-4 col-12">
-                  <h3 className="align-left me-1 display-4 ibm-font">
+                <div className="col-lg-4 col-md-4 col-4">
+                  <h3 className="mbr-section-title align-left me-1 display-5 ibm-font">
                     <strong>
-                      <strong>
-                        <CountUp end={5542} duration={3} />
-                      </strong>
+                      <CountUp end={4542} duration={4} />
                     </strong>
                   </h3>
-                  <p className="align-left">
+                  <p className="mbr-section-text align-left">
                     <strong>Wallets</strong>
                     <br />
                   </p>
                 </div>
-                <div className="col-md-4 col-12 ">
-                  <h3 className="align-left me-1 display-4 ibm-font">
+                <div className="col-lg-4 col-md-4 col-4 ">
+                  <h3 className="mbr-section-title align-left me-1 display-5 ibm-font">
                     <strong>
-                      <CountUp end={4532} duration={5} />
+                      <CountUp end={4532} duration={4} />
                     </strong>
                   </h3>
-                  <p className="mbr-section-text mbr-fonts-style align-left">
+                  <p className="mbr-section-text align-left">
                     <strong>Clients</strong>
                     <br />
                   </p>
                 </div>
-                <div className="col-md-4 col-12">
-                  <h3 className="mbr-section-title mbr-fonts-style align-left me-1 display-4 ibm-font">
+                <div className="col-lg-4 col-md-4 col-4">
+                  <h3 className="mbr-section-title  align-left me-1 display-5 ibm-font">
                     <strong>
-                      <strong>
-                        <CountUp end={332} duration={5} />
-                      </strong>
+                      <CountUp end={332} duration={2} />
                     </strong>
                   </h3>
-                  <p className="mbr-section-text mbr-fonts-style align-left">
+                  <p className="mbr-section-text align-left">
                     <strong>Сurrency</strong>
                     <br />
                   </p>
@@ -118,7 +114,7 @@ const Home = () => {
               <div className="features">
                 <h2 className="mb-5">Why choose us?</h2>
                 <div className="allign-items-center row d-flex mb-5">
-                  <div className="col-xl-4 col-md-4 col-12 mb-3">
+                  <div className="col-xl-4 col-md-4 col-12 mb-3 p-3 highlight">
                     <h2>Secure</h2>
                     <p>
                       Lorem Ipsum is simply dummy text of the printing and
@@ -128,7 +124,7 @@ const Home = () => {
                       scrambled it to make a type specimen book.
                     </p>
                   </div>
-                  <div className="col-xl-4 col-md-4 col-12 mb-3">
+                  <div className="col-xl-4 col-md-4 col-12 mb-3 p-3 highlight">
                     <h2>Fast trading</h2>
                     <p>
                       Lorem Ipsum is simply dummy text of the printing and
@@ -138,7 +134,7 @@ const Home = () => {
                       scrambled it to make a type specimen book.
                     </p>
                   </div>
-                  <div className="col-xl-4 col-md-4 col-12 mb-3">
+                  <div className="col-xl-4 col-md-4 col-12 mb-3 p-3 highlight">
                     <h2>Up-to-date</h2>
                     <p>
                       Lorem Ipsum is simply dummy text of the printing and
