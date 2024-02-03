@@ -1,16 +1,19 @@
 // import
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./css/style.css";
 import profile_pic from "../components/assets/profile.png";
 import cat from "../components/assets/mya-thurston-waffles.gif";
+import {CircularProgress,Box} from '@mui/material';
 
 // PASS Username key from Local Storage
 const Username = localStorage.getItem("username");
 // DEBUG LINE
 console.log(Username);
+
 function Profile() {
   const [userData, setUserData] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,9 +29,14 @@ function Profile() {
 
     fetchData();
   }, []);
+
   if (!userData) {
     // If userData is still null, return a loading page
-    return <div>Loading...</div>;
+    return <div>
+       <Box sx={{ display: 'flex' , alignContent:'center'}}>
+                    <CircularProgress />
+                </Box>
+    </div>;
   }
 
   // Check if user is logged in
@@ -124,6 +132,7 @@ function Profile() {
                   </div>
                 </div>
                 <hr />
+
                 <div className="row">
                   <div className="col-sm-3">
                     <p className="mb-0">Wallet Address</p>
@@ -132,6 +141,17 @@ function Profile() {
                     <p className="text-muted mb-0">{userData.wallet}</p>
                   </div>
                 </div>
+                <hr/>
+                {/*History Transaction Link */}
+                <div className="row">
+                  <div className="col-sm-3">
+                    <p className="mb-0">Transaction History</p>
+                  </div>
+                  <div className="col-sm-9">
+                    <Link to="/transaction">Show History</Link>
+                  </div>
+                </div>
+                
               </div>
             </div>
           </div>

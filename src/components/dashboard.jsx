@@ -1,6 +1,5 @@
 // import
 import './css/style.css'
-
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,7 +10,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Box,Container,TablePagination } from '@mui/material';
 import { useEffect, useState } from 'react';
-
 
 
 
@@ -124,13 +122,10 @@ function Dashboard() {
                                 onRowsPerPageChange={handleChangeRowsPerPage}
                                 variant='outlined'
                             />
-                           </Box>
-                           
+                           </Box>  
                            </TableRow>
                 </Table>
             </TableContainer>
-
-            
         </div>
         </Container>
         
