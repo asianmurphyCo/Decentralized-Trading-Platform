@@ -5,7 +5,6 @@ import "./css/style.css";
 import profile_pic from "../components/assets/profile.png";
 import cat from "../components/assets/mya-thurston-waffles.gif";
 import hertaload from "../components/assets/herta.webp";
-import { CircularProgress, Box } from "@mui/material";
 
 // PASS Username key and login state from Local Storage
 const Username = localStorage.getItem("username");

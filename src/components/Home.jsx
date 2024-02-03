@@ -5,6 +5,7 @@ import "./css/style.css";
 
 import Accordion from "react-bootstrap/Accordion";
 import { Link } from "react-router-dom";
+import CountUp from "react-countup";
 
 const Home = () => {
   // add 0.2s delay before pop up the chatbox
@@ -53,6 +54,46 @@ const Home = () => {
                       ></path>
                     </svg>
                   </button>
+                </div>
+              </div>
+
+              <div className="row justify-content-left align-content-start mt-4">
+                <div className="col-md-4 col-12">
+                  <h3 className="align-left me-1 display-4 ibm-font">
+                    <strong>
+                      <strong>
+                        <CountUp end={5542} duration={3} />
+                      </strong>
+                    </strong>
+                  </h3>
+                  <p className="align-left">
+                    <strong>Wallets</strong>
+                    <br />
+                  </p>
+                </div>
+                <div className="col-md-4 col-12 ">
+                  <h3 className="align-left me-1 display-4 ibm-font">
+                    <strong>
+                      <CountUp end={4532} duration={5} />
+                    </strong>
+                  </h3>
+                  <p className="mbr-section-text mbr-fonts-style align-left">
+                    <strong>Clients</strong>
+                    <br />
+                  </p>
+                </div>
+                <div className="col-md-4 col-12">
+                  <h3 className="mbr-section-title mbr-fonts-style align-left me-1 display-4 ibm-font">
+                    <strong>
+                      <strong>
+                        <CountUp end={332} duration={5} />
+                      </strong>
+                    </strong>
+                  </h3>
+                  <p className="mbr-section-text mbr-fonts-style align-left">
+                    <strong>Сurrency</strong>
+                    <br />
+                  </p>
                 </div>
               </div>
             </div>
