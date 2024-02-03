@@ -18,12 +18,9 @@ function App() {
             <Route index element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route
-              path="{'${process.env.PUBLIC_URL}/dashboard'}"
-              element={<Dashboard />}
-            />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/transaction" element={<TransactionHistory />} />
+            <Route path="/transaction" element={<TransactionHistory/>}/>
           </Routes>
           <Footer />
         </div>

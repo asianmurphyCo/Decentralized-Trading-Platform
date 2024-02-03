@@ -43,10 +43,7 @@ function Header() {
               </Nav.Link>
 
               <Nav.Link className=" text-white headerItem2 mx-3">
-                <Link
-                  className="headerItem"
-                  to="{'${process.env.PUBLIC_URL}/dashboard'}"
-                >
+                <Link className="headerItem" to="/dashboard">
                   Dashboard
                 </Link>
               </Nav.Link>
