@@ -79,7 +79,11 @@ function Header() {
             {/* IF USER HAS LOGGED IN, CONNECT WALLET WILL DISPLAY USER'S NAME AND PROVIDE A LOG OUT BUTTON RIGHT BELOW */}
             {/* IF USER HASNT LOGGED IN, IT WILL DISPLAY "CONNECT WALLET" AND DIRECT USER TO LOGIN PAGE */}
             {isLoggedIn ? (
-              <NavDropdown title={username} id="navbarScrollingDropdown">
+              <NavDropdown
+                title={username}
+                id="navbarScrollingDropdown"
+                className="btn btn-primary btn-color mx-2 my-2"
+              >
                 <NavDropdown.Item className="headerItem">
                   <Link className="headerItem" to="/profile">
                     Profile

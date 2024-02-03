@@ -134,7 +134,7 @@ footer {
 @keyframes slide-up {
   from {
     opacity: 0;
-    transform: translateY(50px); /* Start position below the viewport */
+    transform: translateY(20px); /* Start position below the viewport */
   }
   to {
     opacity: 1;

@@ -125,7 +125,7 @@ const Home = () => {
                     </p>
                   </div>
                   <div className="col-xl-4 col-md-4 col-12 mb-3 p-3 highlight">
-                    <h2>Fast trading</h2>
+                    <h2>Global Accessibility</h2>
                     <p>
                       Lorem Ipsum is simply dummy text of the printing and
                       typesetting industry. Lorem Ipsum has been the
@@ -135,7 +135,7 @@ const Home = () => {
                     </p>
                   </div>
                   <div className="col-xl-4 col-md-4 col-12 mb-3 p-3 highlight">
-                    <h2>Up-to-date</h2>
+                    <h2>Immutable Transactions</h2>
                     <p>
                       Lorem Ipsum is simply dummy text of the printing and
                       typesetting industry. Lorem Ipsum has been the
