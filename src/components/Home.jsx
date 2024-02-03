@@ -1,20 +1,21 @@
 // import React from 'react'
-import assistant from '../components/assets/kiana-kiana-wave.gif'
-import bannerimg from '../components/assets/stockchart.jpeg'
-import './css/style.css'
+import assistant from "../components/assets/kiana-kiana-wave.gif";
+import bannerimg from "../components/assets/stockchart.jpeg";
+import "./css/style.css";
 
 import Accordion from "react-bootstrap/Accordion";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-    // add 0.2s delay before pop up the chatbox
+  // add 0.2s delay before pop up the chatbox
   const showchat = () => {
     setTimeout(() => {
-      document.getElementById('chatbox').style.display = 'block';
-    }, 200);  
+      document.getElementById("chatbox").style.display = "block";
+    }, 200);
   };
 
   const hidechat = () => {
-    document.getElementById('chatbox').style.display = 'none';
+    document.getElementById("chatbox").style.display = "none";
   };
   return (
     <div>
@@ -36,7 +37,9 @@ const Home = () => {
                     it to make a type specimen book.
                   </p>
                   <button className="btn my-2 my-sm-2 btn-lg get-wallet">
-                    Get Started{" "}
+                    <Link className="text-light" to="/login">
+                      Get Started{" "}
+                    </Link>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 16 16"
@@ -215,6 +218,6 @@ const Home = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Home
+export default Home;
