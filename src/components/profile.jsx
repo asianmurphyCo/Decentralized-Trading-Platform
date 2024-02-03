@@ -32,16 +32,10 @@ function Profile() {
     fetchData();
   }, []);
 
-  // if (!userData) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // Check if user is logged in
-  // If logged in, render the profile
-  return (
-    <section className="profile">
-      {/* INCASE THE PAGE RENDERED BEFORE IT COULD READ userData, this will render a loading page */}
-      {!userData ? (
+  if (!userData) {
+    return (
+      <div>
+        {" "}
         <div className="mask d-flex align-items-center h-100 gradient-custom-3">
           <div className="container h-100">
             <div className="col-sm-12 col-md-12 col-lg-12 mb-5 mt-5">
@@ -58,7 +52,15 @@ function Profile() {
             </div>
           </div>
         </div>
-      ) : (
+      </div>
+    );
+  }
+
+  // Check if user is logged in
+  // If logged in, render the profile
+  return (
+    <section className="profile">
+      {/* INCASE THE PAGE RENDERED BEFORE IT COULD READ userData, this will reader a loading page */}
         <div className="container py-5">
           <div className="row">
             {/* Right section */}
@@ -132,7 +134,6 @@ function Profile() {
             </div>
           </div>
         </div>
-      )}
     </section>
   );
 }
