@@ -31,7 +31,7 @@ function Profile() {
 
     fetchData();
   }, []);
-
+// Wait for userData before render
   if (!userData) {
     return (
       <div>
