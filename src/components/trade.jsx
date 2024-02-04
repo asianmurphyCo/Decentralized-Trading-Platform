@@ -2,6 +2,7 @@
 import "./css/style.css";
 import React, { useState, useEffect } from "react";
 import hertaload from "../components/assets/herta.webp";
+import { FaArrowRight } from "react-icons/fa";
 
 // PASS Username key and login state from Local Storage
 
@@ -57,10 +58,10 @@ function Trade() {
   // If logged in, render the profile
   return (
     <div className="container p-5 vh-100">
-      <div className="card px-4 bg-primary">
+      <div className="card px-4 bg-primary text-light">
         <div className="row">
           <div className="col-10">
-            <p className="h3 py-3">Payment Details</p>
+            <p className="h3 text-center">Payment Details</p>
           </div>
           <div className="col-2 card">
             <p className="h5 py-3">Your Balance: {userData.balance}</p>
@@ -93,15 +94,17 @@ function Trade() {
               <p className="text mb-1">Amount (ETH):</p>
               <input
                 className="form-control mb-3 pt-2 "
-                type="password"
+                type="number"
                 placeholder="0000"
               />
             </div>
           </div>
           <div className="col-12">
-            <div className="btn btn-primary mb-3">
-              <span className="ps-3">Create transaction</span>
-              <span className="fas fa-arrow-right"></span>
+            <div className="btn btn-outline-light mb-3">
+              <span className="ps-2">Create transaction </span>
+              <span>
+                <FaArrowRight />
+              </span>
             </div>
           </div>
         </div>
