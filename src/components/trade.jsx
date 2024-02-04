@@ -75,7 +75,9 @@ function Trade() {
           <div className="row gx-3 py-5">
             <div className="col-6">
               <div className="d-flex flex-column">
-                <p className="text mb-1">Your wallet address:</p>
+                <label htmlFor="user_wallet" className="text mb-1">
+                  Your wallet address:
+                </label>
                 <input
                   className="form-control mb-3"
                   id="user_wallet"
@@ -87,29 +89,32 @@ function Trade() {
             </div>
             <div className="col-6">
               <div className="d-flex flex-column">
-                <p className="text mb-1">Wallet address you want to send:</p>
+                <label className="text mb-1" htmlFor="target_wallet">
+                  Wallet address you want to send:
+                </label>
                 <input
                   className="form-control mb-3"
                   type="text"
+                  id="target_wallet"
                   placeholder="******************************"
                 />
               </div>
             </div>
             <div className="col-6">
               <div className="d-flex flex-column">
-                <p className="text mb-1">Amount (ETH):</p>
+                <label htmlFor="amount" className="text mb-1">
+                  Amount (ETH):
+                </label>
                 <input
                   className="form-control mb-3 pt-2 "
                   type="number"
                   placeholder="0000"
+                  id="amount"
                 />
               </div>
             </div>
             <div className="col-12">
-              <button
-                type="submit"
-                className="btn btn-outline-light mb-3"
-              >
+              <button type="submit" className="btn btn-outline-light mb-3">
                 <span className="ps-2">Create transaction </span>
                 <span>
                   <FaArrowRight />
