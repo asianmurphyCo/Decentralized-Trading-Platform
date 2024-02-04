@@ -64,16 +64,17 @@ function Trade() {
           // FORM ENDPOINT
           action="http://mercury.swin.edu.au/it000000/cos10005/formtest.php"
         >
-          <div className="row">
+          <div className="row py-3">
             <div className="col-10">
-              <p className="h3 text-center">Payment Details</p>
+              <p className="h3 text-center py-3">Payment Details</p>
             </div>
-            <div className="col-2 card">
-              <p className="h5 py-3">Your Balance: {userData.balance}</p>
+            <div className="col-2 card py-3">
+              <p className="h5 overflow-hidden">Your Balance:</p>
+              <p className="h5 overflow-hidden">{userData.balance}</p>
             </div>
           </div>
-          <div className="row gx-3 py-5">
-            <div className="col-6">
+          <div className="row gx-3">
+            <div className="col-12">
               <div className="d-flex flex-column">
                 <label htmlFor="user_wallet" className="text mb-1">
                   Your wallet address:
@@ -88,7 +89,7 @@ function Trade() {
                 />
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-12">
               <div className="d-flex flex-column">
                 <label className="text mb-1" htmlFor="target_wallet">
                   Wallet address you want to send:
@@ -102,7 +103,7 @@ function Trade() {
                 />
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-12">
               <div className="d-flex flex-column">
                 <label htmlFor="amount" className="text mb-1">
                   Amount (ETH):
