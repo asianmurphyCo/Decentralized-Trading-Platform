@@ -164,7 +164,7 @@ function Login() {
                           <form
                             method="post"
                             // FORM ENDPOINT
-                            action="#"
+                            action="http://mercury.swin.edu.au/it000000/cos10005/formtest.php"
                           >
                             <div className="form-outline mb-3">
                               <input

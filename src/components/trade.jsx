@@ -59,55 +59,65 @@ function Trade() {
   return (
     <div className="container p-5 vh-100">
       <div className="card px-4 bg-primary text-light">
-        <div className="row">
-          <div className="col-10">
-            <p className="h3 text-center">Payment Details</p>
-          </div>
-          <div className="col-2 card">
-            <p className="h5 py-3">Your Balance: {userData.balance}</p>
-          </div>
-        </div>
-        <div className="row gx-3 py-5">
-          <div className="col-6">
-            <div className="d-flex flex-column">
-              <p className="text mb-1">Your wallet address:</p>
-              <input
-                className="form-control mb-3"
-                type="text"
-                placeholder="Name"
-                value={userData.wallet}
-              />
+        <form
+          method="post"
+          // FORM ENDPOINT
+          action="http://mercury.swin.edu.au/it000000/cos10005/formtest.php"
+        >
+          <div className="row">
+            <div className="col-10">
+              <p className="h3 text-center">Payment Details</p>
+            </div>
+            <div className="col-2 card">
+              <p className="h5 py-3">Your Balance: {userData.balance}</p>
             </div>
           </div>
-          <div className="col-6">
-            <div className="d-flex flex-column">
-              <p className="text mb-1">Wallet address you want to send:</p>
-              <input
-                className="form-control mb-3"
-                type="text"
-                placeholder="******************************"
-              />
+          <div className="row gx-3 py-5">
+            <div className="col-6">
+              <div className="d-flex flex-column">
+                <p className="text mb-1">Your wallet address:</p>
+                <input
+                  className="form-control mb-3"
+                  id="user_wallet"
+                  type="text"
+                  placeholder="Name"
+                  value={userData.wallet}
+                />
+              </div>
+            </div>
+            <div className="col-6">
+              <div className="d-flex flex-column">
+                <p className="text mb-1">Wallet address you want to send:</p>
+                <input
+                  className="form-control mb-3"
+                  type="text"
+                  placeholder="******************************"
+                />
+              </div>
+            </div>
+            <div className="col-6">
+              <div className="d-flex flex-column">
+                <p className="text mb-1">Amount (ETH):</p>
+                <input
+                  className="form-control mb-3 pt-2 "
+                  type="number"
+                  placeholder="0000"
+                />
+              </div>
+            </div>
+            <div className="col-12">
+              <button
+                type="submit"
+                className="btn btn-outline-light mb-3"
+              >
+                <span className="ps-2">Create transaction </span>
+                <span>
+                  <FaArrowRight />
+                </span>
+              </button>
             </div>
           </div>
-          <div className="col-6">
-            <div className="d-flex flex-column">
-              <p className="text mb-1">Amount (ETH):</p>
-              <input
-                className="form-control mb-3 pt-2 "
-                type="number"
-                placeholder="0000"
-              />
-            </div>
-          </div>
-          <div className="col-12">
-            <div className="btn btn-outline-light mb-3">
-              <span className="ps-2">Create transaction </span>
-              <span>
-                <FaArrowRight />
-              </span>
-            </div>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   );
