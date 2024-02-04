@@ -8,7 +8,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import LoadingScreen from "./loading";
 import { Box,Container,TablePagination } from '@mui/material';
+import Form from "react-bootstrap/Form";
 import { useEffect, useState } from 'react';
 
 
@@ -17,9 +19,17 @@ import { useEffect, useState } from 'react';
 function Dashboard() {
 
     // Fetching data from Client-Side Data for Front-end
-    const [data,setData] = useState(null);
+    const [data,setData] = useState([]);
+
+    //  Setting up for pagination
     const [page,setPage] = useState(0);
 
+    //  Filtering coin through search
+    
+    const [searchData,setSearchedData] = useState('');
+
+    
+    const filteredResults = data.filter((d) => d.name.toLowerCase().includes(searchData.toLowerCase()));
     //  Setting up rowsPerPage useState
     const [rowsPerPage,setRowsPerPage] = useState(10);
   
@@ -37,8 +47,8 @@ function Dashboard() {
         })
     },[]);
 
-    //  If no response data, return null
-    if(!data) return null;
+    //  If no response data, return Loading scrren
+    if(!data) return <LoadingScreen/>;
 
     //  Handle change page for pagination
     const handleChangePage = (e,p) =>{
@@ -65,8 +75,19 @@ function Dashboard() {
     }
 
     return (
+
     
-        <Container sx={{py:5}}>
+        <Container className="card-body" sx={{py:5}}>
+            <Form onChange={(e) => setSearchedData(e.target.value)} className="d-flex">
+              <Form.Control
+                type="search"
+                placeholder="Search by coin name"
+                className="mx-2 my-2 search-bg"
+                aria-label="Search"
+              />
+            </Form>
+           
+            
         <div>
             <TableContainer component={Paper}>
                 <Table aria-label="crypto dashboard">
@@ -84,7 +105,7 @@ function Dashboard() {
 
                     {/*Table Body */}
                     <TableBody>
-                    {data.slice(page * rowsPerPage, page* rowsPerPage + rowsPerPage).map((d) => (
+                    {filteredResults.slice(page * rowsPerPage, page* rowsPerPage + rowsPerPage).map((d) => (
                         <TableRow
                         key={d.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

@@ -21,6 +21,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/transactionHistory" element={<TransactionHistory/>}/>
             <Route path="/transaction" element={<TransactionHistory />} />
             <Route path="/trade" element={<Trade/>}/>
           </Routes>
