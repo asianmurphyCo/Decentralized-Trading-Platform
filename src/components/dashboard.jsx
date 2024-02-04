@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import LoadingScreen from "./loading";
 import { Box,Container,TablePagination } from '@mui/material';
 import { useEffect, useState } from 'react';
 
@@ -17,7 +18,7 @@ import { useEffect, useState } from 'react';
 function Dashboard() {
 
     // Fetching data from Client-Side Data for Front-end
-    const [data,setData] = useState(null);
+    const [data,setData] = useState([]);
     const [page,setPage] = useState(0);
 
     //  Setting up rowsPerPage useState
@@ -37,8 +38,8 @@ function Dashboard() {
         })
     },[]);
 
-    //  If no response data, return null
-    if(!data) return null;
+    //  If no response data, return Loading scrren
+    if(!data) return <LoadingScreen/>;
 
     //  Handle change page for pagination
     const handleChangePage = (e,p) =>{

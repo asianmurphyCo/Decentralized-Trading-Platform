@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
 function TransactionHistory() {
 
         // Fetching data from Client-Side Data for Front-end
-        const [data,setData] = useState(null);
+        const [data,setData] = useState([]);
         const [page,setPage] = useState(0);
     
         //  Setting up rowsPerPage useState
