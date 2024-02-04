@@ -81,8 +81,9 @@ function Trade() {
                 <input
                   className="form-control mb-3"
                   id="user_wallet"
+                  name="user_wallet"
                   type="text"
-                  placeholder="Name"
+                  placeholder="userWallet"
                   value={userData.wallet}
                 />
               </div>
@@ -96,6 +97,7 @@ function Trade() {
                   className="form-control mb-3"
                   type="text"
                   id="target_wallet"
+                  name="target_wallet"
                   placeholder="******************************"
                 />
               </div>
@@ -110,6 +112,7 @@ function Trade() {
                   type="number"
                   placeholder="0000"
                   id="amount"
+                  name="amount"
                 />
               </div>
             </div>
