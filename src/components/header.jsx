@@ -53,21 +53,10 @@ function Header() {
                 id="navbarScrollingDropdown"
                 className="headerItem mx-3"
               >
-                <NavDropdown.Item
-                  href="#action3"
-                  className="text-light headerItem"
-                >
-                  Trade
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  href="#action4"
-                  className="text-light headerItem"
-                  
-                >
-                <Link className="headerItem" to="/swap">
-                  Swap
-                </Link>
-                  
+                <NavDropdown.Item href="" className="text-light headerItem">
+                  <Link className="headerItem" to="/Trade">
+                    Trade
+                  </Link>
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>

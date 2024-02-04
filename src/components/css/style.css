@@ -167,7 +167,9 @@ footer {
     border-radius: 10px;
     box-shadow: 10px 10px 40px 25px #060E21;
 }
-
+.banner-vid {
+    box-shadow: 10px 10px 40px 15px #060E21;
+}
 .features h2{
     text-align: center;
 }
@@ -375,3 +377,5 @@ footer {
     color: #9488F0;
 }
 /* END OF LOGIN PAGE */
+
+/* SWAP PAGE */

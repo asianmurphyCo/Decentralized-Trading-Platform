@@ -1,5 +1,6 @@
 // import React from 'react'
 import assistant from "../components/assets/kiana-kiana-wave.gif";
+import aigif from "../components/assets/honkai-ai.gif";
 import bannerimg from "../components/assets/stockchart.jpeg";
 import "./css/style.css";
 import profile2 from "../components/assets/toothless.png";
@@ -61,7 +62,7 @@ const Home = () => {
                   </button>
                 </div>
               </div>
-
+              {/* STATISTICS */}
               <div className="row justify-content-left align-content-start mt-4">
                 <div className="col-lg-4 col-md-4 col-4">
                   <h3 className="mbr-section-title align-left me-1 display-5 ibm-font">
@@ -122,31 +123,31 @@ const Home = () => {
                   <div className="col-12 col-md-6 col-lg-4 md-pb mb-3 p-3 highlight">
                     <h2>Fortified Security Measures</h2>
                     <p>
-                      AsianDEXmurphy employs state-of-the-art
-                      encryption and authentication for a safe trading
-                      environment. Rest assured, your assets and transactions
-                      are safeguarded, allowing you to trade with confidence on
-                      our innovative platform.
+                      AsianDEXmurphy employs state-of-the-art encryption and
+                      authentication for a safe trading environment. Rest
+                      assured, your assets and transactions are safeguarded,
+                      allowing you to trade with confidence on our innovative
+                      platform.
                     </p>
                   </div>
                   <div className="col-12 col-md-6 col-lg-4 md-pb mb-3 p-3 highlight">
                     <h2>Global Accessibility</h2>
                     <p>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the
-                      industry&apos;s standard dummy text ever since the 1500s,
-                      when an unknown printer took a galley of type and
-                      scrambled it to make a type specimen book.
+                      Our platform is designed to be user-friendly and
+                      accessible to a diverse audience worldwide. Whether
+                      you&apos;re a seasoned trader or new to the market, our
+                      inclusive approach ensures everyone can engage seamlessly
+                      with the world of decentralized trading.
                     </p>
                   </div>
                   <div className="col-12 col-md-6 col-lg-4 md-pb mb-3 p-3 highlight">
-                    <h2>Immutable Transactions</h2>
+                    <h2>Swift Transactions</h2>
                     <p>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the
-                      industry&apos;s standard dummy text ever since the 1500s,
-                      when an unknown printer took a galley of type and
-                      scrambled it to make a type specimen book.
+                      Our platform is optimized for fast transactions, ensuring
+                      that you can execute trades quickly and efficiently.
+                      Experience the speed of seamless transactions, empowering
+                      you to react swiftly to market opportunities and enjoy a
+                      smooth trading experience.
                     </p>
                   </div>
                 </div>
@@ -154,7 +155,48 @@ const Home = () => {
             </div>
           </div>
         </div>
+        {/* EMBEDS SECTION */}
+        <section className="about-us bg-primary">
+          <div className="container mb-5">
+            <div className="row align-items-center">
+              <div className="col-xl-4 col-md-4 col-12">
+                <div className="display-4 fw-bold mb-xl-5 text-wrapper md-pb align-left">
+                  &nbsp;About Us
+                  <img src={aigif} alt="ai-know-your-address" width={80} />
+                </div>
+                <p className="mbr-text mbr-fonts-style align-left display-7">
+                  &quot;Welcome to the AsianDEXmurphy, have a look around
+                  <br /> Anything that brain of yours can think of can be found
+                  <br /> We&apos;ve got mountains of features, some better, some
+                  worse
+                  <br />
+                  If none of it&apos;s of interest to you, your
+                  information&apos;d be the first&quot;
+                </p>
+                <div className="mbr-section-btn mt-4">
+                  <a
+                    className="btn my-2 my-sm-2 btn-lg get-wallet"
+                    href="https://www.youtube.com/@boburnham"
+                  >
+                    Check Out More
+                  </a>
+                </div>
+              </div>
 
+              <div className="col-xl-8 col-md-8 col-12 mb-5">
+                <div className="ratio ratio-16x9">
+                  <iframe
+                    className="embed-responsive-item banner-vid"
+                    src="https://www.youtube.com/embed/k1BneeJTDcU?si=yQtpLipG12WYohTM"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         {/* About us */}
         <section className="py-5">
           <div className="container">
@@ -172,7 +214,7 @@ const Home = () => {
                           />
                         </div>
                         <h5 className="fw-bold text-light">Minh Nguyen</h5>
-                        <div className="text-light">Team leader</div>
+                        <div className="text-light">Team Leader</div>
                       </div>
                     </div>
                   </div>
@@ -216,7 +258,7 @@ const Home = () => {
                             src={profile5}
                           />
                         </div>
-                        <h5 className="fw-bold text-light">Bao Nguyen</h5>
+                        <h5 className="fw-bold text-light">Bao Huynh</h5>
                         <div className="text-light">Backend Developer</div>
                       </div>
                     </div>
@@ -225,7 +267,6 @@ const Home = () => {
               </div>
               <div className="col-lg-6 order-1 order-lg-2">
                 <div className="ms-lg-5 mb-5">
-                  <span className="text-muted">Our Team</span>
                   <h2 className="display-5 fw-bold mb-3 mb-xl-5">
                     Meet the Team
                   </h2>
@@ -236,14 +277,14 @@ const Home = () => {
                     our collaboration an exciting journey.
                   </p>
                   <p className="lead">
-                    &quot;Welcome to the internet, have a look around
+                    &quot;Welcome to the AsianDEXmurphy, have a look around
                     <br /> Anything that brain of yours can think of can be
                     found
-                    <br /> We&apos;ve got mountains of content, some better,
+                    <br /> We&apos;ve got mountains of features, some better,
                     some worse
                     <br />
-                    If none of it&apos;s of interest to you, your IP&apos;d be
-                    the first&quot;
+                    If none of it&apos;s of interest to you, your
+                    information&apos;d be the first&quot;
                   </p>
                 </div>
               </div>
