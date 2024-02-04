@@ -56,9 +56,10 @@ function Header() {
                 <NavDropdown.Item
                   href="#action4"
                   className="text-light headerItem"
-                  disabled
                 >
-                  Swap
+                  <Link className="headerItem" to="/swap">
+                    Swap
+                  </Link>
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>

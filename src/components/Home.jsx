@@ -1,5 +1,6 @@
 // import React from 'react'
 import assistant from "../components/assets/kiana-kiana-wave.gif";
+import aigif from "../components/assets/honkai-ai.gif";
 import bannerimg from "../components/assets/stockchart.jpeg";
 import "./css/style.css";
 import profile2 from "../components/assets/toothless.png";
@@ -155,23 +156,26 @@ const Home = () => {
           </div>
         </div>
         {/* EMBEDS SECTION */}
-        <section className="about-us">
+        <section className="about-us bg-primary">
           <div className="container mb-5">
             <div className="row align-items-center">
               <div className="col-xl-4 col-md-4 col-12">
-                <h2 className="display-5 fw-bold mb-3 mb-xl-5 text-wrapper md-pb align-left">
-                  About us
-                </h2>
+                <div className="display-4 fw-bold mb-xl-5 text-wrapper md-pb align-left">
+                  &nbsp;About Us
+                  <img src={aigif} alt="ai-know-your-address" width={80} />
+                </div>
                 <p className="mbr-text mbr-fonts-style align-left display-7">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                  volutpat tellus magna, quis vestibulum mi pellentesque eu.
-                  Duis tincidunt enim ac erat aliquet, sit amet tempor urna
-                  pulvinar. Morbi consequat erat sed imperdiet lobortis. In id
-                  aliquam leo.&nbsp;
+                  &quot;Welcome to the AsianDEXmurphy, have a look around
+                  <br /> Anything that brain of yours can think of can be found
+                  <br /> We&apos;ve got mountains of features, some better, some
+                  worse
+                  <br />
+                  If none of it&apos;s of interest to you, your
+                  information&apos;d be the first&quot;
                 </p>
                 <div className="mbr-section-btn mt-4">
                   <a
-                    className="btn btn-primary display-4"
+                    className="btn my-2 my-sm-2 btn-lg get-wallet"
                     href="https://www.youtube.com/@boburnham"
                   >
                     Check Out More
@@ -179,10 +183,10 @@ const Home = () => {
                 </div>
               </div>
 
-              <div className="col-xl-8 col-md-8 col-12">
+              <div className="col-xl-8 col-md-8 col-12 mb-5">
                 <div className="ratio ratio-16x9">
                   <iframe
-                    className="embed-responsive-item"
+                    className="embed-responsive-item banner-vid"
                     src="https://www.youtube.com/embed/k1BneeJTDcU?si=yQtpLipG12WYohTM"
                     title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -210,7 +214,7 @@ const Home = () => {
                           />
                         </div>
                         <h5 className="fw-bold text-light">Minh Nguyen</h5>
-                        <div className="text-light">Team leader</div>
+                        <div className="text-light">Team Leader</div>
                       </div>
                     </div>
                   </div>
@@ -263,7 +267,6 @@ const Home = () => {
               </div>
               <div className="col-lg-6 order-1 order-lg-2">
                 <div className="ms-lg-5 mb-5">
-                  <span className="text-muted">Our Team</span>
                   <h2 className="display-5 fw-bold mb-3 mb-xl-5">
                     Meet the Team
                   </h2>
@@ -274,7 +277,7 @@ const Home = () => {
                     our collaboration an exciting journey.
                   </p>
                   <p className="lead">
-                    &quot;Welcome to the internet, have a look around
+                    &quot;Welcome to the AsianDEXmurphy, have a look around
                     <br /> Anything that brain of yours can think of can be
                     found
                     <br /> We&apos;ve got mountains of features, some better,

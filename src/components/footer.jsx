@@ -1,5 +1,11 @@
 // import
-import "./css/style.css"
+import "./css/style.css";
+import { FaEnvelope } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 
 function Footer() {
   return (
@@ -9,26 +15,57 @@ function Footer() {
           {/* CONTENTS */}
 
           {/* ABOUT OUR GROUP */}
-          <div className="col-md-6 col-lg-4 col-xl-3 mx-auto mb-4">
+          <div className="col-md-12 col-lg-12 col-xl-4 mx-auto mb-4">
             <h6 className="fw-bold mb-4">AsianMurphy</h6>
-            <p>
+            <p className="">
               Where your money will be lost due to our insecurity and
               irresponsibility
             </p>
           </div>
 
+          {/* Communities */}
+          <div className="col-md-12 col-lg-12 col-xl-4 mx-auto mb-md-0 mb-4">
+            <div className="text-center mb-3">
+              <h6 className="text-uppercase fw-bold mb-4">Our Communities</h6>
+              <button
+                data-mdb-ripple-init
+                type="button"
+                className="btn text-light btn-floating mx-1"
+              >
+                <FaFacebook className="display-6" />
+              </button>
+
+              <button
+                data-mdb-ripple-init
+                type="button"
+                className="btn text-light btn-floating mx-1"
+              >
+                <FaLinkedin className="display-6" />
+              </button>
+
+              <button
+                data-mdb-ripple-init
+                type="button"
+                className="btn text-light btn-floating mx-1"
+              >
+                <FaGithub className="display-6" />
+              </button>
+            </div>
+          </div>
           {/* CONTACT INFOR */}
-          <div className="col-md-6 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <div className="col-md-12 col-lg-12 col-xl-4 mx-auto mb-md-0 mb-4 text-center">
             <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
             <p>
-              <i className="fas fa-home me-3"></i> Kivotos, Blue Archive
+              <FaHome />
+              &nbsp; Kivotos, Blue Archive
             </p>
             <p>
-              <i className="fas fa-envelope me-3"></i>
-              arona@kivotos.edu.ba
+              <FaEnvelope />
+              &nbsp; arona@kivotos.edu.ba
             </p>
             <p>
-              <i className="fas fa-phone me-3"></i> + 01 234 567 89
+              <FaPhoneAlt />
+              &nbsp; + 01 234 567 89
             </p>
           </div>
         </div>
