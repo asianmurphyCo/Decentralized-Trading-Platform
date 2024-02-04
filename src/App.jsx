@@ -7,7 +7,7 @@ import Home from './components/Home';
 import Dashboard from './components/dashboard';
 import Profile from "./components/profile";
 import TransactionHistory from "./components/transactionHistory";
-import Trade from "./components/swap";
+import Trade from "./components/trade";
 
 function App() {
   return (
