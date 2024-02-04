@@ -258,7 +258,7 @@ const Home = () => {
                             src={profile5}
                           />
                         </div>
-                        <h5 className="fw-bold text-light">Bao Nguyen</h5>
+                        <h5 className="fw-bold text-light">Bao Huynh</h5>
                         <div className="text-light">Backend Developer</div>
                       </div>
                     </div>

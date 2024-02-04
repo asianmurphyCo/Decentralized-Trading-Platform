@@ -7,7 +7,7 @@ import Home from './components/Home';
 import Dashboard from './components/dashboard';
 import Profile from "./components/profile";
 import TransactionHistory from "./components/transactionHistory";
-import Swap from "./components/swap";
+import Trade from "./components/swap";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/transaction" element={<TransactionHistory />} />
-            <Route path="/swap" element={<Swap/>}/>
+            <Route path="/trade" element={<Trade/>}/>
           </Routes>
           <Footer />
         </div>
