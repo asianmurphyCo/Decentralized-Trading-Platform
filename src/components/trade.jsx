@@ -57,7 +57,7 @@ function Trade() {
   // Check if user is logged in
   // If logged in, render the profile
   return (
-    <div className="container p-5 vh-100">
+    <div className="container p-5 vh-1000">
       <div className="card px-4 bg-primary text-light">
         <form
           method="post"
@@ -69,8 +69,8 @@ function Trade() {
               <p className="h3 text-center py-3">Payment Details</p>
             </div>
             <div className="col-2 card py-3">
-              <p className="h5 overflow-hidden">Your Balance:</p>
-              <p className="h5 overflow-hidden">{userData.balance}</p>
+              <p className="h5 mb-3 mb-xl-3">Your Balance:</p>
+              <p className="h5 mb-2 mb-xl-2">{userData.balance}</p>
             </div>
           </div>
           <div className="row gx-3">
@@ -119,7 +119,9 @@ function Trade() {
             </div>
             <div className="col-12">
               <button type="submit" className="btn btn-outline-light mb-3">
-                <span className="ps-2">Create transaction </span>
+                <span className="ps-2">
+                  <strong>Create transaction </strong>
+                </span>
                 <span>
                   <FaArrowRight />
                 </span>
