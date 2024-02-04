@@ -7,13 +7,15 @@ import cat from "../components/assets/mya-thurston-waffles.gif";
 import hertaload from "../components/assets/herta.webp";
 
 // PASS Username key and login state from Local Storage
-const Username = localStorage.getItem("username");
+
 const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-// DEBUG LINE
-console.log(Username);
+
 
 function Profile() {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState([]);
+  const [firstRender,setFirsRender] = useState(true)
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,14 +24,19 @@ function Profile() {
         const data = await response.json();
 
         // ACCESS user key in your JSON file
-        setUserData(data[Username]); // Change to any user key in json file
+        setUserData(data[ localStorage.getItem("username")]); // Change to any user key in json file
+        console.log(userData)
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
 
-    fetchData();
-  }, []);
+    if(firstRender){
+      fetchData();
+      setFirsRender(false);
+    }
+  
+  }, [firstRender,userData]);
   // Wait for userData before render
   if (!userData) {
     return (

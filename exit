@@ -1,0 +1,255 @@
+[33mcommit 975acb7f0cf6b615116cb795c2ad9f796a3024d9[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Sat Feb 3 17:00:24 2024 +0700
+
+    Updated Homepage
+
+[33mcommit 8ed462a9ee5cd80f6bdf3147bf268ea4c5c57eea[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Sat Feb 3 15:48:16 2024 +0700
+
+    fixed 404 error
+
+[33mcommit a47f60d707a6cd19c12c501bbcf4f157a688d21a[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Sat Feb 3 15:00:07 2024 +0700
+
+    test domain
+
+[33mcommit 3bb68ef61f766df05bfbac2e8da3fbf41712b08d[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Sat Feb 3 14:52:25 2024 +0700
+
+    fixed login logout
+
+[33mcommit e2f84d754f78f2c66f50b1f76d495e4fe517ff75[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Sat Feb 3 14:46:36 2024 +0700
+
+    fixed login logout
+
+[33mcommit c7c8be0135d5a55a21314c5825299ebef461d5b7[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Sat Feb 3 14:42:06 2024 +0700
+
+    fixed login logout
+
+[33mcommit de5ae507470ab608f73e5d554fd5dfbf1410e2d1[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Sat Feb 3 14:11:32 2024 +0700
+
+    fixed login logout
+
+[33mcommit 79c8347b24d88d001966ccadbaf503101d13b3ae[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Sat Feb 3 14:09:24 2024 +0700
+
+    fixed login logout
+
+[33mcommit 5f12212acf702b976bb77fb874a5173fed9e89dd[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Sat Feb 3 14:07:58 2024 +0700
+
+    fixed login logout
+
+[33mcommit fc1fc4b9ca1574f27535c0330471cf996ae8720f[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Sat Feb 3 13:56:28 2024 +0700
+
+    fixed login logout
+
+[33mcommit 824daa693cd5a6c81d0b268c6d80808d14eb2ed7[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Sat Feb 3 12:50:53 2024 +0700
+
+    fixed login logout
+
+[33mcommit 0eb53c7390dcef7688f50d42074f6f6c6881cf62[m
+Merge: d93ae63 1c76f11
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Sat Feb 3 12:04:07 2024 +0700
+
+    Merge branch 'main' of https://github.com/asianmurphyCo/Decentrialized-Trading-Platform
+
+[33mcommit d93ae63b3fedcb8f5505d0189d6d784c042117f8[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Sat Feb 3 12:03:52 2024 +0700
+
+    Added logout function
+
+[33mcommit 1c76f114f7d816e0138d4d497c5602244f91b446[m
+Author: MinhNguyen312 <nhatminhnguyenquang312@gmail.com>
+Date:   Sat Feb 3 04:47:56 2024 +0700
+
+    Added Link to transaction history in profile, mock transaction data, CircularProgress for Loading
+
+[33mcommit 3067873f77228f12319f5b52b3633a4084b18479[m
+Author: MinhNguyen312 <nhatminhnguyenquang312@gmail.com>
+Date:   Sat Feb 3 04:45:45 2024 +0700
+
+    Added Link to transaction history in profile, mock transaction data, CircularProgress for Loading
+
+[33mcommit a46d1072ec3c3ed55ce2da398ee2045408435647[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Sat Feb 3 01:27:54 2024 +0700
+
+    FIXED LOGIN PAGE
+
+[33mcommit 1f5a00c20075530f79d8839a01f5591fb21b2048[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Sat Feb 3 01:16:19 2024 +0700
+
+    FIXED LOGIN PAGE
+
+[33mcommit e4aa2c0657dbbb7816292a258cf4ad17ec14b91c[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Fri Feb 2 22:33:25 2024 +0700
+
+    Fixing login page
+
+[33mcommit 7626b9caf6401ce4216ede5e21bf47555a0c75b4[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Fri Feb 2 22:32:14 2024 +0700
+
+    Fixing login page
+
+[33mcommit 1b048e8941b1d4b8d85ebe7d197c548beeacd35e[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Fri Feb 2 22:25:23 2024 +0700
+
+    Fixing login page
+
+[33mcommit 0e1c886f8cbeb31760f37bc7cc5b47c256b67575[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Fri Feb 2 10:54:52 2024 +0700
+
+    small changes
+
+[33mcommit bb4c8eed4c903878d2203038608460a83e216d0c[m
+Merge: 626c7bd f24de83
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Fri Feb 2 09:07:30 2024 +0700
+
+    Merge branch 'main' of https://github.com/asianmurphyCo/Decentrialized-Trading-Platform
+
+[33mcommit 626c7bd289e9727ba47c40fe6020c989de837847[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Fri Feb 2 09:07:14 2024 +0700
+
+    Added 2 other pages
+
+[33mcommit f24de839f997e104978afebf09c80b3ed874dba5[m
+Author: MinhNguyen312 <nhatminhnguyenquang312@gmail.com>
+Date:   Fri Feb 2 03:35:27 2024 +0700
+
+    Fixed Dashboard
+
+[33mcommit 39c87e6991889a642419750e502e33d7c5e746a1[m
+Merge: 6bfaec7 d095eea
+Author: MinhNguyen312 <nhatminhnguyenquang312@gmail.com>
+Date:   Fri Feb 2 03:30:33 2024 +0700
+
+    Updated Dashboard with pagination, Client-side data storage, and Login Authentication
+
+[33mcommit 6bfaec78991ff80085cca2e80fcf6cff0d934842[m
+Author: MinhNguyen312 <nhatminhnguyenquang312@gmail.com>
+Date:   Fri Feb 2 02:57:39 2024 +0700
+
+    Updated Dshboard with pagination, Client-side data storage, and Login Authentication
+
+[33mcommit d095eea045bd60d25dacb878f3c67f2e66ff6b1a[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Fri Feb 2 00:34:00 2024 +0700
+
+    updated homepage
+
+[33mcommit 5419d222eec1114068c7de7617cd40ba0d8352fc[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Thu Feb 1 18:45:18 2024 +0700
+
+    fixed react-router
+
+[33mcommit a054ed576a7833263ae2c7836d1b38ffadffe16c[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Thu Feb 1 16:42:21 2024 +0700
+
+    merged all css files
+
+[33mcommit 6b73030c7c04731d79bf89829434d55ae257a59f[m
+Merge: eb2eccf 6f8b13e
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Thu Feb 1 16:38:49 2024 +0700
+
+    Merge branch 'main' of https://github.com/asianmurphyCo/Decentrialized-Trading-Platform
+
+[33mcommit eb2eccff36d6f4f2ac4d7504659167318bb0cad2[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Thu Feb 1 16:38:15 2024 +0700
+
+    merged all css files
+
+[33mcommit 6f8b13eabc8b286efbda18450868d09952ca3c3f[m
+Author: MinhNguyen312 <nhatminhnguyenquang312@gmail.com>
+Date:   Thu Feb 1 03:38:40 2024 +0700
+
+    Updated Dashboard, install axios for fetching crypto data using API
+
+[33mcommit 12dffb9a4adf144094f486d7b1156388816f705c[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Thu Feb 1 01:08:29 2024 +0700
+
+    updated footer
+
+[33mcommit 9bd6e8b4dfbd4eac0d2cb3452d5b5a10280d5c4e[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Wed Jan 31 23:48:34 2024 +0700
+
+    updated login page
+
+[33mcommit 475ac6565bdc6a96ba0c432214088d8263c8cb4f[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Wed Jan 31 22:46:31 2024 +0700
+
+    fixed errors
+
+[33mcommit fc3a31e47d08f77dbf098723f7e6b6922106c23c[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Wed Jan 31 22:41:56 2024 +0700
+
+    fixed errors
+
+[33mcommit 695e1ed917f159c69600fbfa502926ec6e7b6ac2[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Wed Jan 31 22:21:22 2024 +0700
+
+    fixed errors
+
+[33mcommit 548dbac091fe4737c9d0a147852e4bf8682bf163[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Wed Jan 31 17:50:23 2024 +0700
+
+    fixing errors
+
+[33mcommit 4bcaeffefb5f53b11cea3edc0b188f42b9e31c0c[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Wed Jan 31 17:40:49 2024 +0700
+
+    updated files
+
+[33mcommit adc17c1822dae1023e243e1e314d6c8b8ba5e626[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Sat Jan 27 00:46:27 2024 +0700
+
+    Added a small feature
+
+[33mcommit c5bf9bed572de8a4f9b20c57bba9e571c24998d2[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Fri Jan 26 23:28:52 2024 +0700
+
+    Updated project
+
+[33mcommit 873d416e5e48963730eaf17b85d483e1b20eac51[m
+Author: PancakesLmao <phucthin29@gmail.com>
+Date:   Tue Jan 23 16:06:55 2024 +0700
+
+    Updated team project
