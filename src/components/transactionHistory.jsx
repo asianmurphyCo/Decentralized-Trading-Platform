@@ -9,10 +9,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import NotFound from './notfound';
 import { Box,Container,TablePagination,CircularProgress } from '@mui/material';
 import { useEffect, useState } from 'react';
 
-function TransactionHistory() {
+function TransactionHistory({}) {
 
         // Fetching data from Client-Side Data for Front-end
         const [data,setData] = useState([]);
@@ -21,11 +22,10 @@ function TransactionHistory() {
         //  Setting up rowsPerPage useState
         const [rowsPerPage,setRowsPerPage] = useState(10);
       
-    
         //  Change URL later due to being broke, cannot afford good api
         const url = '/data/mock_transaction.json';
     
-    
+
         //  Fetch data from url
         useEffect(() => {
             axios.get(url).then((response) => {
@@ -34,7 +34,14 @@ function TransactionHistory() {
                 console.log(error)
             })
         },[]);
-    
+
+
+           //  If not logged in, won't return
+           if(!localStorage.getItem("isLoggedIn")){
+            return <NotFound/>;
+        }
+
+        
         //  If no response data, return loading
         if(!data) {
             return (
@@ -42,7 +49,7 @@ function TransactionHistory() {
                     <CircularProgress />
                 </Box>
             )
-        };
+        }
     
         //  Handle change page for pagination
         const handleChangePage = (e,p) =>{

@@ -115,7 +115,7 @@ function Profile() {
                     <p className="mb-0">Transaction History</p>
                   </div>
                   <div className="col-sm-9">
-                    <Link to="/transaction">Show History</Link>
+                    <Link to={{ pathname:'/transactionHistory', state: {isLoggedIn: localStorage.getItem("isLoggedIn")} }}>Show History</Link>
                   </div>
                 </div>
               </div>
