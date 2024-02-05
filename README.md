@@ -1,8 +1,17 @@
 # React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# [COS30049] - Assignment 1
+This project has been created as part of Assignment 1 for our current unit, aiming to showcase our team's comprehension of web development basics using the React framework and the Vite library. The primary focus is on the frontend implementation of a modern Decentralized Trading Platform.
+***Please note that this is an ongoing project, and future updates are planned to enhance the overall User Interface and User Experience (UI/UX).***
+# Installation
+Clone this project to your device using the following command:
+```
+git clone https://github.com/asianmurphyCo/Decentralized-Trading-Platform.git
+```
+Once the download is complete, navigate to the project's folder using the command line.  
+```
+npm install
+```
+Finally, to host the project locally, execute the following command:  
+```
+npm run dev
+```
