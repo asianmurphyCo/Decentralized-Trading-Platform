@@ -1,5 +1,5 @@
 // import
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./css/style.css";
 import profile_pic from "../components/assets/profile.png";
@@ -7,14 +7,11 @@ import LoadingScreen from "./loading";
 
 // PASS Username key and login state from Local Storage
 
-const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-
+// const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
 function Profile() {
   const [userData, setUserData] = useState([]);
-  const [firstRender,setFirsRender] = useState(true)
-
-
+  const [firstRender, setFirsRender] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,29 +20,27 @@ function Profile() {
         const data = await response.json();
 
         // ACCESS user key in your JSON file
-        setUserData(data[ localStorage.getItem("username")]); // Change to any user key in json file
-        console.log(userData)
+        setUserData(data[localStorage.getItem("username")]); // Change to any user key in json file
+        console.log(userData);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
 
-    if(firstRender){
+    if (firstRender) {
       fetchData();
       setFirsRender(false);
     }
-  
-  }, [firstRender,userData]);
+  }, [firstRender, userData]);
   // Wait for userData before render
   if (!userData) {
-    return (
-      <LoadingScreen/>);
+    return <LoadingScreen />;
   }
 
   // Check if user is logged in
   // If logged in, render the profile
   return (
-    <section className="profile">
+    <section className="profile-page">
       {/* INCASE THE PAGE RENDERED BEFORE IT COULD READ userData, this will reader a loading page */}
       <div className="container py-5">
         <div className="row">
@@ -115,7 +110,16 @@ function Profile() {
                     <p className="mb-0">Transaction History</p>
                   </div>
                   <div className="col-sm-9">
-                    <Link to={{ pathname:'/transactionHistory', state: {isLoggedIn: localStorage.getItem("isLoggedIn")} }}>Show History</Link>
+                    <Link
+                      to={{
+                        pathname: "/transactionHistory",
+                        state: {
+                          isLoggedIn: localStorage.getItem("isLoggedIn"),
+                        },
+                      }}
+                    >
+                      Show History
+                    </Link>
                   </div>
                 </div>
               </div>

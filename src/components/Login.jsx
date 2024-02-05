@@ -1,6 +1,6 @@
 // import
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./css/style.css";
 import rainbow from "../components/assets/rainbow-icon.png";
 import metamask from "../components/assets/metamask.jpg";
