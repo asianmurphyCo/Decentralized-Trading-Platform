@@ -26,7 +26,7 @@ function Footer() {
           {/* Communities */}
           <div className="col-md-12 col-lg-12 col-xl-4 mx-auto mb-md-0 mb-4">
             <div className="text-center mb-3">
-              <h6 className="text-uppercase fw-bold mb-4">Our Communities</h6>
+              <h6 className="text-uppercase fw-bold mb-4">Connect with us</h6>
               <button
                 data-mdb-ripple-init
                 type="button"

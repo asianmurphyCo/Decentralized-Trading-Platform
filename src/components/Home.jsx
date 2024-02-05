@@ -6,7 +6,7 @@ import "./css/style.css";
 import profile2 from "../components/assets/toothless.png";
 import profile1 from "../components/assets/profile1.jpg";
 import profile3 from "../components/assets/profile3.png";
-import profile4 from "../components/assets/4d7.png";
+// import profile4 from "../components/assets/4d7.png";
 import profile5 from "../components/assets/profile4.jpg";
 
 import Accordion from "react-bootstrap/Accordion";
