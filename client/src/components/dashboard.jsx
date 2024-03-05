@@ -69,7 +69,6 @@ function Dashboard() {
 
     return (
         <div>
-          <DashboardAPI /> {/* Render the Api component */}
           <Container className="card-body" sx={{py:5}}>
             <Form onChange={(e) => setSearchedData(e.target.value)} className="d-flex">
               <Form.Control
@@ -79,6 +78,7 @@ function Dashboard() {
                 aria-label="Search"
               />
             </Form>
+            <DashboardAPI /> {/* Render the Api component */}
             <div>
               <TableContainer component={Paper}>
                 <Table aria-label="crypto dashboard">
