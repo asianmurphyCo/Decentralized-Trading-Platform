@@ -12,7 +12,7 @@ import LoadingScreen from "./loading";
 import { Box,Container,TablePagination } from '@mui/material';
 import Form from "react-bootstrap/Form";
 import { useEffect, useState } from 'react';
-import App from './App';
+import DashboardAPI from './DashboardAPI';
 
 function Dashboard() {
     // Fetching data from Client-Side Data for Front-end
@@ -69,7 +69,7 @@ function Dashboard() {
 
     return (
         <div>
-          <App /> {/* Render the App component */}
+          <DashboardAPI /> {/* Render the Api component */}
           <Container className="card-body" sx={{py:5}}>
             <Form onChange={(e) => setSearchedData(e.target.value)} className="d-flex">
               <Form.Control
