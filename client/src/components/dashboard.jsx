@@ -79,7 +79,7 @@ function Dashboard() {
               />
             </Form>
             <DashboardAPI /> {/* Render the Api component */}
-            <div>
+           <div>
               <TableContainer component={Paper}>
                 <Table aria-label="crypto dashboard">
                   {/*Table Head */}

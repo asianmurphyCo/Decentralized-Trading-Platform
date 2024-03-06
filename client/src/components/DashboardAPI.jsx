@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination } from '@mui/material';
+import "./firebaseConfig";
 
 function DashboardAPI() {
   const [backendData, setBackendData] = useState([]);
