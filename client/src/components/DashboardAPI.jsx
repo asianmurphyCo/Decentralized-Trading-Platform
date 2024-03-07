@@ -27,19 +27,19 @@ function DashboardAPI() {
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   useEffect(() => {
-    // fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en")
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setBackendData(data);
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
+     fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en")
+       .then(response => response.json())
+       .then(data => {
+         setBackendData(data);
+       })
+       .catch(error => {
+         console.log(error);
+       });
     
-    const starCountRef = ref(db, "posts/" + postId + "/starCount");
-    onValue(starCountRef, (snapshot) => {
-      const data = snapshot.val();
-      updateStarCount(postElement, data);
+    //const starCountRef = ref(db, "posts/" + postId + "/starCount");
+    //onValue(starCountRef, (snapshot) => {
+    //  const data = snapshot.val();
+   //   updateStarCount(postElement, data);
     });
   }, []);
 
@@ -125,5 +125,5 @@ function DashboardAPI() {
     </div>
   );
 }
-
+//
 export default DashboardAPI;
