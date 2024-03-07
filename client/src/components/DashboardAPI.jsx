@@ -1,6 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination } from '@mui/material';
-import * from "./firebaseConfig";
+import { firebaseConfig } from "./firebaseConfig"
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+import { getDatabase, ref, onValue } from "firebase/database";
+import { getAuth } from "firebase/auth";
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  // const analytics = getAnalytics(app);
+
+  // Initialize Realtime Database and get a reference to the service
+  const db = getDatabase(app);
+  const auth = getAuth();
 
 function DashboardAPI() {
   const [backendData, setBackendData] = useState([]);
@@ -16,6 +35,7 @@ function DashboardAPI() {
     //   .catch(error => {
     //     console.log(error);
     //   });
+    
     const starCountRef = ref(db, "posts/" + postId + "/starCount");
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
