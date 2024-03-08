@@ -41,7 +41,7 @@ function DashboardAPI() {
     //  const data = snapshot.val();
    //   updateStarCount(postElement, data);
     });
-  }, []);
+  // }, []);
 
   // Format currency
   const formatCurrency = (amount) => {
