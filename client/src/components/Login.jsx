@@ -6,6 +6,7 @@ import rainbow from "../components/assets/rainbow-icon.png";
 import metamask from "../components/assets/metamask.jpg";
 import trustwallet from "../components/assets/trustwallet.jpg";
 import walletconnect from "../components/assets/wallet-connect-logo.png";
+import { useEffect } from 'react';
 
 // import axios from 'axios' (will use if have api endpoint)
 
@@ -32,37 +33,61 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const res = await fetch("/data/fake_user.json");
-      const data = await res.json();
-      console.log(data[username]);
+    logIn()
 
-      const user = data[username];
+    
+    // try {
+    //   const res = await fetch("/data/fake_user.json");
+    //   const data = await res.json();
+    //   console.log(data[username]);
 
-      if (user && user.password === password) {
-        console.log("Login successful!");
-        console.log(username);
-        setError("");
-        // PASS THIS VARIABLE STATUS TO OTHER PAGES SO USERS DONT GET LOGGED OUT WHEN SWITCHING TAB
+    //   const user = data[username];
 
-        //  REDIRECT USER TO PROFILE PAGE
-        // localStorage.removeItem("isLoggedIn");
+    //   if (user && user.password === password) {
+    //     console.log("Login successful!");
+    //     console.log(username);
+    //     setError("");
+    //     // PASS THIS VARIABLE STATUS TO OTHER PAGES SO USERS DONT GET LOGGED OUT WHEN SWITCHING TAB
 
-        // PUSH username key and login state to localstorage
-        localStorage.setItem("username", username);
-        localStorage.setItem("isLoggedIn", "true");
+    //     //  REDIRECT USER TO PROFILE PAGE
+    //     // localStorage.removeItem("isLoggedIn");
 
-        // Redirect to the profile page
-        navigate("/profile");
-      } else {
-        // Authentication failed
-        console.error("Login failed");
-        setError("Invalid username or password");
-      }
-    } catch (fetchError) {
-      console.error("Error fetching data:", fetchError);
-    }
+    //     // PUSH username key and login state to localstorage
+    //     localStorage.setItem("username", username);
+    //     localStorage.setItem("isLoggedIn", "true");
+
+    //     // Redirect to the profile page
+    //     navigate("/profile");
+    //   } else {
+    //     // Authentication failed
+    //     console.error("Login failed");
+    //     setError("Invalid username or password");
+    //   }
+    // } catch (fetchError) {
+    //   console.error("Error fetching data:", fetchError);
+    // }
   };
+
+  const logIn = () => {
+    fetch('/authenticate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({username, password}),   
+    }) 
+      .then((r) => r.json())
+      .then((r) => {
+        if ('success' === r.message) {
+          localStorage.setItem("username", username);
+          localStorage.setItem("isLoggedIn", "true");
+          navigate("/profile")
+        } else {
+          window.alert('Wrong email or password')
+        }
+      })
+    }
+  
 
   // Render page
   return (
@@ -380,4 +405,5 @@ function Login() {
     </div>
   );
 }
+
 export default Login;
