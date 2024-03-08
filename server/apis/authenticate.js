@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const jwtSecretKey = 'hello'; // set env variable and remove this later 
+require("dotenv").config();
 
 const getUser = async (username) => {
     // traverse database and return a user json
@@ -10,6 +10,7 @@ module.exports = async (req, res) => {
     console.log(req.body);
     console.log(username);
     console.log(password);
+
 
     // const user = db.get('user').value().filter((user) => username === user.username)
 
@@ -26,16 +27,18 @@ module.exports = async (req, res) => {
     const user = ({"username": "admin", "password": "admin"});
 
     if (user !== "") {
-        if (!user.username === username || !user.password === password) {
+        if (user.username !== username || user.password !== password) {
             return res.status(401).json({message: 'Invalid login'});        
         } 
 
-        const token = jwt.sign(user, jwtSecretKey, {expiresIn: "1h"});
+        const token = jwt.sign(user, process.env.SECRET_KEY, {expiresIn: "1h"});
 
         res.cookie("token", token, {
             httpOnly:true
         })
 
-        res.status(200).json({message: 'success'});
+        
+        res.status(200).json({message: 'success', token: token});
+        
     }
 }

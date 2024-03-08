@@ -9,19 +9,25 @@ import LoadingScreen from "./loading";
 
 // const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
-function Profile() {
+const Profile = (props) => {
   const [userData, setUserData] = useState([]);
   const [firstRender, setFirsRender] = useState(true);
+  const { isLoggedIn } = props;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // profile will request from database the entries of the user => POST => call api to verify (token, user)
+        // token is from cookie 
+        // if not verify (loading screen)
+        // if verify (/profile)
+
         const response = await fetch("/data/fake_user.json");
         const data = await response.json();
 
         // ACCESS user key in your JSON file
-        setUserData(data[localStorage.getItem("username")]); // Change to any user key in json file
-        console.log(userData);
+        setUserData(data[localStorage.getItem("user")]); // Change to any user key in json file
+        
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -32,8 +38,9 @@ function Profile() {
       setFirsRender(false);
     }
   }, [firstRender, userData]);
+
   // Wait for userData before render
-  if (!userData) {
+  if (!userData || !isLoggedIn) {
     return <LoadingScreen />;
   }
 

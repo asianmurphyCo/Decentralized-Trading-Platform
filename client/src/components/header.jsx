@@ -9,18 +9,33 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-function Header() {
+const Header = (props) => {
   const navigate = useNavigate();
+  const { isLoggedIn } = props;
 
   const Logout = () => {
     // Clear localStorage and redirect to login page
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("username");
+    // localStorage.removeItem("isLoggedIn");
+    fetch('/logout', {
+      method: 'POST',
+      body: {isLoggedIn},
+    })
+    .then((r) => r.json())
+    .then((r) => {
+      if ('success' === r.message) {
+        props.setIsLoggedIn(false);
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+      } else {
+        window.alert('User has not logged in.')
+      }
+    })
     navigate("/login");
   };
 
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  const username = localStorage.getItem("username");
+  // const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  const username = localStorage.getItem("user");
+  
   return (
     <header>
       {/* NAVBAR */}

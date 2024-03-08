@@ -28,6 +28,30 @@ export default defineConfig({
           proxyReq.setHeader('Origin', 'http://localhost:5173');
         },
       },
+
+      '/verify': {
+        target: 'http://localhost:5000/',
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '^/verify': '',
+        },
+        onProxyReq(proxyReq) {
+          proxyReq.setHeader('Origin', 'http://localhost:5173');
+        },
+      },
+
+      '/logout': {
+        target: 'http://localhost:5000/',
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '^/logout': '',
+        },
+        onProxyReq(proxyReq) {
+          proxyReq.setHeader('Origin', 'http://localhost:5173');
+        },
+      },
     },
   },
 });

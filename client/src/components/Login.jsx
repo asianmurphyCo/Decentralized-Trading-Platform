@@ -6,13 +6,23 @@ import rainbow from "../components/assets/rainbow-icon.png";
 import metamask from "../components/assets/metamask.jpg";
 import trustwallet from "../components/assets/trustwallet.jpg";
 import walletconnect from "../components/assets/wallet-connect-logo.png";
+import { useEffect } from "react";
+
 
 
 // import axios from 'axios' (will use if have api endpoint)
 
-function Login() {
-  const navigate = useNavigate();
+const Login = (props) => {
+  useEffect(() => {
+    const token = localStorage.getItem("token")
 
+    if (token) {
+      navigate('/profile')
+    } else {
+      return;
+    }
+  })
+  const navigate = useNavigate();
   const [isLoginForm, setIsLoginForm] = useState(true);
 
   //  Setting up useState for username, password
@@ -22,7 +32,7 @@ function Login() {
   //  Set Error
   const [error, setError] = useState("");
   // Login state
-  const [isLoggedIn] = useState(false);
+  // const [isLoggedIn] = useState(false);
 
   // Switch between Login and Register
   const handleToggle = () => {
@@ -33,7 +43,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    logIn()
+    logIn();
 
     
     // try {
@@ -79,14 +89,15 @@ function Login() {
       .then((r) => r.json()) // r.json()
       .then((r) => {
         if ('success' === r.message) {
-          localStorage.setItem("username", username);
-          localStorage.setItem("isLoggedIn", "true");
+          localStorage.setItem("user", username);
+          localStorage.setItem("token", r.token);
+          props.setIsLoggedIn(true);
           navigate("/profile")
         } else {
           window.alert('Wrong email or password')
         }
       })
-    }
+    };
 
   // Render page
   return (
