@@ -9,6 +9,7 @@ var adapter = new FileSync('./database.json');
 var db = low(adapter);
 var bodyParser = require('body-parser');
 var logger = require('morgan');
+const pool = require("./database");
 
 // setup dependencies
 const app = express();
@@ -26,10 +27,16 @@ app.use(logger('dev'));
 // set up route
 const port = 5035;
 
-// Api Testing
-app.get("/api", (req, res) => {
-    res.json({"users": ["user1", "user2", "user3"]});
-});
+// // Api Testing
+// app.get("/api", async (req, res) => {
+//   try {
+//     const result = await pool.query("SELECT * FROM user_login");
+//     res.json(result.rows);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send("Internal Server Error");
+//   }
+// });
 
 // Authentication
 app.post('/authenticate', (req, res) => {
