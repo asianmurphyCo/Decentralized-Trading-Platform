@@ -15,16 +15,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
-    // const user = localStorage.getItem("user");
-    // console.log(user);
-
-    // if (!user || !user.token) {
-    //   console.log('Set login is:' + isLoggedIn)
-    //   setIsLoggedIn(false);
-    //   return;
-    // }
-    console.log('useeffect is being triggered')
-
     fetch('/verify', {
       method: 'POST',
       headers: {

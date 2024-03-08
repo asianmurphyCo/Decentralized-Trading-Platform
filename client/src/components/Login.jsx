@@ -42,6 +42,13 @@ const Login = (props) => {
   // Handle login
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    //validation
+    setError('')
+    if (!/^[a-zA-Z0-9]+$/.test(username) || !/^[a-zA-Z0-9]+$/.test(password)) {
+      setError('Login credentials can only contain alphabetical letters and numbers.');
+      return;
+    }
 
     logIn();
 
@@ -94,7 +101,7 @@ const Login = (props) => {
           props.setIsLoggedIn(true);
           navigate("/profile")
         } else {
-          window.alert('Wrong email or password')
+          setError('Wrong username or password.')
         }
       })
     };

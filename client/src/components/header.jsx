@@ -26,11 +26,11 @@ const Header = (props) => {
         props.setIsLoggedIn(false);
         localStorage.removeItem("token");
         localStorage.removeItem("user");
+        navigate("/login");
       } else {
         window.alert('User has not logged in.')
       }
     })
-    navigate("/login");
   };
 
   // const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
