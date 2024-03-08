@@ -1,0 +1,56 @@
+
+<div>
+              <TableContainer component={Paper}>
+                <Table aria-label="crypto dashboard">
+                  {/*Table Head */}
+                  <TableHead>
+                    <TableRow>
+                      <TableCell sx={{width:2}} align="center">Name</TableCell> {/* Image + Symbol + Name*/}
+                      <TableCell align="center">Price</TableCell>
+                      <TableCell align="center">% Change (24h)</TableCell>
+                      <TableCell align="center">24h Volume</TableCell>
+                      <TableCell align="center">Market Cap</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  {/*Table Body */}
+                  <TableBody>
+                    {filteredResults.slice(page * rowsPerPage, page* rowsPerPage + rowsPerPage).map((d) => (
+                      <TableRow
+                        key={d.id}
+                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                      >
+                        <TableCell align="center" component="th" scope="row">
+                          <>
+                            <Box component="img"
+                              sx={{
+                                maxWidth:30,
+                                maxHeight:30
+                              }}
+                              src={d.image}
+                            ></Box> {d.name} 
+                          </>
+                        </TableCell>
+                        <TableCell align="center">{formatCurrency(d.current_price)}</TableCell>
+                        <TableCell align="center">{d.price_change_percentage_24h }</TableCell>
+                        <TableCell align="center">{formatCurrency(d.total_volume)}</TableCell>
+                        <TableCell align="center">{formatCurrency(d.market_cap)}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                  <TableRow align="right">
+                    <Box>    
+                      <TablePagination
+                        rowsPerPageOptions={[10,20,30]}
+                        component="div"
+                        count={data.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                        variant='outlined'
+                      />
+                    </Box>  
+                  </TableRow>
+                </Table>
+              </TableContainer>
+            </div>
