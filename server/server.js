@@ -1,12 +1,7 @@
 const express = require('express');
 // const bcrypt = require('bcrypt') // for pw hashing
-// var cors = require('cors')
 const jwt = require('jsonwebtoken');
 const cookieParser = require("cookie-parser");
-// var low = require('lowdb')
-// var FileSync = require('lowdb/adapters/FileSync')
-// var adapter = new FileSync('./database.json')
-// var db = low(adapter)
 // import axios from 'axios'
 
 const authenticate = require('./apis/authenticate');

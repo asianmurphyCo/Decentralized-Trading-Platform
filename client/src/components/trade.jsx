@@ -3,12 +3,14 @@ import "./css/style.css";
 import { useState, useEffect } from "react";
 import hertaload from "../components/assets/herta.webp";
 import { FaArrowRight } from "react-icons/fa";
+import LoadingScreen from "./loading";
 
 // PASS Username key and login state from Local Storage
 
-function Trade() {
+function Trade(props) {
   const [userData, setUserData] = useState([]);
   const [firstRender, setFirsRender] = useState(true);
+  const {isLoggedIn} = props
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,7 +19,7 @@ function Trade() {
         const data = await response.json();
 
         // ACCESS user key in your JSON file
-        setUserData(data[localStorage.getItem("username")]); // Change to any user key in json file
+        setUserData(data[localStorage.getItem("user")]); // Change to any user key in json file
         console.log(userData);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -32,24 +34,7 @@ function Trade() {
   // Wait for userData before render
   if (!userData) {
     return (
-      <section>
-        <div className="mask d-flex align-items-center h-100 gradient-custom-3">
-          <div className="container h-100">
-            <div className="col-sm-12 col-md-12 col-lg-12 mb-5 mt-5">
-              <div className="card login-bg">
-                {/* DIRECT USER BACK TO LOGIN PAGE */}
-                <img
-                  className="w-30 mx-auto d-block"
-                  src={hertaload}
-                  alt="getout"
-                  style={{ width: "20%" }}
-                />
-                <h1 className="text-center mb-4">Loading...</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <LoadingScreen/>
     );
   }
   // Check if user is logged in

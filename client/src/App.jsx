@@ -24,6 +24,10 @@ function App() {
     .then((r) => r.json())
     .then((r) => {
       setIsLoggedIn('success' === r.message);
+      if (r.message === 'token expired') {
+        localStorage.clear();
+      }
+
     }) 
   })
 
@@ -40,7 +44,7 @@ function App() {
             <Route path="/profile" element={<Profile isLoggedIn = {isLoggedIn} />} />
             <Route path="/transactionHistory" element={<TransactionHistory/>}/>
             <Route path="/transaction" element={<TransactionHistory />} />
-            <Route path="/trade" element={<Trade/>}/>
+            <Route path="/trade" element={<Trade isLoggedIn = {isLoggedIn} />}/>
           </Routes>
           <Footer />
         </div>

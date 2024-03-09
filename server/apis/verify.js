@@ -29,7 +29,10 @@ module.exports = async (req, res) => {
             return res.status(401).json({status : "invalid auth", message: "error"});
         }
     } catch (error) {
+        res.status(403).json({status : "invalid auth", message: "token expired"});
         res.clearCookie("token");
-        return res.redirect("/login");
+        res.redirect("/login");
     }
+
+    
 }

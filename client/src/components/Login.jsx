@@ -17,7 +17,8 @@ const Login = (props) => {
     const token = localStorage.getItem("token")
 
     if (token) {
-      navigate('/profile')
+      // navigate('/profile')
+      console.log("navigated")
     } else {
       return;
     }
