@@ -14,10 +14,26 @@ import { useEffect } from "react";
 
 const Login = (props) => {
   useEffect(() => {
+    // fetch('/verify', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json' ,
+    //   },
+    // })
+    // .then ((r) => r.json())
+    // .then ((r) => {
+    //   if (r.message !== 'success') {
+    //     console.log("statement of login is called")
+    //     localStorage.removeItem("token");
+    //   } else {
+    //     return;
+    //   }
+    // })
+
     const token = localStorage.getItem("token")
 
     if (token) {
-      // navigate('/profile')
+      navigate('/profile')
       console.log("navigated")
     } else {
       return;

@@ -23,10 +23,15 @@ function App() {
     })
     .then((r) => r.json())
     .then((r) => {
-      setIsLoggedIn('success' === r.message);
-      if (r.message === 'token expired') {
-        localStorage.clear();
+      if (r.message === 'success') {
+        setIsLoggedIn('success' === r.message);
+      } else {
+        localStorage.removeItem("token");
       }
+      
+      
+      console.log(r.message)
+      
 
     }) 
   })

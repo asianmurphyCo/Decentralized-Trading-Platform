@@ -33,6 +33,7 @@ const Profile = (props) => {
       }
     };
 
+    
     if (firstRender) {
       fetchData();
       setFirsRender(false);
