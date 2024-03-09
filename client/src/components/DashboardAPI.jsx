@@ -6,9 +6,9 @@ function DashboardAPI({ searchTerm }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [filteredResults, setFilteredResults] = useState([]);
+  const [sortDirection, setSortDirection] = useState({}); // State to track sort direction of each column
 
   useEffect(() => {
-    // Fetch data from the backend API
     fetch("/database")
       .then(response => response.json())
       .then(data => {
@@ -20,7 +20,6 @@ function DashboardAPI({ searchTerm }) {
   }, []);
 
   useEffect(() => {
-    // Filter data based on the search term
     const filteredData = backendData.filter((d) =>
       d.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -41,52 +40,106 @@ function DashboardAPI({ searchTerm }) {
     setPage(0);
   };
 
+  const handleSort = (column) => {
+    const newSortDirection = { ...sortDirection };
+
+    if (newSortDirection[column] === undefined) {
+      newSortDirection[column] = 'asc';
+    } else if (newSortDirection[column] === 'asc') {
+      newSortDirection[column] = 'desc';
+    } else {
+      newSortDirection[column] = 'asc';
+    }
+
+    setSortDirection(newSortDirection);
+    sortTableData(column, newSortDirection[column]);
+  };
+
+  const sortTableData = (column, direction) => {
+    const sortedData = [...filteredResults];
+
+    sortedData.sort((a, b) => {
+      if (direction === 'asc') {
+        return a[column] > b[column] ? 1 : -1;
+      } else {
+        return a[column] < b[column] ? 1 : -1;
+      }
+    });
+
+    setFilteredResults(sortedData);
+  };
+
+  const getSortArrow = (column) => {
+    if (sortDirection[column] === 'asc') {
+      return <span>&#9650;</span>; // Upward arrow symbol
+    } else if (sortDirection[column] === 'desc') {
+      return <span>&#9660;</span>; // Downward arrow symbol
+    } else {
+      return null;
+    }
+  };
+
   return (
     <div>
       <Container className="card-body" sx={{ py: 5 }}>
         <div>
-          {/* Table Container */}
           <TableContainer component={Paper}>
             <Table aria-label="crypto dashboard">
-              {/* Table Head */}
               <TableHead>
                 <TableRow>
-                  <TableCell sx={{ width: 2 }} align="center">Name</TableCell>
-                  <TableCell align="center">Price</TableCell>
-                  <TableCell align="center">% Change (24h)</TableCell>
-                  <TableCell align="center">24h Volume</TableCell>
-                  <TableCell align="center">Market Cap</TableCell>
+                  <TableCell sx={{ width: 2 }} align="center">
+                    <button onClick={() => handleSort('name')}>
+                      Name {getSortArrow('name')}
+                    </button>
+                  </TableCell>
+                  <TableCell align="center">
+                    <button onClick={() => handleSort('current_price')}>
+                      Price {getSortArrow('current_price')}
+                    </button>
+                  </TableCell>
+                  <TableCell align="center">
+                    <button onClick={() => handleSort('price_change_percentage_24h')}>
+                      % Change (24h) {getSortArrow('price_change_percentage_24h')}
+                    </button>
+                  </TableCell>
+                  <TableCell align="center">
+                    <button onClick={() => handleSort('total_volume')}>
+                      24h Volume {getSortArrow('total_volume')}
+                    </button>
+                  </TableCell>
+                  <TableCell align="center">
+                    <button onClick={() => handleSort('market_cap')}>
+                      Market Cap {getSortArrow('market_cap')}
+                    </button>
+                  </TableCell>
                 </TableRow>
               </TableHead>
-              {/* Table Body */}
               <TableBody>
-                {/* Render table rows for filteredResults */}
-                {filteredResults.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((d) => (
-                  <TableRow
-                    key={d.id}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    {/* Table data */}
-                    <TableCell align="center" component="th" scope="row">
-                      <>
-                        <Box component="img"
-                          sx={{
-                            maxWidth: 30,
-                            maxHeight: 30
-                          }}
-                          src={d.image}
-                          alt={d.name}
-                        ></Box> {d.name}
-                      </>
-                    </TableCell>
-                    <TableCell align="center">{formatCurrency(d.current_price)}</TableCell>
-                    <TableCell align="center">{d.price_change_percentage_24h}</TableCell>
-                    <TableCell align="center">{formatCurrency(d.total_volume)}</TableCell>
-                    <TableCell align="center">{formatCurrency(d.market_cap)}</TableCell>
-                  </TableRow>
-                ))}
+                {filteredResults
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((d) => (
+                    <TableRow key={d.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                      <TableCell align="center" component="th" scope="row">
+                        <>
+                          <Box
+                            component="img"
+                            sx={{
+                              maxWidth: 30,
+                              maxHeight: 30,
+                            }}
+                            src={d.image}
+                            alt={d.name}
+                          ></Box>{' '}
+                          {d.name}
+                        </>
+                     </TableCell>
+                      <TableCell align="center">{formatCurrency(d.current_price)}</TableCell>
+                      <TableCell align="center">{d.price_change_percentage_24h}</TableCell>
+                      <TableCell align="center">{formatCurrency(d.total_volume)}</TableCell>
+                      <TableCell align="center">{formatCurrency(d.market_cap)}</TableCell>
+                    </TableRow>
+                  ))}
               </TableBody>
-              {/* Table Pagination */}
               <TableRow align="right">
                 <Box>
                   <TablePagination
