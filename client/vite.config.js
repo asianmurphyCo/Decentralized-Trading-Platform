@@ -6,17 +6,28 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/database': {
-        target: 'http://localhost:5035',
+      "/database": {
+        target: "http://localhost:5035",
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/database': ''
+          "^/database": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader('Origin', 'http://localhost:5173');
-        }
-      }
-    }
-  }
+          proxyReq.setHeader("Origin", "http://localhost:5173");
+        },
+      },
+      "/api": {
+        target: "http://localhost:5035",
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          "^/api": "",
+        },
+        onProxyReq(proxyReq) {
+          proxyReq.setHeader("Origin", "http://localhost:5173");
+        },
+      },
+    },
+  },
 });

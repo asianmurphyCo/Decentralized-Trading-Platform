@@ -27,7 +27,7 @@ app.use(logger('dev'));
 // set up route
 const port = 5035;
 
-// // Api Testing
+// Api Testing
 // app.get("/api", async (req, res) => {
 //   try {
 //     const result = await pool.query("SELECT * FROM user_login");

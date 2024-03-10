@@ -311,7 +311,46 @@ footer {
 /* END OF HOMEPAGE */
 
 /* DASHBAORD PAGE */
+.dashboard-bg {
+    background-color: #1F2544 !important;
+    /* background-color: transparent; */
+    border-color: #243056;
+}
+.dashboard-tb {
+    border-radius: 0.5rem;
+    width: 100%;
+    padding: 2rem !important;
+    border-color: #243056;
+}
 
+.tableHeader {
+    font-weight: 500 !important;
+    color: white !important;
+    text-decoration: none;
+    border: 0;
+    width: 7rem;
+}
+
+.tableHeader:hover {
+    border-radius: 5px;
+    transition: 0.2s;
+    align-items: center !important;
+    background-color: #243056 !important;
+}
+
+/* CUSTOMIE MUI MATERIAL FOR TABLE */
+.css-11xur9t-MuiPaper-root-MuiTableContainer-root {
+    background-color: transparent!important;
+}
+.css-jtlhu6-MuiTablePagination-root {
+    overflow: visible !important;
+}
+.css-16c50h-MuiInputBase-root-MuiTablePagination-select {
+    padding-bottom: 12px;
+}
+.css-zylse7-MuiButtonBase-root-MuiIconButton-root {
+    padding-bottom: 22px !important;
+}
 
 /* END OF DASHBOARD */
 
