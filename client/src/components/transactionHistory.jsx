@@ -13,7 +13,7 @@ import NotFound from './notfound';
 import { Box,Container,TablePagination,CircularProgress } from '@mui/material';
 import { useEffect, useState } from 'react';
 
-function TransactionHistory({}) {
+function TransactionHistory() {
 
         // Fetching data from Client-Side Data for Front-end
         const [data,setData] = useState([]);

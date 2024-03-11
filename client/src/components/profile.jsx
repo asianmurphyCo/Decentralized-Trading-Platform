@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 import "./css/style.css";
 import profile_pic from "../components/assets/profile.png";
 import LoadingScreen from "./loading";
+import detectEthereumProvider from "@metamask/detect-provider";
+
+import { formatBalance } from "./utils/formatBalance";
+import { formatChainAsNum } from "./utils/formatChainID";
+
 
 // PASS Username key and login state from Local Storage
 
@@ -12,6 +17,21 @@ import LoadingScreen from "./loading";
 const Profile = (props) => {
   const [userData, setUserData] = useState([]);
   const [firstRender, setFirsRender] = useState(true);
+
+  //  Initial Wallet State
+  const initialState = {
+    accounts: [],
+    balance:"",
+    chainID:"",
+  };
+
+  // Wallet Information
+  const [wallet, setWallet] = useState(initialState);
+
+  //  Web3 Provider
+  const [hasProvider,setHasProvider] = useState(null);  //  Has Provider need a place to show msg; If (hasProvier) =>  don't show toast ; else Show toast and tell them to install Metamask
+
+
   const { isLoggedIn } = props;
 
   useEffect(() => {
@@ -33,12 +53,58 @@ const Profile = (props) => {
       }
     };
 
+
+
+    const refreshAccounts = (accounts) => {
+      if(accounts.length > 0){
+        updateWallet(accounts);
+      } else{
+        //  If accounts length <= 0, user is disconnected (Can implement require user to reconnect with their wallet or not)
+        setWallet(initialState)
+      }
+    }
+
+    //  Refresh Chain
+    const refreshChain = (chainId) => {
+      setWallet((wallet) => ({ ...wallet, chainId }));
+  };
+
+    const getProvider = async () => {
+      const provider = await detectEthereumProvider({ silent: true });
+      setHasProvider(Boolean(provider));
+
+      if (provider) {
+        const accounts = await window.ethereum.request({
+          method: "eth_accounts",
+        });
+        refreshAccounts(accounts);
+        window.ethereum.on("accountsChanged", refreshAccounts);
+        window.ethereum.on("chainChanged", refreshChain); /* New */
+        }
+      };
     
     if (firstRender) {
       fetchData();
+      getProvider();
       setFirsRender(false);
     }
   }, [firstRender, userData]);
+
+
+  
+  const updateWallet = async (accounts) => {
+      const balance = formatBalance(
+          await window.ethereum.request({             
+              method: "eth_getBalance",               
+              params: [accounts[0], "latest"],         
+          })
+      );                                                
+      const chainId = await window.ethereum.request({  
+          method: "eth_chainId",                     
+      });                                              
+      setWallet({ accounts, balance, chainId });        
+  };
+
 
   // Wait for userData before render
   if (!userData || !isLoggedIn) {
@@ -66,7 +132,7 @@ const Profile = (props) => {
                 <p className="text-muted mb-1">User#000</p>
                 <p className="text-muted mb-4">Kivotos, BA</p>
                 <h5 className="text-muted mb-4">
-                  Balance: {userData.balance} ETH
+                  Balance: {wallet.balance} ETH
                 </h5>
               </div>
             </div>
@@ -108,7 +174,7 @@ const Profile = (props) => {
                     <p className="mb-0">Wallet Address</p>
                   </div>
                   <div className="col-sm-9">
-                    <p className="text-muted mb-0">{userData.wallet}</p>
+                    <p className="text-muted mb-0">{wallet.accounts[0]}</p> {/* Improvement needed for when user have multiple Accounts*/}
                   </div>
                 </div>
                 <hr />
