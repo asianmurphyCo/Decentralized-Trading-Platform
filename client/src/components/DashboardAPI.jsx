@@ -1,51 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination } from '@mui/material';
-// Import the functions you need from the SDKs you need
-import firebaseConfig from "./firebaseConfig";
-import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Container,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TablePagination,
+} from "@mui/material";
 
-import { getDatabase, ref, onValue } from "firebase/database";
-import { getAuth } from "firebase/auth";
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  // const analytics = getAnalytics(app);
-
-  // Initialize Realtime Database and get a reference to the service
-  const db = getDatabase(app);
-  const auth = getAuth();
-
-function DashboardAPI() {
+function DashboardAPI({ searchTerm }) {
   const [backendData, setBackendData] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [sortDirection, setSortDirection] = useState({}); // State to track sort direction of each column
 
   useEffect(() => {
-     fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en")
-       .then(response => response.json())
-       .then(data => {
-         setBackendData(data);
-       })
-       .catch(error => {
-         console.log(error);
-       });
-    
-    //const starCountRef = ref(db, "posts/" + postId + "/starCount");
-    //onValue(starCountRef, (snapshot) => {
-    //  const data = snapshot.val();
-   //   updateStarCount(postElement, data);
-    });
-  // }, []);
+    fetch("/database")
+      .then((response) => response.json())
+      .then((data) => {
+        setBackendData(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
-  // Format currency
+  useEffect(() => {
+    const filteredData = backendData.filter((d) =>
+      d.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredResults(filteredData);
+    setPage(0);
+  }, [searchTerm, backendData]);
+
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(amount);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -57,66 +54,155 @@ function DashboardAPI() {
     setPage(0);
   };
 
-  const filteredResults = backendData.slice().filter((d) => {
-    // Perform any filtering logic here if needed
-    return true;
-  });
+  const handleSort = (column) => {
+    const newSortDirection = { ...sortDirection };
+
+    if (newSortDirection[column] === undefined) {
+      newSortDirection[column] = "asc";
+    } else if (newSortDirection[column] === "asc") {
+      newSortDirection[column] = "desc";
+    } else {
+      newSortDirection[column] = "asc";
+    }
+
+    setSortDirection(newSortDirection);
+    sortTableData(column, newSortDirection[column]);
+  };
+
+  const sortTableData = (column, direction) => {
+    const sortedData = [...filteredResults];
+
+    sortedData.sort((a, b) => {
+      if (direction === "asc") {
+        return a[column] > b[column] ? 1 : -1;
+      } else {
+        return a[column] < b[column] ? 1 : -1;
+      }
+    });
+
+    setFilteredResults(sortedData);
+  };
+
+  const getSortArrow = (column) => {
+    if (sortDirection[column] === "asc") {
+      return <span>&#9650;</span>; // Upward arrow symbol
+    } else if (sortDirection[column] === "desc") {
+      return <span>&#9660;</span>; // Downward arrow symbol
+    } else {
+      return null;
+    }
+  };
 
   return (
     <div>
       <Container className="card-body" sx={{ py: 5 }}>
         <div>
           <TableContainer component={Paper}>
-            <Table aria-label="crypto dashboard">
-              {/* Table Head */}
+            <Table
+              aria-label="crypto dashboard"
+              className="dashboard-bg dashboard-tb"
+              style={{ padding: "2rem" }}
+            >
               <TableHead>
                 <TableRow>
-                  <TableCell sx={{ width: 2 }} align="center">Name</TableCell> {/* Image + Symbol + Name*/}
-                  <TableCell align="center">Price</TableCell>
-                  <TableCell align="center">% Change (24h)</TableCell>
-                  <TableCell align="center">24h Volume</TableCell>
-                  <TableCell align="center">Market Cap</TableCell>
+                  <TableCell sx={{ width: 2 }} align="left" className="ps-5">
+                    <button
+                      className="tableHeader"
+                      onClick={() => handleSort("name")}
+                    >
+                      Name {getSortArrow("name")}
+                    </button>
+                  </TableCell>
+                  <TableCell align="left">
+                    <button
+                      className="tableHeader"
+                      onClick={() => handleSort("current_price")}
+                    >
+                      Price {getSortArrow("current_price")}
+                    </button>
+                  </TableCell>
+                  <TableCell align="center">
+                    <button
+                      className="tableHeader"
+                      onClick={() => handleSort("price_change_percentage_24h")}
+                    >
+                      (24h) % {getSortArrow("price_change_percentage_24h")}
+                    </button>
+                  </TableCell>
+                  <TableCell align="center">
+                    <button
+                      className="tableHeader"
+                      onClick={() => handleSort("total_volume")}
+                    >
+                      24h Volume {getSortArrow("total_volume")}
+                    </button>
+                  </TableCell>
+                  <TableCell align="center">
+                    <button
+                      className="tableHeader"
+                      onClick={() => handleSort("market_cap")}
+                    >
+                      Market Cap {getSortArrow("market_cap")}
+                    </button>
+                  </TableCell>
                 </TableRow>
               </TableHead>
-              {/* Table Body */}
               <TableBody>
-                {filteredResults.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((d) => (
-                  <TableRow
-                    key={d.id}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <TableCell align="center" component="th" scope="row">
-                      <>
-                        <Box component="img"
-                          sx={{
-                            maxWidth: 30,
-                            maxHeight: 30
-                          }}
-                          src={d.image}
-                          alt={d.name}
-                        ></Box> {d.name}
-                      </>
-                    </TableCell>
-                    <TableCell align="center">{formatCurrency(d.current_price)}</TableCell>
-                    <TableCell align="center">{d.price_change_percentage_24h}</TableCell>
-                    <TableCell align="center">{formatCurrency(d.total_volume)}</TableCell>
-                    <TableCell align="center">{formatCurrency(d.market_cap)}</TableCell>
-                  </TableRow>
-                ))}
+                {filteredResults
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((d) => (
+                    <TableRow
+                      key={d.id}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell
+                        align=""
+                        className="ps-5 text-white fw-bold"
+                        component="th"
+                        scope="row"
+                      >
+                        <>
+                          <Box
+                            component="img"
+                            sx={{
+                              maxWidth: 30,
+                              maxHeight: 30,
+                            }}
+                            src={d.image}
+                            alt={d.name}
+                            className="rounded-circle "
+                          ></Box>{" "}
+                          &nbsp;&nbsp;
+                          {d.name}
+                        </>
+                      </TableCell>
+                      <TableCell align="left" className="text-white fw-bold">
+                        {formatCurrency(d.current_price)}
+                      </TableCell>
+                      <TableCell align="center" className="text-white fw-bold">
+                        {d.price_change_percentage_24h}
+                      </TableCell>
+                      <TableCell align="center" className="text-white fw-bold">
+                        {formatCurrency(d.total_volume)}
+                      </TableCell>
+                      <TableCell align="center" className="text-white fw-bold">
+                        {formatCurrency(d.market_cap)}
+                      </TableCell>
+                    </TableRow>
+                  ))}
               </TableBody>
               <TableRow align="right">
-                <Box>
-                  <TablePagination
-                    rowsPerPageOptions={[10, 20, 30]}
-                    component="div"
-                    count={filteredResults.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    variant='outlined'
-                  />
-                </Box>
+                <TablePagination
+                  rowsPerPageOptions={[10, 20, 30]}
+                  component="div"
+                  count={filteredResults.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  variant="outlined"
+                  className="text-white mt-2 mb-2"
+                />
               </TableRow>
             </Table>
           </TableContainer>
@@ -125,5 +211,5 @@ function DashboardAPI() {
     </div>
   );
 }
-//
+
 export default DashboardAPI;

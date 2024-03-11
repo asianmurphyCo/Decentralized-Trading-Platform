@@ -1,13 +1,23 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
-import { createProxyMiddleware } from 'http-proxy-middleware';
 
 export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
+      '/database': {
+        target: 'http://localhost:5035',
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '^/database': '',
+        },
+        onProxyReq(proxyReq) {
+          proxyReq.setHeader('Origin', 'http://localhost:5173');
+        },
+      },
       '/api': {
-        target: 'http://localhost:5000/',
+        target: 'http://localhost:5035/',
         changeOrigin: true,
         secure: false,
         pathRewrite: {
@@ -18,7 +28,7 @@ export default defineConfig({
         },
       },
       '/authenticate': {
-        target: 'http://localhost:5000/',
+        target: 'http://localhost:5036/',
         changeOrigin: true,
         secure: false,
         pathRewrite: {
@@ -28,9 +38,8 @@ export default defineConfig({
           proxyReq.setHeader('Origin', 'http://localhost:5173');
         },
       },
-
       '/verify': {
-        target: 'http://localhost:5000/',
+        target: 'http://localhost:5036/',
         changeOrigin: true,
         secure: false,
         pathRewrite: {
@@ -40,9 +49,8 @@ export default defineConfig({
           proxyReq.setHeader('Origin', 'http://localhost:5173');
         },
       },
-
       '/logout': {
-        target: 'http://localhost:5000/',
+        target: 'http://localhost:5036/',
         changeOrigin: true,
         secure: false,
         pathRewrite: {

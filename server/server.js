@@ -1,23 +1,22 @@
-const express = require('express');
-// const bcrypt = require('bcrypt') // for pw hashing
-const jwt = require('jsonwebtoken');
-const cookieParser = require("cookie-parser");
-// import axios from 'axios'
+const dashboard = require('./apis/dashboard');
+const dependencies = require('./dependencies');
 
+const port1 = 5035;
+const port2 = 5036;
+
+const app = dependencies.app;
 const authenticate = require('./apis/authenticate');
 const verify = require('./apis/verify');
 const logout = require('./apis/logout');
 
-const app = express();
+app.get('/api', (req, res) => {
+  res.json({ users: ['user1', 'user2', 'user3'] });
+});
 
-
-// app.use(cors())
-app.use(cookieParser())
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-app.get("/api", (req, res) => {
-    res.json({"users": ["user1", "user2", "user3"]});
+// Route for fetching coin list
+app.get('/database', async (req, res) => {
+  const coinlist = await dashboard.getCoinList();
+  res.status(200).send(coinlist);
 });
 
 app.post("/authenticate", authenticate);
@@ -25,12 +24,10 @@ app.post("/verify", verify);
 app.post("/logout", logout)
 
 
-
-// Default route handler
-app.use((req, res) => {
-    res.status(404).send("Not found");
+app.listen(port1, () => {
+  console.log(`Server is running on port ${port1}`);
 });
 
-app.listen(5000, () => {
-    console.log("listening on port 5000");
+app.listen(port2, () => {
+  console.log(`Server is running on port ${port2}`);
 });

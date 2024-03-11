@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
             return res.status(401).json({message: 'Invalid login'});        
         } 
 
-        const token = jwt.sign(user, process.env.SECRET_KEY, {expiresIn: "1s"});
+        const token = jwt.sign(user, process.env.SECRET_KEY, {expiresIn: "1h"});
 
         res.cookie("token", token, {
             httpOnly:true
