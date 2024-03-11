@@ -13,11 +13,13 @@ import NotFound from './notfound';
 import { Box,Container,TablePagination,CircularProgress } from '@mui/material';
 import { useEffect, useState } from 'react';
 
-function TransactionHistory() {
+function TransactionHistory(props) {
 
         // Fetching data from Client-Side Data for Front-end
         const [data,setData] = useState([]);
         const [page,setPage] = useState(0);
+
+        const isLoggedIn = props;
     
         //  Setting up rowsPerPage useState
         const [rowsPerPage,setRowsPerPage] = useState(10);
@@ -37,7 +39,7 @@ function TransactionHistory() {
 
 
            //  If not logged in, won't return
-           if(!localStorage.getItem("isLoggedIn")){
+           if(!isLoggedIn){
             return <NotFound/>;
         }
 
