@@ -251,54 +251,10 @@ const Login = (props) => {
                               Username
                             </label>
                           </div>
-                          {/* Gender */}
-                          <div className="form-outline mb-3">
-                            <label className="form-label">Gender</label>
-                            <div className="form-check form-check-inline">
-                              <input
-                                className="form-check-input"
-                                id="genderf"
-                                type="radio"
-                                name="gender"
-                                value="female"
-                              ></input>
-                              <label
-                                className="form-check-label"
-                                htmlFor="genderf"
-                              >
-                                Female
-                              </label>
-                            </div>
+                          {/* GENDER*/}
 
-                            <div className="form-check form-check-inline">
-                              <input
-                                className="form-check-input"
-                                id="genderm"
-                                type="radio"
-                                name="gender"
-                                value="male"
-                              ></input>
-                              <label
-                                className="form-check-label"
-                                htmlFor="genderm"
-                              >
-                                Male
-                              </label>
-                            </div>
-                          </div>
-                          {/* GENDER */}
-                          <div className="form-outline mb-3">
-                            <input
-                              type="email"
-                              id="email"
-                              name="email"
-                              className="form-control form-control-lg"
-                            ></input>
-                            <label className="form-label" htmlFor="email">
-                              Your Email
-                            </label>
-                          </div>
-
+                          {/* EMAIL */}
+                          
                           <div className="form-outline mb-3">
                             <input
                               type="password"
@@ -453,6 +409,10 @@ const Login = (props) => {
                     </div>
                   </div>
                 </div>
+              </div>
+              {/* WARNING USER TO LOG IN ON BOTH PLATFORM */}
+              <div className="col-sm-12 col-md-12 col-lg-12 mb-5 mt-5">
+
               </div>
             </div>
           </div>
