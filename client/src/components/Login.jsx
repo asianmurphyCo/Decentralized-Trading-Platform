@@ -36,12 +36,12 @@ const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [regUsername, setRegUsername] = useState("");
-  const [regPwd, setRegPwd] = useState("");
+  // const [regUsername, setRegUsername] = useState("");
+  // const [regPwd, setRegPwd] = useState("");
 
   //  Set Error
   const [error, setError] = useState("");
-  const [registerError, setRegisterError] = useState("");
+  // const [registerError, setRegisterError] = useState("");
   // Login state
   // const [isLoggedIn] = useState(false);
 
@@ -81,11 +81,11 @@ const Login = (props) => {
     logIn();
   };
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
+  // const handleRegister = async (e) => {
+  //   e.preventDefault();
 
-    register();
-  };
+  //   register();
+  // };
 
   const logIn = () => {
     fetch("/authenticate", {
@@ -108,26 +108,26 @@ const Login = (props) => {
       });
   };
 
-  const register = () => {
-    fetch("/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ regUsername, regPwd }),
-    })
-      .then((r) => r.json())
-      .then((r) => {
-        if ("200" === r.status) {
-          console.log(r.status);
-          navigate("/login");
-        } else if (r.status === "404") {
-          setRegisterError(r.message);
-        } else {
-          setRegisterError("An error had occured.");
-        }
-      });
-  };
+  // const register = () => {
+  //   fetch("/register", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ regUsername, regPwd }),
+  //   })
+  //     .then((r) => r.json())
+  //     .then((r) => {
+  //       if ("200" === r.status) {
+  //         console.log(r.status);
+  //         navigate("/login");
+  //       } else if (r.status === "404") {
+  //         setRegisterError(r.message);
+  //       } else {
+  //         setRegisterError("An error had occured.");
+  //       }
+  //     });
+  // };
 
   //  Connection to Metamask Wallet
   const connectMetaMask = async () => {
