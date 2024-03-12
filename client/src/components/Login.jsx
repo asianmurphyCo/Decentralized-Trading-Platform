@@ -41,8 +41,12 @@ const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [regUsername, setRegUsername] = useState("");
+  const [regPwd, setRegPwd] = useState("");
+
   //  Set Error
   const [error, setError] = useState("");
+  const [registerError, setRegisterError] = useState("");
   // Login state
   // const [isLoggedIn] = useState(false);
 
@@ -71,39 +75,14 @@ const Login = (props) => {
     }
 
     logIn();
-
-    
-    // try {
-    //   const res = await fetch("/data/fake_user.json");
-    //   const data = await res.json();
-    //   console.log(data[username]);
-
-    //   const user = data[username];
-
-    //   if (user && user.password === password) {
-    //     console.log("Login successful!");
-    //     console.log(username);
-    //     setError("");
-    //     // PASS THIS VARIABLE STATUS TO OTHER PAGES SO USERS DONT GET LOGGED OUT WHEN SWITCHING TAB
-
-    //     //  REDIRECT USER TO PROFILE PAGE
-    //     // localStorage.removeItem("isLoggedIn");
-
-    //     // PUSH username key and login state to localstorage
-    //     localStorage.setItem("username", username);
-    //     localStorage.setItem("isLoggedIn", "true");
-
-    //     // Redirect to the profile page
-    //     navigate("/profile");
-    //   } else {
-    //     // Authentication failed
-    //     console.error("Login failed");
-    //     setError("Invalid username or password");
-    //   }
-    // } catch (fetchError) {
-    //   console.error("Error fetching data:", fetchError);
-    // }
   };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+
+    register();
+  }
 
   const logIn = () => {
     fetch('/authenticate', {
@@ -125,6 +104,27 @@ const Login = (props) => {
         }
       })
     };
+
+    const register = () => {
+      fetch('/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({regUsername, regPwd}),
+      })
+      .then((r) => r.json())
+      .then((r) => {
+        if ('200' === r.status) {
+          console.log(r.status)
+          navigate('/login');
+        } else if (r.status === '404') {
+          setRegisterError(r.message);
+        } else {
+          setRegisterError("An error had occured.");
+        }
+      })
+    }
 
 
     //  Connection to Metamask Wallet
@@ -235,12 +235,13 @@ const Login = (props) => {
                         </h2>
 
                         <form
-                          method="post"
+                          onSubmit={handleRegister}
                           // FORM ENDPOINT
                           action="http://mercury.swin.edu.au/it000000/cos10005/formtest.php"
                         >
                           <div className="form-outline mb-3">
                             <input
+                              onChange={(e) => setRegUsername(e.target.value)}
                               type="text"
                               id="name"
                               name="username"
@@ -257,6 +258,7 @@ const Login = (props) => {
                           
                           <div className="form-outline mb-3">
                             <input
+                              onChange={(e) => setRegPwd(e.target.value)}
                               type="password"
                               id="password"
                               name="password"
