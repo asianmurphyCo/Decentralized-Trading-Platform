@@ -1,12 +1,11 @@
 // import
 import "./css/style.css";
 import { useState, useEffect } from "react";
-import hertaload from "../components/assets/herta.webp";
-import { FaArrowRight, FaReceipt } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import LoadingScreen from "./loading";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { formatBalance } from "./utils/formatBalance";
-import Web3, { Web3Eth } from 'web3';
+import Web3 from 'web3';
 
 // PASS Username key and login state from Local Storage
 
