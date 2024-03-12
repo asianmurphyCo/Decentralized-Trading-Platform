@@ -60,6 +60,18 @@ export default defineConfig({
           proxyReq.setHeader('Origin', 'http://localhost:5173');
         },
       },
+
+      '/retrieveProfile': {
+        target: 'http://localhost:5037/',
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '^/retrieveProfile': '',
+        },
+        onProxyReq(proxyReq) {
+          proxyReq.setHeader('Origin', 'http://localhost:5173');
+        },
+      },
     },
   },
 });

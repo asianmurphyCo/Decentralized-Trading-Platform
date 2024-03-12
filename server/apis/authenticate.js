@@ -23,27 +23,32 @@ module.exports = async (req, res) => {
 
     // dummy user for api test
     const userMock = ({"username": "admin", "password": "admin"});
+
+    try {
+        const user = await pool.query(`SELECT * FROM user_login WHERE username = '${username}'`);
+        const fetchedUser = user.rows[0];
+
+        if (user !== "") {
+            if (fetchedUser.userpwd !== password) {
+                return res.status(401).json({message: 'Invalid login'});        
+            } 
     
-    const user = await pool.query(`SELECT * FROM user_login WHERE username = '${username}'`);
-    const fetchedUser = user.rows[0];
-
+            const token = jwt.sign(fetchedUser, process.env.SECRET_KEY, {expiresIn: "1h"});
     
-    console.log(fetchedUser);
-
-
-    if (user !== "") {
-        if (fetchedUser.userpwd !== password) {
-            return res.status(401).json({message: 'Invalid login'});        
-        } 
-
-        const token = jwt.sign(fetchedUser, process.env.SECRET_KEY, {expiresIn: "1h"});
-
-        res.cookie("token", token, {
-            httpOnly:true
-        })
-
-        
-        res.status(200).json({message: 'success', token: token});
-        
+            res.cookie("token", token, {
+                httpOnly:true
+            })
+    
+            
+            res.status(200).json({message: 'success', token: token});
+            
+        }
+    } catch(err) {
+        console.error(err);
     }
+    
+    
+
+
+    
 }

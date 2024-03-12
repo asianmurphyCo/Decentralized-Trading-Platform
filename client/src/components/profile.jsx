@@ -6,6 +6,7 @@ import profile_pic from "../components/assets/profile.png";
 import LoadingScreen from "./loading";
 import detectEthereumProvider from "@metamask/detect-provider";
 
+
 import { formatBalance } from "./utils/formatBalance";
 import { formatChainAsNum } from "./utils/formatChainID";
 
@@ -30,24 +31,30 @@ const Profile = (props) => {
 
   //  Web3 Provider
   const [hasProvider,setHasProvider] = useState(null);  //  Has Provider need a place to show msg; If (hasProvier) =>  don't show toast ; else Show toast and tell them to install Metamask
-
-
   const { isLoggedIn } = props;
+  const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // profile will request from database the entries of the user => POST => call api to verify (token, user)
-        // token is from cookie 
-        // if not verify (loading screen)
-        // if verify (/profile)
+        const username = localStorage.getItem('user');
+        fetch('/retrieveProfile', {
+          method: 'POST',
+          body: JSON.stringify({username}),
+        })
+        .then((r) => r.json())
+        .then((r) => {
+          setUserInfo(r)
+        })
 
         const response = await fetch("/data/fake_user.json");
-        const data = await response.json();
+        console.log(userInfo);
+        // setUserInfo(userData.rows[0].json);
 
         // ACCESS user key in your JSON file
-        setUserData(data[localStorage.getItem("user")]); // Change to any user key in json file
-        
+        // setUserData(data[localStorage.getItem("user")]); // Change to any user key in json file
+
+
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -128,7 +135,7 @@ const Profile = (props) => {
                   className="rounded-circle img-fluid"
                   style={{ width: "150px" }}
                 ></img>
-                <h5 className="my-3">{userData.username}</h5>
+                <h5 className="my-3">{userInfo.username}</h5>
                 <p className="text-muted mb-1">User#000</p>
                 <p className="text-muted mb-4">Kivotos, BA</p>
                 <h5 className="text-muted mb-4">
@@ -146,7 +153,7 @@ const Profile = (props) => {
                     <p className="mb-0">Username</p>
                   </div>
                   <div className="col-sm-9">
-                    <p className="text-muted mb-0">{userData.username}</p>
+                    <p className="text-muted mb-0">{userInfo.username}</p>
                   </div>
                 </div>
                 <hr />
@@ -155,7 +162,7 @@ const Profile = (props) => {
                     <p className="mb-0">Email</p>
                   </div>
                   <div className="col-sm-9">
-                    <p className="text-muted mb-0">{userData.email}</p>
+                    <p className="text-muted mb-0">{userInfo.email}</p>
                   </div>
                 </div>
                 <hr />
@@ -187,9 +194,6 @@ const Profile = (props) => {
                     <Link
                       to={{
                         pathname: "/transactionHistory",
-                        state: {
-                          isLoggedIn: localStorage.getItem("isLoggedIn"),
-                        },
                       }}
                     >
                       Show History
