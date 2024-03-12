@@ -1,15 +1,63 @@
 // import
 import "./css/style.css";
 import { useState, useEffect } from "react";
-import hertaload from "../components/assets/herta.webp";
 import { FaArrowRight } from "react-icons/fa";
 import LoadingScreen from "./loading";
+import detectEthereumProvider from "@metamask/detect-provider";
+import { formatBalance } from "./utils/formatBalance";
+import Web3 from 'web3';
 
 // PASS Username key and login state from Local Storage
 
 function Trade(props) {
   const [userData, setUserData] = useState([]);
   const [firstRender, setFirsRender] = useState(true);
+
+  //  Test Contract
+  let MyContractAddress = "0xD20464f7533e8aF073E1fDABA7121C5a138934aa";
+  let MyContractABI = [
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "_addr",
+          "type": "address"
+        }
+      ],
+      "name": "sendViaSend",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ];
+
+
+  
+  //  Initial Wallet State
+  const initialState = {
+    accounts: [],
+    balance:"",
+    chainID:"",
+  };
+
+  // Wallet Information
+  const [wallet, setWallet] = useState(initialState);
+
+  //  Web3 Provider
+  const [hasProvider,setHasProvider] = useState(null);  //  Has Provider need a place to show msg; If (hasProvier) =>  don't show toast ; else Show toast and tell them to install Metamask
+
+  //  Target Address
+  const [targetAddress, setTargetAddress] = useState('');
+
+  //  Transaction Amount
+  const [amount,setAmount] = useState('');
+
+  //  Smart Contract Instance
+  const [smartContract,setSmartContract] = useState(null);
+
+  //  Web 3 Instance
+  const [web3, setWeb3] = useState({});
+
   const {isLoggedIn} = props
 
   useEffect(() => {
@@ -26,11 +74,129 @@ function Trade(props) {
       }
     };
 
+
+    const refreshAccounts = (accounts) => {
+      if(accounts.length > 0){
+        updateWallet(accounts);
+      } else{
+        //  If accounts length <= 0, user is disconnected (Can implement require user to reconnect with their wallet or not)
+        setWallet(initialState)
+      }
+    }
+
+    //  Refresh Chain
+    const refreshChain = (chainId) => {
+      setWallet((wallet) => ({ ...wallet, chainId }));
+  };
+
+    const getProvider = async () => {
+      const provider = await detectEthereumProvider({ silent: true });
+      setHasProvider(Boolean(provider));
+
+      if (provider) {
+        const accounts = await window.ethereum.request({
+          method: "eth_accounts",
+        });
+        refreshAccounts(accounts);
+        window.ethereum.on("accountsChanged", refreshAccounts);
+        window.ethereum.on("chainChanged", refreshChain); 
+        }
+
+
+      };
+
+    //  Web 3 Init
+    const initWeb3 = async () =>{
+      if(window.ethereum){
+        try{
+          await window.ethereum.request({method: 'eth_requestAccounts'});
+          const Web3Instance = new Web3(window.ethereum);
+          setWeb3(Web3Instance);
+        } catch(error){
+          console.error("User Denied Account Access", error);
+        }
+      } else{
+        console.log("There is no Web 3 Instance Injected.");
+      }
+    }
+      
+
     if (firstRender) {
       fetchData();
+      getProvider();
+      initWeb3();
       setFirsRender(false);
     }
   }, [firstRender, userData]);
+
+  
+  useEffect(() => {
+    if(web3){
+      if(typeof web3.eth !== 'undefined'){
+        //  Connect to Smart Contract
+        const contract = new web3.eth.Contract(MyContractABI, MyContractAddress);
+       
+        setSmartContract(contract);
+      }
+    }
+    
+  },[web3])
+
+  const updateWallet = async (accounts) => {
+    const balance = formatBalance(
+        await window.ethereum.request({             
+            method: "eth_getBalance",               
+            params: [accounts[0], "latest"],         
+        })
+    );                                                
+    const chainId = await window.ethereum.request({  
+        method: "eth_chainId",                     
+    });                                              
+    setWallet({ accounts, balance, chainId });        
+};
+
+
+  const handleAmountChange = (e) => {
+    setAmount(e.target.value);
+  }
+
+  const handleAddressChange = (e) =>{
+    setTargetAddress(e.target.value);
+  }
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+
+    transactionExecute();
+  }
+
+
+  const transactionExecute = async () => {
+    if(smartContract){
+
+      //  Convert Ether into Wei
+      const amountInWei = web3.utils.toWei(amount,'ether');
+
+      
+      try{
+        //  Call sendEther method from smart contract
+        const result = await smartContract.methods.sendViaSend(targetAddress)
+        .send({
+          from: wallet.accounts[0],
+          value: amountInWei,
+        })
+        .on('receipt', (receipt) => {
+          console.log('Transaction Receipt',receipt);
+        })
+        console.log('Result:', result);
+      } catch (error) {
+        console.error('Error calling smart contract method', error);
+      }
+    }
+  }
+
   // Wait for userData before render
   if (!userData) {
     return (
@@ -45,9 +211,7 @@ function Trade(props) {
         <div className="row justify-content-center">
           <div className="card col-12 col-md-8 col-lg-6 col-xl-5 px-4 bg-primary text-light">
             <form
-              method="post"
-              // FORM ENDPOINT
-              action="http://mercury.swin.edu.au/it000000/cos10005/formtest.php"
+              onSubmit={handleSubmit}
             >
               <div className="row py-3">
                 <div className="col-sm-12 col-md-12 col-lg-9">
@@ -55,7 +219,7 @@ function Trade(props) {
                 </div>
                 <div className="col-sm-12 col-md-12 col-lg-3 card py-1">
                   <p className="h5 mb-1 mb-xl-1">Your Balance:</p>
-                  <p className="h5 mb-1 mb-xl-1">{userData.balance}</p>
+                  <p className="h5 mb-1 mb-xl-1">{wallet.balance}</p>
                 </div>
               </div>
               <div className="row gx-3">
@@ -70,7 +234,7 @@ function Trade(props) {
                       name="user_wallet"
                       type="text"
                       placeholder="userWallet"
-                      value={userData.wallet}
+                      value={wallet.accounts[0]}
                     />
                   </div>
                 </div>
@@ -79,7 +243,7 @@ function Trade(props) {
                     <label className="text mb-1" htmlFor="target_wallet">
                       Wallet address you want to send:
                     </label>
-                    <input
+                    <input onChange={handleAddressChange}
                       className="form-control mb-3"
                       type="text"
                       id="target_wallet"
@@ -93,7 +257,7 @@ function Trade(props) {
                     <label htmlFor="amount" className="text mb-1">
                       Amount (ETH):
                     </label>
-                    <input
+                    <input onChange={handleAmountChange}
                       className="form-control mb-3 pt-2"
                       type="number"
                       placeholder="0000"

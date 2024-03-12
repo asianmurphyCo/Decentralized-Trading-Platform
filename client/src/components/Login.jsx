@@ -6,11 +6,11 @@ import rainbow from "../components/assets/rainbow-icon.png";
 import metamask from "../components/assets/metamask.jpg";
 import trustwallet from "../components/assets/trustwallet.jpg";
 import walletconnect from "../components/assets/wallet-connect-logo.png";
+import detectEthereumProvider from '@metamask/detect-provider';
 import { useEffect } from "react";
 
 
 
-// import axios from 'axios' (will use if have api endpoint)
 
 const Login = (props) => {
   useEffect(() => {
@@ -22,6 +22,17 @@ const Login = (props) => {
     } else {
       return;
     }
+
+    //  Check if Any Web3 Provider is installed
+    const getProvider = async () =>{
+      const provider =  await detectEthereumProvider({silent: true});
+      setHasProvider(Boolean(provider));
+    }
+
+    // Call Provider Check Function
+    getProvider();
+
+
   })
   const navigate = useNavigate();
   const [isLoginForm, setIsLoginForm] = useState(true);
@@ -34,6 +45,9 @@ const Login = (props) => {
   const [error, setError] = useState("");
   // Login state
   // const [isLoggedIn] = useState(false);
+
+  //  Set Provider
+  const [hasProvider,setHasProvider] = useState(null);  //  Has Provider need a place to show msg; If (hasProvier) =>  don't show toast ; else Show toast and tell them to install Metamask
 
   // Switch between Login and Register
   const handleToggle = () => {
@@ -111,6 +125,25 @@ const Login = (props) => {
         }
       })
     };
+
+
+    //  Connection to Metamask Wallet
+    const connectMetaMask = async () =>{
+      try {
+        const acc = await window.ethereum.request({
+            method: "eth_requestAccounts",
+        });
+        console.log("Connected to your Metamask Wallet")  //   Can show toast to notify that wallet has been connected
+        console.log(acc[0]);
+    } catch (error) {
+        console.error("Error connecting to MetaMask:", error);
+    }
+    }
+
+
+
+
+
 
   // Render page
   return (
@@ -343,7 +376,7 @@ const Login = (props) => {
                     </h2>
 
                     <div className="form-outline mb-3">
-                      <button className="wallet-item">
+                      <button onClick={connectMetaMask} className="wallet-item">
                         <div className="wallet-name">
                           <img
                             src={metamask}
