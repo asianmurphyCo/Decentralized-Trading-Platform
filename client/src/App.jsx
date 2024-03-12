@@ -26,6 +26,7 @@ function App() {
       if (r.message === 'success') {
         setIsLoggedIn('success' === r.message);
       } else {
+        console.log("bug")
         localStorage.removeItem("token");
       }
       

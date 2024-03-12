@@ -22,7 +22,6 @@ module.exports = async (req, res) => {
     // console.log(data);
 
     // dummy user for api test
-    const userMock = ({"username": "admin", "password": "admin"});
 
     try {
         const user = await pool.query(`SELECT * FROM user_login WHERE username = '${username}'`);

@@ -38,17 +38,22 @@ const Profile = (props) => {
     const fetchData = async () => {
       try {
         const username = localStorage.getItem('user');
+        console.log(username);
         fetch('/retrieveProfile', {
           method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify({username}),
         })
         .then((r) => r.json())
         .then((r) => {
+          console.log(r)
           setUserInfo(r)
         })
 
         const response = await fetch("/data/fake_user.json");
-        console.log(userInfo);
+        // console.log(userInfo);
         // setUserInfo(userData.rows[0].json);
 
         // ACCESS user key in your JSON file
@@ -162,7 +167,7 @@ const Profile = (props) => {
                     <p className="mb-0">Email</p>
                   </div>
                   <div className="col-sm-9">
-                    <p className="text-muted mb-0">{userInfo.email}</p>
+                    <p className="text-muted mb-0">{userInfo.useremail}</p>
                   </div>
                 </div>
                 <hr />
