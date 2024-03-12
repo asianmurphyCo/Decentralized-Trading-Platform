@@ -21,7 +21,7 @@ app.get('/database', async (req, res) => {
 
 app.post("/authenticate", authenticate);
 app.post("/verify", verify);
-app.post("/logout", logout)
+app.post("/logout", logout);
 
 
 app.listen(port1, () => {

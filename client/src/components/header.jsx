@@ -15,22 +15,47 @@ const Header = (props) => {
 
   const Logout = () => {
     // Clear localStorage and redirect to login page
-    // localStorage.removeItem("isLoggedIn");
-    fetch('/logout', {
+    
+    fetch('verify', {
       method: 'POST',
       body: {isLoggedIn},
     })
-    .then((r) => r.json())
-    .then((r) => {
-      if ('success' === r.message) {
-        props.setIsLoggedIn(false);
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        navigate("/login");
-      } else {
-        window.alert('User has not logged in.')
-      }
-    })
+  .then((r) => r.json())
+  .then((r) => {
+    if (r.message === 'success') {
+      fetch('/logout', {
+        method: 'POST',
+        body: {isLoggedIn},
+      })
+      .then((r) => r.json())
+      .then((r) => {
+        if ('success' === r.message) {
+          props.setIsLoggedIn(false);
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+          navigate("/login");
+        } else {
+          window.alert('User has not logged in.')
+        }
+      })
+    }
+  })
+
+    // fetch('/logout', {
+    //   method: 'POST',
+    //   body: {isLoggedIn},
+    // })
+    // .then((r) => r.json())
+    // .then((r) => {
+    //   if ('success' === r.message) {
+    //     props.setIsLoggedIn(false);
+    //     localStorage.removeItem("token");
+    //     localStorage.removeItem("user");
+    //     navigate("/login");
+    //   } else {
+    //     window.alert('User has not logged in.')
+    //   }
+    // })
   };
 
   // const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";

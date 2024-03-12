@@ -1,9 +1,7 @@
 const jwt = require('jsonwebtoken')
+const pool = require('../database.js')
 require("dotenv").config();
 
-const getUser = async (username) => {
-    // traverse database and return a user json
-}
 module.exports = async (req, res) => {
     const {username, password} = req.body
 
@@ -24,14 +22,21 @@ module.exports = async (req, res) => {
     // console.log(data);
 
     // dummy user for api test
-    const user = ({"username": "admin", "password": "admin"});
+    const userMock = ({"username": "admin", "password": "admin"});
+    
+    const user = await pool.query(`SELECT * FROM user_login WHERE username = '${username}'`);
+    const fetchedUser = user.rows[0];
+
+    
+    console.log(fetchedUser);
+
 
     if (user !== "") {
-        if (user.username !== username || user.password !== password) {
+        if (fetchedUser.userpwd !== password) {
             return res.status(401).json({message: 'Invalid login'});        
         } 
 
-        const token = jwt.sign(user, process.env.SECRET_KEY, {expiresIn: "1h"});
+        const token = jwt.sign(fetchedUser, process.env.SECRET_KEY, {expiresIn: "1h"});
 
         res.cookie("token", token, {
             httpOnly:true

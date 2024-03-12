@@ -14,22 +14,6 @@ import { useEffect } from "react";
 
 const Login = (props) => {
   useEffect(() => {
-    // fetch('/verify', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json' ,
-    //   },
-    // })
-    // .then ((r) => r.json())
-    // .then ((r) => {
-    //   if (r.message !== 'success') {
-    //     console.log("statement of login is called")
-    //     localStorage.removeItem("token");
-    //   } else {
-    //     return;
-    //   }
-    // })
-
     const token = localStorage.getItem("token")
 
     if (token) {
@@ -62,8 +46,13 @@ const Login = (props) => {
     
     //validation
     setError('')
-    if (!/^[a-zA-Z0-9]+$/.test(username) || !/^[a-zA-Z0-9]+$/.test(password)) {
-      setError('Login credentials can only contain alphabetical letters and numbers.');
+    if (!/^[a-zA-Z0-9]+$/.test(username)) {
+      setError('Login username can only contain alphabetical letters and numbers.');
+      return;
+    }
+
+    if (!/^[a-zA-Z0-9!@#$%^&*]+$/.test(password)) {
+      setError('Password can only contain alphabetical letters, numbers and !@#$%^&*');
       return;
     }
 
