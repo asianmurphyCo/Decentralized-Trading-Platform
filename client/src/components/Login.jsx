@@ -40,6 +40,8 @@ const Login = (props) => {
   //  Setting up useState for username, password
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  // For register
+  const [repeatPwd, setRepeatPwd] = useState("");
 
   //  Set Error
   const [error, setError] = useState("");
@@ -67,6 +69,11 @@ const Login = (props) => {
 
     if (!/^[a-zA-Z0-9!@#$%^&*]+$/.test(password)) {
       setError('Password can only contain alphabetical letters, numbers and !@#$%^&*');
+      return;
+    }
+
+    if ((password) != (repeatPwd)) {
+      setError('Repeat password must be the same as password');
       return;
     }
 
@@ -126,6 +133,7 @@ const Login = (props) => {
       })
     };
 
+    
 
     //  Connection to Metamask Wallet
     const connectMetaMask = async () =>{
@@ -254,9 +262,10 @@ const Login = (props) => {
                           {/* GENDER*/}
 
                           {/* EMAIL */}
-                          
+
                           <div className="form-outline mb-3">
                             <input
+                              onChange={(e) => setPassword(e.target.value)}
                               type="password"
                               id="password"
                               name="password"
@@ -269,9 +278,10 @@ const Login = (props) => {
 
                           <div className="form-outline mb-3">
                             <input
+                              onChange={(e) => setRepeatPwd(e.target.value)}
                               type="password"
-                              id="password"
-                              name="password"
+                              id="repeatpassword"
+                              name="repeatepassword"
                               className="form-control form-control-lg"
                             />
                             <label className="form-label" htmlFor="password">
@@ -390,7 +400,10 @@ const Login = (props) => {
                     </div>
 
                     <div className="d-flex justify-content-center">
-                      <button className="btn my-2 my-sm-2 btn-lg get-wallet">
+                      <button
+                        className="btn my-2 my-sm-2 btn-lg get-wallet"
+                        href="https://metamask.io/download/"
+                      >
                         Get a Wallet
                       </button>
                     </div>
@@ -411,9 +424,7 @@ const Login = (props) => {
                 </div>
               </div>
               {/* WARNING USER TO LOG IN ON BOTH PLATFORM */}
-              <div className="col-sm-12 col-md-12 col-lg-12 mb-5 mt-5">
-
-              </div>
+              <div className="col-sm-12 col-md-12 col-lg-12 mb-5 mt-5"></div>
             </div>
           </div>
         </div>
