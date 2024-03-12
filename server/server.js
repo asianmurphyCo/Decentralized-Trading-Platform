@@ -10,7 +10,7 @@ const authenticate = require('./apis/authenticate');
 const verify = require('./apis/verify');
 const logout = require('./apis/logout');
 const retrieveProfile = require('./apis/retrieveProfile');
-const register = require('./apis/register');
+const register = require('./apis/registerAPI');
 
 app.get('/api', (req, res) => {
   res.json({ users: ['user1', 'user2', 'user3'] });

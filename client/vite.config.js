@@ -73,12 +73,12 @@ export default defineConfig({
         },
       },
 
-      '/register': {
+      '/registerAPI': {
         target: 'http://localhost:5037/',
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/register': '',
+          '^/registerAPI': '',
         },
         onProxyReq(proxyReq) {
           proxyReq.setHeader('Origin', 'http://localhost:5173');

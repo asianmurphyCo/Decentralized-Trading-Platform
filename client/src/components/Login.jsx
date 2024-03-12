@@ -1,41 +1,36 @@
 // import
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import "./css/style.css";
 import rainbow from "../components/assets/rainbow-icon.png";
 import metamask from "../components/assets/metamask.jpg";
 import trustwallet from "../components/assets/trustwallet.jpg";
 import walletconnect from "../components/assets/wallet-connect-logo.png";
-import detectEthereumProvider from '@metamask/detect-provider';
+import detectEthereumProvider from "@metamask/detect-provider";
 import { useEffect } from "react";
-
-
-
 
 const Login = (props) => {
   useEffect(() => {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
 
     if (token) {
-      navigate('/profile')
-      console.log("navigated")
+      navigate("/profile");
+      console.log("navigated");
     } else {
       return;
     }
 
     //  Check if Any Web3 Provider is installed
-    const getProvider = async () =>{
-      const provider =  await detectEthereumProvider({silent: true});
+    const getProvider = async () => {
+      const provider = await detectEthereumProvider({ silent: true });
       setHasProvider(Boolean(provider));
-    }
+    };
 
     // Call Provider Check Function
     getProvider();
-
-
-  })
+  });
   const navigate = useNavigate();
-  const [isLoginForm, setIsLoginForm] = useState(true);
+  // const [isLoginForm, setIsLoginForm] = useState(true);
 
   //  Setting up useState for username, password
   const [username, setUsername] = useState("");
@@ -51,33 +46,37 @@ const Login = (props) => {
   // const [isLoggedIn] = useState(false);
 
   //  Set Provider
-  const [hasProvider,setHasProvider] = useState(null);  //  Has Provider need a place to show msg; If (hasProvier) =>  don't show toast ; else Show toast and tell them to install Metamask
+  const [hasProvider, setHasProvider] = useState(null); //  Has Provider need a place to show msg; If (hasProvier) =>  don't show toast ; else Show toast and tell them to install Metamask
 
   // Switch between Login and Register
-  const handleToggle = () => {
-    setIsLoginForm(!isLoginForm);
-  };
+  // const handleToggle = () => {
+  //   setIsLoginForm(!isLoginForm);
+  // };
 
   // Handle login
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     //validation
-    setError('')
+    setError("");
     if (!/^[a-zA-Z0-9]+$/.test(username)) {
-      setError('Login username can only contain alphabetical letters and numbers.');
+      setError(
+        "Login username can only contain alphabetical letters and numbers."
+      );
       return;
     }
 
     if (!/^[a-zA-Z0-9!@#$%^&*]+$/.test(password)) {
-      setError('Password can only contain alphabetical letters, numbers and !@#$%^&*');
+      setError(
+        "Password can only contain alphabetical letters, numbers and !@#$%^&*"
+      );
       return;
     }
 
-    if ((password) != (repeatPwd)) {
-      setError('Repeat password must be the same as password');
-      return;
-    }
+    // if ((password) != (repeatPwd)) {
+    //   setError('Repeat password must be the same as password');
+    //   return;
+    // }
 
     logIn();
   };
@@ -85,71 +84,63 @@ const Login = (props) => {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-
     register();
-  }
+  };
 
   const logIn = () => {
-    fetch('/authenticate', {
-      method: 'POST',
+    fetch("/authenticate", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({username, password}),   
-    }) 
+      body: JSON.stringify({ username, password }),
+    })
       .then((r) => r.json()) // r.json()
       .then((r) => {
-        if ('success' === r.message) {
+        if ("success" === r.message) {
           localStorage.setItem("user", username);
           localStorage.setItem("token", r.token);
           props.setIsLoggedIn(true);
-          navigate("/profile")
+          navigate("/profile");
         } else {
-          setError('Wrong username or password.')
+          setError("Wrong username or password.");
         }
-      })
-    };
+      });
+  };
 
-    
-    const register = () => {
-      fetch('/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({regUsername, regPwd}),
-      })
+  const register = () => {
+    fetch("/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ regUsername, regPwd }),
+    })
       .then((r) => r.json())
       .then((r) => {
-        if ('200' === r.status) {
-          console.log(r.status)
-          navigate('/login');
-        } else if (r.status === '404') {
+        if ("200" === r.status) {
+          console.log(r.status);
+          navigate("/login");
+        } else if (r.status === "404") {
           setRegisterError(r.message);
         } else {
           setRegisterError("An error had occured.");
         }
-      })
-    }
+      });
+  };
 
-
-    //  Connection to Metamask Wallet
-    const connectMetaMask = async () =>{
-      try {
-        const acc = await window.ethereum.request({
-            method: "eth_requestAccounts",
-        });
-        console.log("Connected to your Metamask Wallet")  //   Can show toast to notify that wallet has been connected
-        console.log(acc[0]);
+  //  Connection to Metamask Wallet
+  const connectMetaMask = async () => {
+    try {
+      const acc = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      console.log("Connected to your Metamask Wallet"); //   Can show toast to notify that wallet has been connected
+      console.log(acc[0]);
     } catch (error) {
-        console.error("Error connecting to MetaMask:", error);
+      console.error("Error connecting to MetaMask:", error);
     }
-    }
-
-
-
-
-
+  };
 
   // Render page
   return (
@@ -159,178 +150,72 @@ const Login = (props) => {
           <div className="container h-100">
             <div className="row d-flex align-items-center h-100">
               <div className="col-sm-12 col-md-12 col-lg-6 mb-5 mt-5">
-                {isLoginForm ? (
-                  <>
-                    {/* LOGIN FORM */}
-                    <div
-                      className="card login-bg"
-                      style={{ borderRadius: "15px" }}
-                    >
-                      <div className="card-body p-5">
-                        <h2 className="text-uppercase text-center mb-4">
-                          Login
-                        </h2>
+                {/* LOGIN FORM */}
+                <div className="card login-bg" style={{ borderRadius: "15px" }}>
+                  <div className="card-body p-5">
+                    <h2 className="text-uppercase text-center mb-4">Login</h2>
 
-                        <form onSubmit={handleSubmit}>
-                          <div className="form-outline mb-3">
-                            <input
-                              onChange={(e) => setUsername(e.target.value)}
-                              type="text"
-                              id="name"
-                              name="username"
-                              className="form-control form-control-lg"
-                              autoFocus
-                            />
-                            <label className="form-label" htmlFor="name">
-                              Your Name
-                            </label>
-                          </div>
-
-                          <div className="form-outline mb-3">
-                            <input
-                              onChange={(e) => setPassword(e.target.value)}
-                              type="password"
-                              id="password"
-                              name="password"
-                              className="form-control form-control-lg"
-                            />
-                            <label className="form-label" htmlFor="password">
-                              Password
-                            </label>
-                          </div>
-                          {/* LOGIN BUTTON */}
-                          <div className="d-flex justify-content-center">
-                            <button
-                              type="submit"
-                              className="btn btn-outline-primary my-2 my-sm-2 btn-lg login"
-                            >
-                              Login
-                            </button>
-                          </div>
-
-                          {error && (
-                            <div style={{ color: "red", textAlign: "center" }}>
-                              {error}
-                            </div>
-                          )}
-                          <p className="text-center text-light mt-4 mb-0 ">
-                            Don&apos;t have an account?
-                            <a
-                              href="#register"
-                              className="direct-link"
-                              onClick={handleToggle}
-                            >
-                              <u>Register here</u>
-                              {/* SWITCH TO LOGIN FORM */}
-                            </a>
-                          </p>
-                        </form>
+                    <form onSubmit={handleSubmit}>
+                      <div className="form-outline mb-3">
+                        <input
+                          onChange={(e) => setUsername(e.target.value)}
+                          type="text"
+                          id="name"
+                          name="username"
+                          className="form-control form-control-lg"
+                          autoFocus
+                        />
+                        <label className="form-label" htmlFor="name">
+                          Your Name
+                        </label>
                       </div>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    {/* REGISTER FORM */}
-                    <div
-                      className="card login-bg"
-                      style={{ borderRadius: "15px" }}
-                    >
-                      <div className="card-body p-5">
-                        <h2 className="text-uppercase text-center mb-4">
-                          Create an account
-                        </h2>
 
-                        <form
-                          onSubmit={handleRegister}
-                          // FORM ENDPOINT
-                          action="http://mercury.swin.edu.au/it000000/cos10005/formtest.php"
+                      <div className="form-outline mb-3">
+                        <input
+                          onChange={(e) => setPassword(e.target.value)}
+                          type="password"
+                          id="password"
+                          name="password"
+                          className="form-control form-control-lg"
+                        />
+                        <label className="form-label" htmlFor="password">
+                          Password
+                        </label>
+                      </div>
+                      {/* LOGIN BUTTON */}
+                      <div className="d-flex justify-content-center">
+                        <button
+                          type="submit"
+                          className="btn btn-outline-primary my-2 my-sm-2 btn-lg login"
                         >
-                          <div className="form-outline mb-3">
-                            <input
-                              onChange={(e) => setRegUsername(e.target.value)}
-                              type="text"
-                              id="name"
-                              name="username"
-                              className="form-control form-control-lg"
-                              autoFocus
-                            />
-                            <label className="form-label" htmlFor="name">
-                              Username
-                            </label>
-                          </div>
-                          {/* GENDER*/}
-
-                          {/* EMAIL */}
-
-                          <div className="form-outline mb-3">
-                            <input
-                              onChange={(e) => setRegPwd(e.target.value)}
-                              type="password"
-                              id="password"
-                              name="password"
-                              className="form-control form-control-lg"
-                            />
-                            <label className="form-label" htmlFor="password">
-                              Password
-                            </label>
-                          </div>
-
-                          <div className="form-outline mb-3">
-                            <input
-                              onChange={(e) => setRepeatPwd(e.target.value)}
-                              type="password"
-                              id="repeatpassword"
-                              name="repeatepassword"
-                              className="form-control form-control-lg"
-                            />
-                            <label className="form-label" htmlFor="password">
-                              Repeat password
-                            </label>
-                          </div>
-
-                          <div className="form-check d-flex justify-content-center mb-3">
-                            <input
-                              className="form-check-input me-1"
-                              type="checkbox"
-                              name="term_service"
-                              id="term_service"
-                              required
-                            ></input>
-                            <label
-                              className="form-check-label"
-                              htmlFor="term_service"
-                            >
-                              I agree all statements in{" "}
-                              <a href="#!" className="direct-link">
-                                <u>Terms of service</u>
-                              </a>
-                            </label>
-                          </div>
-                          {/* SWITCH BACK TO LOGIN FORM */}
-                          <div className="d-flex justify-content-center">
-                            <button
-                              type="submit"
-                              className="btn btn-outline-primary my-2 my-sm-2 btn-lg login"
-                            >
-                              Sign up
-                            </button>
-                          </div>
-
-                          <p className="text-center text-light mt-4 mb-0 ">
-                            Already have an account?
-                            <a
-                              href="#login"
-                              className="direct-link"
-                              onClick={handleToggle}
-                            >
-                              <u>Login</u>
-                            </a>
-                          </p>
-                        </form>
+                          Login
+                        </button>
                       </div>
-                    </div>
-                  </>
-                )}
+
+                      {error && (
+                        <div style={{ color: "red", textAlign: "center" }}>
+                          {error}
+                        </div>
+                      )}
+                      <p className="text-center text-light mt-4 mb-0 ">
+                        Don&apos;t have an account?
+                        <a
+                          // href="#register"
+                          className="direct-link"
+                          // onClick={handleToggle}
+                        >
+                          <u>
+                            {/* switch to register form */}
+                            <Link to="/register" className="direct-link">
+                              Register here
+                            </Link>
+                          </u>
+                          {/* SWITCH TO LOGIN FORM */}
+                        </a>
+                      </p>
+                    </form>
+                  </div>
+                </div>
               </div>
 
               <div className="col-sm-12 col-md-12 col-lg-6 mb-5 mt-5">
@@ -430,5 +315,5 @@ const Login = (props) => {
       </section>
     </div>
   );
-}
+};
 export default Login;
