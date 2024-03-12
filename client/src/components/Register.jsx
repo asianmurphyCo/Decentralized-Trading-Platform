@@ -33,7 +33,7 @@ const Register = () => {
 
   // CHECK REGISTER
   const register = () => {
-    fetch("/register", {
+    fetch("/registerAPI", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
