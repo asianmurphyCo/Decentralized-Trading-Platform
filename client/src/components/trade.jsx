@@ -6,7 +6,7 @@ import { FaArrowRight, FaReceipt } from "react-icons/fa";
 import LoadingScreen from "./loading";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { formatBalance } from "./utils/formatBalance";
-// import Web3, { providers } from 'web3';
+import Web3, { Web3Eth } from 'web3';
 
 // PASS Username key and login state from Local Storage
 
@@ -18,25 +18,17 @@ function Trade(props) {
   let MyContractAddress = "0xD20464f7533e8aF073E1fDABA7121C5a138934aa";
   let MyContractABI = [
     {
-      "stateMutability": "payable",
-      "type": "fallback"
-    },
-    {
-      "inputs": [],
-      "name": "getBalance",
-      "outputs": [
+      "inputs": [
         {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
+          "internalType": "address payable",
+          "name": "_addr",
+          "type": "address"
         }
       ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
+      "name": "sendViaSend",
+      "outputs": [],
       "stateMutability": "payable",
-      "type": "receive"
+      "type": "function"
     }
   ];
 
@@ -63,6 +55,9 @@ function Trade(props) {
 
   //  Smart Contract Instance
   const [smartContract,setSmartContract] = useState(null);
+
+  //  Web 3 Instance
+  const [web3, setWeb3] = useState({});
 
   const {isLoggedIn} = props
 
@@ -111,22 +106,41 @@ function Trade(props) {
 
       };
 
+    //  Web 3 Init
+    const initWeb3 = async () =>{
+      if(window.ethereum){
+        try{
+          await window.ethereum.request({method: 'eth_requestAccounts'});
+          const Web3Instance = new Web3(window.ethereum);
+          setWeb3(Web3Instance);
+        } catch(error){
+          console.error("User Denied Account Access", error);
+        }
+      } else{
+        console.log("There is no Web 3 Instance Injected.");
+      }
+    }
       
 
     if (firstRender) {
       fetchData();
       getProvider();
+      initWeb3();
       setFirsRender(false);
     }
   }, [firstRender, userData]);
 
   
   useEffect(() => {
-    if(wallet.accounts){
-      //  Connect to Smart Contract
-      const contract = new web3.eth.Contract(MyContractABI, MyContractAddress);
-      setSmartContract(contract);
+    if(web3){
+      if(typeof web3.eth !== 'undefined'){
+        //  Connect to Smart Contract
+        const contract = new web3.eth.Contract(MyContractABI, MyContractAddress);
+       
+        setSmartContract(contract);
+      }
     }
+    
   },[web3])
 
   const updateWallet = async (accounts) => {
@@ -145,8 +159,6 @@ function Trade(props) {
 
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
-
-
   }
 
   const handleAddressChange = (e) =>{
@@ -155,7 +167,7 @@ function Trade(props) {
 
 
   const handleSubmit = (e) => {
-    e.prevent.default;
+    e.preventDefault();
 
 
     transactionExecute();
@@ -168,27 +180,21 @@ function Trade(props) {
       //  Convert Ether into Wei
       const amountInWei = web3.utils.toWei(amount,'ether');
 
-      //  Send Transaction
-      await web3.eth.sendTransaction({
-        from:wallet.accounts,
-        to: targetAddress,
-        value: amountInWei
-      })
-      .on('receipt', (receipt)=>{
-        console.log('Transaction Receipt',receipt);
-      }).catch(error => {
-        console.error('Error sending transaction:', error);
-      })
-
-
-      //  Implement Smart Contract later
-      // try{
-      //   //  Call sendEther method from smart contract
-      //   const result = await smartContract.methods.SendEther(targetAddress).call();
-      //   console.log('Result:', result);
-      // } catch (error) {
-      //   console.error('Error calling smart contract method', error);
-      // }
+      
+      try{
+        //  Call sendEther method from smart contract
+        const result = await smartContract.methods.sendViaSend(targetAddress)
+        .send({
+          from: wallet.accounts[0],
+          value: amountInWei,
+        })
+        .on('receipt', (receipt) => {
+          console.log('Transaction Receipt',receipt);
+        })
+        console.log('Result:', result);
+      } catch (error) {
+        console.error('Error calling smart contract method', error);
+      }
     }
   }
 
@@ -206,9 +212,7 @@ function Trade(props) {
         <div className="row justify-content-center">
           <div className="card col-12 col-md-8 col-lg-6 col-xl-5 px-4 bg-primary text-light">
             <form
-              method="post"
-              // FORM ENDPOINT
-              action="http://mercury.swin.edu.au/it000000/cos10005/formtest.php"
+              onSubmit={handleSubmit}
             >
               <div className="row py-3">
                 <div className="col-sm-12 col-md-12 col-lg-9">
@@ -264,7 +268,7 @@ function Trade(props) {
                   </div>
                 </div>
                 <div className="col-12">
-                  <button onClick={handleSubmit} type="submit" className="btn btn-outline-light mb-3">
+                  <button type="submit" className="btn btn-outline-light mb-3">
                     <span className="ps-2">
                       <strong>Create transaction </strong>
                     </span>
