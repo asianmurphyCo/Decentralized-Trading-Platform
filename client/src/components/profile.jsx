@@ -52,7 +52,6 @@ const Profile = (props) => {
           setUserInfo(r)
         })
 
-        const response = await fetch("/data/fake_user.json");
         // console.log(userInfo);
         // setUserInfo(userData.rows[0].json);
 
@@ -100,7 +99,7 @@ const Profile = (props) => {
       getProvider();
       setFirsRender(false);
     }
-  }, [firstRender, userData]);
+  }, [firstRender, userInfo]);
 
 
   
@@ -119,7 +118,7 @@ const Profile = (props) => {
 
 
   // Wait for userData before render
-  if (!userData || !isLoggedIn) {
+  if (!userInfo || !isLoggedIn) {
     return <LoadingScreen />;
   }
 

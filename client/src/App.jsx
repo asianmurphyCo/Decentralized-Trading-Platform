@@ -17,9 +17,9 @@ function App() {
   useEffect(() => {
     fetch('/verify', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json' ,
-      },
+      // headers: {
+      //   'Content-Type': 'application/json' ,
+      // },
     })
     .then((r) => r.json())
     .then((r) => {
