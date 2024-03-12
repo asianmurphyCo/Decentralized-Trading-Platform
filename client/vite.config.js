@@ -72,6 +72,18 @@ export default defineConfig({
           proxyReq.setHeader('Origin', 'http://localhost:5173');
         },
       },
+
+      '/register': {
+        target: 'http://localhost:5037/',
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '^/register': '',
+        },
+        onProxyReq(proxyReq) {
+          proxyReq.setHeader('Origin', 'http://localhost:5173');
+        },
+      },
     },
   },
 });

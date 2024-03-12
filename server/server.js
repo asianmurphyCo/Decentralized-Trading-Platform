@@ -10,6 +10,7 @@ const authenticate = require('./apis/authenticate');
 const verify = require('./apis/verify');
 const logout = require('./apis/logout');
 const retrieveProfile = require('./apis/retrieveProfile');
+const register = require('./apis/register');
 
 app.get('/api', (req, res) => {
   res.json({ users: ['user1', 'user2', 'user3'] });
@@ -25,6 +26,7 @@ app.post("/authenticate", authenticate);
 app.post("/verify", verify);
 app.post("/logout", logout);
 app.post("/retrieveProfile", retrieveProfile);
+app.post("/register", register);
 
 
 app.listen(port1, () => {
