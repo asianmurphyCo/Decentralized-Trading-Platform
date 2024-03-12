@@ -10,10 +10,41 @@ const Register = () => {
   const navigate = useNavigate();
   const [regUsername, setRegUsername] = useState("");
   const [regPwd, setRegPwd] = useState("");
+  const [regRepeat, setRegRepeat] = useState("");
   const [registerError, setRegisterError] = useState("");
+  const [regUsernameError, setRegUsernameError] = useState("");
+  const [regPwdError, setRegPwdError] = useState("");
+
   const [hasProvider, setHasProvider] = useState(null); //  Has Provider need a place to show msg; If (hasProvier) =>  don't show toast ; else Show toast and tell them to install Metamask
+  
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    if (!/^[a-zA-Z0-9]+$/.test(regUsername)) {
+      setRegUsernameError(
+        "Login username can only contain alphabetical letters and numbers."
+      );
+      return;
+    }
+
+    if (!/^[a-zA-Z0-9!@#$%^&*]+$/.test(regPwd)) {
+      setRegPwdError(
+        "Password can only contain alphabetical letters, numbers and !@#$%^&*"
+      );
+      return;
+    }
+
+    if (!/^[a-zA-Z0-9!@#$%^&*]+$/.test(regRepeat)) {
+      setRegPwdError(
+        "Password can only contain alphabetical letters, numbers and !@#$%^&*"
+      );
+      return;
+    }
+
+    if(regRepeat !== regPwd) {
+      setRegPwdError("Passwords do not match.");
+      return;
+    }
 
     register();
   };
@@ -69,8 +100,6 @@ const Register = () => {
 
                     <form
                       onSubmit={handleRegister}
-                      // FORM ENDPOINT
-                      action="http://mercury.swin.edu.au/it000000/cos10005/formtest.php"
                     >
                       <div className="form-outline mb-3">
                         <input
@@ -104,7 +133,7 @@ const Register = () => {
 
                       <div className="form-outline mb-3">
                         <input
-                          // onChange={(e) => setRepeatPwd(e.target.value)}
+                          onChange={(e) => setRegRepeat(e.target.value)}
                           type="password"
                           id="repeatpassword"
                           name="repeatepassword"
