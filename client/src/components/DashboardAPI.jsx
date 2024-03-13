@@ -11,6 +11,8 @@ import {
   TableRow,
   TablePagination,
 } from "@mui/material";
+import { FaArrowUp } from "react-icons/fa";
+import { FaArrowDown } from "react-icons/fa";
 
 function DashboardAPI({ searchTerm }) {
   const [backendData, setBackendData] = useState([]);
@@ -85,9 +87,28 @@ function DashboardAPI({ searchTerm }) {
 
   const getSortArrow = (column) => {
     if (sortDirection[column] === "asc") {
-      return <span>&#9650;</span>; // Upward arrow symbol
+      return (
+        // ARROWS WITH ROTATE ANIMATION
+        <span>
+          <FaArrowUp
+            style={{
+              transform: "rotate(0deg)",
+              transition: "transform 150ms ease",
+            }}
+          />
+        </span>
+      ); // Upward arrow symbol
     } else if (sortDirection[column] === "desc") {
-      return <span>&#9660;</span>; // Downward arrow symbol
+      return (
+        <span>
+          <FaArrowUp
+            style={{
+              transform: "rotate(180deg)",
+              transition: "transform 150ms ease",
+            }}
+          />
+        </span>
+      ); // Downward arrow symbol
     } else {
       return null;
     }
