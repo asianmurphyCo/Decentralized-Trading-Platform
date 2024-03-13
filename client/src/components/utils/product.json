@@ -1,0 +1,19 @@
+{
+  "products": [
+    {
+      "name": "Smartphone",
+      "source": "",
+      "price": 2.5
+    },
+    {
+      "name": "Laptop",
+      "source": "",
+      "price": 5.8
+    },
+    {
+      "name": "Headphones",
+      "source": "",
+      "price": 0.7
+    }
+  ]
+}
