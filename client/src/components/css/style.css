@@ -426,3 +426,40 @@ footer {
 
 /* TRADE PAGE */
 
+/* Product page */
+/* buttons */
+.menu-btns {
+    display: flex;
+    justify-content: center;
+}
+.menu-btn {
+    font-family: Inter;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    background: none;
+    border: none;
+    font-weight: 600;
+    display: block;
+    /* color: #3cb371; */
+    cursor: pointer;
+    margin: 0 1em;
+    outline: 0;
+    transition: opacity 0.4s ease-out;
+}
+.menu-btn::after {
+    content: "";
+    display: block;
+    height: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #5981F3;
+    margin-top: 0.1rem;
+    width: 0;
+    transition: width 0.4s ease-out;
+}
+.menu-btn:hover::after {
+    width: 100%;
+}
+.active-btn {
+    color: #157347;
+}
