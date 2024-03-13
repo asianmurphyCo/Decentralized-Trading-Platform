@@ -146,12 +146,12 @@ const Register = () => {
                       <p className="text-center text-light mt-4 mb-0 ">
                         Already have an account?
                         <a
-                        //   href="#login"
+                          //   href="#login"
                           className="direct-link"
                           // onClick={handleToggle}
                         >
                           <u>
-                          {/* Switch back to login form */}
+                            {/* Switch back to login form */}
                             <Link to="/login" className="direct-link">
                               Login
                             </Link>
@@ -178,7 +178,8 @@ const Register = () => {
                             className="logo"
                             alt="metamask"
                           ></img>{" "}
-                          MetaMask
+                          MetaMask&nbsp;
+                          <span className="badge badge-success">New</span>
                         </div>
                       </button>
                     </div>
@@ -191,7 +192,8 @@ const Register = () => {
                             className="logo"
                             alt="rainbow"
                           ></img>{" "}
-                          Rainbow
+                          Rainbow&nbsp;
+                          <span className="badge badge-danger">Soon</span>
                         </div>
                       </button>
                     </div>
@@ -204,7 +206,8 @@ const Register = () => {
                             className="logo"
                             alt="wallet connect"
                           ></img>{" "}
-                          WalletConnect
+                          WalletConnect&nbsp;
+                          <span className="badge badge-danger">Soon</span>
                         </div>
                       </button>
                     </div>
@@ -217,7 +220,8 @@ const Register = () => {
                             className="logo"
                             alt="trustwallet"
                           ></img>{" "}
-                          TrustWallet
+                          TrustWallet&nbsp;
+                          <span className="badge badge-danger">Soon</span>
                         </div>
                       </button>
                     </div>

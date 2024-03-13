@@ -406,6 +406,13 @@ footer {
     color: white !important;
 }
 
+.badge-success {
+    background-color: #28a745;
+}
+.badge-danger {
+    background-color: #dc3545;
+}
+
 .login {
     background-color: #9488F0 !important;
     font-weight: 600 !important;

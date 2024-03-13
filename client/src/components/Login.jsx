@@ -233,7 +233,8 @@ const Login = (props) => {
                             className="logo"
                             alt="metamask"
                           ></img>{" "}
-                          MetaMask
+                          MetaMask&nbsp;
+                          <span className="badge badge-success">New</span>
                         </div>
                       </button>
                     </div>
@@ -246,7 +247,10 @@ const Login = (props) => {
                             className="logo"
                             alt="rainbow"
                           ></img>{" "}
-                          Rainbow
+                          Rainbow&nbsp;
+                          <span className="badge badge-danger">
+                            Soon
+                          </span>
                         </div>
                       </button>
                     </div>
@@ -259,7 +263,10 @@ const Login = (props) => {
                             className="logo"
                             alt="wallet connect"
                           ></img>{" "}
-                          WalletConnect
+                          WalletConnect&nbsp;
+                          <span className="badge badge-danger">
+                            Soon
+                          </span>
                         </div>
                       </button>
                     </div>
@@ -272,7 +279,10 @@ const Login = (props) => {
                             className="logo"
                             alt="trustwallet"
                           ></img>{" "}
-                          TrustWallet
+                          TrustWallet&nbsp;
+                          <span className="badge badge-danger">
+                            Soon
+                          </span>
                         </div>
                       </button>
                     </div>
@@ -308,7 +318,9 @@ const Login = (props) => {
                 </div>
               </div>
               {/* WARNING USER TO LOG IN ON BOTH PLATFORM */}
-              <div className="col-sm-12 col-md-12 col-lg-12 mb-5 mt-5"></div>
+              <div className="col-sm-12 col-md-12 col-lg-12 mb-5 mt-5">
+                <h2>*Please log in and connect your wallet to proceed</h2>
+              </div>
             </div>
           </div>
         </div>

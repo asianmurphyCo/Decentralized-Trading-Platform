@@ -9,6 +9,7 @@ import Dashboard from './components/dashboard';
 import Profile from "./components/profile";
 import TransactionHistory from "./components/transactionHistory";
 import Trade from "./components/trade";
+import Market from "./components/Market";
 import {useState} from 'react';
 import { useEffect } from "react";
 
@@ -52,7 +53,8 @@ function App() {
             <Route path="/profile" element={<Profile isLoggedIn = {isLoggedIn} />} />
             <Route path="/transactionHistory" element={<TransactionHistory isLoggedIn = {isLoggedIn}/>}/>
             <Route path="/transaction" element={<TransactionHistory />} />
-            <Route path="/trade" element={<Trade isLoggedIn = {isLoggedIn} />}/>
+            <Route path="/trade" element={<Trade isLoggedIn={isLoggedIn} />} />
+            <Route path="/market" element={<Market />} />
           </Routes>
           <Footer />
         </div>

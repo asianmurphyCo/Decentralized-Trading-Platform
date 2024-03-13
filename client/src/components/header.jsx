@@ -98,6 +98,11 @@ const Header = (props) => {
                     Trade
                   </Link>
                 </NavDropdown.Item>
+                <NavDropdown.Item href="" className="text-light headerItem">
+                  <Link className="headerItem" to="/market">
+                    Market
+                  </Link>
+                </NavDropdown.Item>
               </NavDropdown>
             </Nav>
             <Form className="d-flex">
