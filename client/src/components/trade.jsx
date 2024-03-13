@@ -148,8 +148,7 @@ function Trade(props) {
 
       try{
         //  Transfer Ethereum Directly
-        const result = await web3.eth.sendTransaction()
-        .send({
+        const result = await web3.eth.sendTransaction({
           from: wallet.accounts[0],
           to:targetAddress,
           value: amountInWei,
