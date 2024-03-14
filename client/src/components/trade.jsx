@@ -13,25 +13,6 @@ function Trade(props) {
   const [userData, setUserData] = useState([]);
   const [firstRender, setFirsRender] = useState(true);
 
-  //  Test Contract
-  let MyContractAddress = "0xD20464f7533e8aF073E1fDABA7121C5a138934aa";
-  let MyContractABI = [
-    {
-      "inputs": [
-        {
-          "internalType": "address payable",
-          "name": "_addr",
-          "type": "address"
-        }
-      ],
-      "name": "sendViaSend",
-      "outputs": [],
-      "stateMutability": "payable",
-      "type": "function"
-    }
-  ];
-
-
   
   //  Initial Wallet State
   const initialState = {
@@ -52,8 +33,6 @@ function Trade(props) {
   //  Transaction Amount
   const [amount,setAmount] = useState('');
 
-  //  Smart Contract Instance
-  const [smartContract,setSmartContract] = useState(null);
 
   //  Web 3 Instance
   const [web3, setWeb3] = useState({});
@@ -129,18 +108,6 @@ function Trade(props) {
     }
   }, [firstRender, userData]);
 
-  
-  useEffect(() => {
-    if(web3){
-      if(typeof web3.eth !== 'undefined'){
-        //  Connect to Smart Contract
-        const contract = new web3.eth.Contract(MyContractABI, MyContractAddress);
-       
-        setSmartContract(contract);
-      }
-    }
-    
-  },[web3])
 
   const updateWallet = async (accounts) => {
     const balance = formatBalance(
@@ -174,17 +141,16 @@ function Trade(props) {
 
 
   const transactionExecute = async () => {
-    if(smartContract){
+    if(window.ethereum){
 
       //  Convert Ether into Wei
       const amountInWei = web3.utils.toWei(amount,'ether');
 
-      
       try{
-        //  Call sendEther method from smart contract
-        const result = await smartContract.methods.sendViaSend(targetAddress)
-        .send({
+        //  Transfer Ethereum Directly
+        const result = await web3.eth.sendTransaction({
           from: wallet.accounts[0],
+          to:targetAddress,
           value: amountInWei,
         })
         .on('receipt', (receipt) => {
@@ -192,7 +158,7 @@ function Trade(props) {
         })
         console.log('Result:', result);
       } catch (error) {
-        console.error('Error calling smart contract method', error);
+        console.error('Error Sending Ethereum', error);
       }
     }
   }
