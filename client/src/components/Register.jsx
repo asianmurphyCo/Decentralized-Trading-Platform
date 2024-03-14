@@ -20,6 +20,10 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
 
+    setRegisterError("");
+    setRegUsernameError("");
+    setRegPwdError("");
+
     if (!/^[a-zA-Z0-9]+$/.test(regUsername)) {
       setRegUsernameError(
         "Login username can only contain alphabetical letters and numbers."
@@ -171,6 +175,19 @@ const Register = () => {
                           Sign up
                         </button>
                       </div>
+                      {regPwdError && (
+                        <div style={{ color: "red", textAlign: "center" }}>
+                          {regPwdError}
+                        </div>
+                      )}
+
+                      {regUsernameError && (
+                        <div style = {{color: "red", textAlign: "center"}}>{regUsernameError}</div>
+                      )}
+
+                      {registerError && (
+                        <div style = {{color: "red", textAlign: "center"}}>{registerError}</div>
+                      )}
 
                       <p className="text-center text-light mt-4 mb-0 ">
                         Already have an account?

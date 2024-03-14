@@ -155,7 +155,7 @@ const Profile = (props) => {
                     <p className="mb-0">Username</p>
                   </div>
                   <div className="col-sm-9">
-                    <p className="text-muted mb-0">{userInfo.username}</p>
+                    <p className="text-muted mb-0">{localStorage.getItem("user")}</p>
                   </div>
                 </div>
                 <hr />
