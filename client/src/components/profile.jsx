@@ -16,7 +16,6 @@ import { formatChainAsNum } from "./utils/formatChainID";
 // const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
 const Profile = (props) => {
-  const [userData, setUserData] = useState([]);
   const [firstRender, setFirsRender] = useState(true);
 
   //  Initial Wallet State
@@ -38,7 +37,6 @@ const Profile = (props) => {
     const fetchData = async () => {
       try {
         const username = localStorage.getItem('user');
-        console.log(username);
         fetch('/retrieveProfile', {
           method: 'POST',
           headers: {

@@ -10,7 +10,6 @@ import Web3 from 'web3';
 // PASS Username key and login state from Local Storage
 
 function Trade(props) {
-  const [userData, setUserData] = useState([]);
   const [firstRender, setFirsRender] = useState(true);
 
   
@@ -37,17 +36,25 @@ function Trade(props) {
   //  Web 3 Instance
   const [web3, setWeb3] = useState({});
 
-  const {isLoggedIn} = props
+  const { isLoggedIn } = props;
+  const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/data/fake_user.json");
-        const data = await response.json();
-
-        // ACCESS user key in your JSON file
-        setUserData(data[localStorage.getItem("user")]); // Change to any user key in json file
-        console.log(userData);
+        const username = localStorage.getItem('user');
+        fetch('/retrieveProfile', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({username}),
+        })
+        .then((r) => r.json())
+        .then((r) => {
+          console.log(r)
+          setUserInfo(r)
+        })
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -106,7 +113,7 @@ function Trade(props) {
       initWeb3();
       setFirsRender(false);
     }
-  }, [firstRender, userData]);
+  }, [firstRender, userInfo]);
 
 
   const updateWallet = async (accounts) => {
@@ -164,7 +171,7 @@ function Trade(props) {
   }
 
   // Wait for userData before render
-  if (!userData) {
+  if (!userInfo || !isLoggedIn) {
     return (
       <LoadingScreen/>
     );
