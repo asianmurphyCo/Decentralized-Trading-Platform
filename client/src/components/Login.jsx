@@ -11,21 +11,25 @@ import { useEffect } from "react";
 
 const Login = (props) => {
   useEffect(() => {
-    // fetch('/verify', {
-    //   method: 'POST',
-    // })
-    // .then((r) => r.json())
-    // .then((r) => {
+    fetch('/verify', {
+      method: 'POST',
+    })
+    .then((r) => r.json())
+    .then((r) => {
+      if (r.message === "success") {
+        navigate("/profile");
+      } else {
+        return
+      }
+    })
+    // const token = localStorage.getItem("token");
 
-    // })
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      navigate("/profile");
-      console.log("navigated");
-    } else {
-      return;
-    }
+    // if (token) {
+    //   navigate("/profile");
+    //   console.log("navigated");
+    // } else {
+    //   return;
+    // }
 
     //  Check if Any Web3 Provider is installed
     const getProvider = async () => {
