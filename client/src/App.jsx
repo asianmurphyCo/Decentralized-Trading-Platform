@@ -12,6 +12,7 @@ import Trade from "./components/trade";
 import Market from "./components/Market";
 import {useState} from 'react';
 import { useEffect } from "react";
+import SellAsset from "./components/SellAsset";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -55,6 +56,7 @@ function App() {
             <Route path="/transaction" element={<TransactionHistory />} />
             <Route path="/trade" element={<Trade isLoggedIn={isLoggedIn} />} />
             <Route path="/market" element={<Market />} />
+            <Route path="/sell_asset" element={<SellAsset/>}/>
           </Routes>
           <Footer />
         </div>

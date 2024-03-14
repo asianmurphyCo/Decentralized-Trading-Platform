@@ -18,7 +18,7 @@ const Market = () => {
     const [wallet,setWallet] = useState(initialState);  
 
     //  Web3 Provider
-    const [hasProvider,setHasProvider] = useState(null);  //  
+    const [hasProvider,setHasProvider] = useState(null);   
 
       //  Transaction Amount
       const [amount,setAmount] = useState('');
@@ -27,8 +27,255 @@ const Market = () => {
       const [web3,setWeb3] = useState({});
 
       //  Set Contract
-      let contractAddress = '';
-      let contractABI = [];
+      let contractAddress = '0x0Af64453375966Ed7E6deb57D81B400cCa997a03';
+      let contractABI = [
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "itemId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            }
+          ],
+          "name": "ItemCreated",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "buyer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "itemId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            }
+          ],
+          "name": "ItemPurchased",
+          "type": "event"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "assetOwners",
+          "outputs": [
+            {
+              "internalType": "address payable",
+              "name": "ownerAddress",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "constant": true
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "digitalAssets",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "purchased_time",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "constant": true
+        },
+        {
+          "inputs": [],
+          "name": "owner",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "constant": true
+        },
+        {
+          "stateMutability": "payable",
+          "type": "receive",
+          "payable": true
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "_name",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "_priceInWei",
+              "type": "uint256"
+            }
+          ],
+          "name": "setDigitalAsset",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_itemId",
+              "type": "uint256"
+            }
+          ],
+          "name": "getItemCurrentOwner",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "address payable",
+                  "name": "ownerAddress",
+                  "type": "address"
+                }
+              ],
+              "internalType": "struct DigitalAssets.Owner",
+              "name": "",
+              "type": "tuple"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "constant": true
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_itemId",
+              "type": "uint256"
+            }
+          ],
+          "name": "getItemAllOwner",
+          "outputs": [
+            {
+              "internalType": "address[]",
+              "name": "",
+              "type": "address[]"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "constant": true
+        },
+        {
+          "inputs": [],
+          "name": "getBalance",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "constant": true
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_itemId",
+              "type": "uint256"
+            }
+          ],
+          "name": "purchaseAsset",
+          "outputs": [],
+          "stateMutability": "payable",
+          "type": "function",
+          "payable": true
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "withdrawFunds",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        }
+      ];
       
 
       useEffect(() => {
@@ -98,13 +345,14 @@ const Market = () => {
         var myContract = new web3.eth.Contract(contractABI,contractAddress);
 
 
+
         //  Call purchaseAsset
-        await myContract.methods.purchaseAsset(assetID).call((error, result) => {
-          if(!error){
-            console.log(result);
-          } else{
-            console.error("Error:", error);
-          }
+        await myContract.methods.purchaseAsset(assetID).send({
+          from: wallet.accounts[0],
+          value: 2  //  Price of Item When Called
+        })
+        .on('ItemPurchased', (receipt) => {
+          console.log(receipt);
         })
     }
 
