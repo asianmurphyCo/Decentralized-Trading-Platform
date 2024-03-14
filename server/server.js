@@ -28,15 +28,14 @@ app.post("/logout", logout);
 app.post("/retrieveProfile", retrieveProfile);
 app.post("/registerAPI", registerAPI);
 
-
-app.listen(port1, () => {
+const server1 = app.listen(port1, () => {
   console.log(`Server is running on port ${port1}`);
 });
 
-app.listen(port2, () => {
+const server2 = app.listen(port2, () => {
   console.log(`Server is running on port ${port2}`);
 });
 
-app.listen(port3, () => {
+const server3 = app.listen(port3, () => {
   console.log(`Server is running on port ${port3}`);
 });
