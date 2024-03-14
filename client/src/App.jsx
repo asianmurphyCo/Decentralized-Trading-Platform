@@ -58,7 +58,7 @@ function App() {
             <Route path="/transaction" element={<TransactionHistory />} />
             <Route path="/trade" element={<Trade isLoggedIn={isLoggedIn} />} />
             <Route path="/market" element={<Market />} />
-            <Route path="/sell_asset" element={<SellAsset/>}/>
+            <Route path="/sell_asset" element={<SellAsset isLoggedIn = {isLoggedIn}/>}/>
           </Routes>
           <Footer />
         </div>

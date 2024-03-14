@@ -6,10 +6,12 @@ import LoadingScreen from "./loading";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { formatBalance } from "./utils/formatBalance";
 import Web3 from 'web3';
+import {useNavigate} from "react-router-dom"
 
 // PASS Username key and login state from Local Storage
 
 function SellAsset(props) {
+  const navigate = useNavigate()
   const [userData, setUserData] = useState([]);
   const [firstRender, setFirsRender] = useState(true);
 
@@ -294,7 +296,17 @@ function SellAsset(props) {
   const {isLoggedIn} = props
 
   useEffect(() => {
-
+    fetch('/verify', {
+      method: 'POST',
+    })
+    .then((r) => r.json())
+    .then((r) => {
+      if (r.message === "success") {
+        return
+      } else {
+        navigate('/login');
+      }
+    })
     //  Change this to Khoa's Token Check
     // const fetchData = async () => {
     //   try {
@@ -308,6 +320,10 @@ function SellAsset(props) {
     //     console.error("Error fetching user data:", error);
     //   }
     // };
+    // check login
+    // check token
+    // if yes then load page
+    // if not redirect /login
 
 
     const refreshAccounts = (accounts) => {

@@ -6,12 +6,13 @@ import LoadingScreen from "./loading";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { formatBalance } from "./utils/formatBalance";
 import Web3 from 'web3';
+import {useNavigate} from 'react-router-dom'
 
 // PASS Username key and login state from Local Storage
 
 function Trade(props) {
   const [firstRender, setFirsRender] = useState(true);
-
+  const navigate = useNavigate()
   
   //  Initial Wallet State
   const initialState = {
@@ -42,18 +43,16 @@ function Trade(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const username = localStorage.getItem('user');
-        fetch('/retrieveProfile', {
+        fetch('/verify', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({username}),
         })
         .then((r) => r.json())
         .then((r) => {
-          console.log(r)
-          setUserInfo(r)
+          if (r.message === "success") {
+            return;
+          } else {
+            navigate('/login') 
+          }
         })
       } catch (error) {
         console.error("Error fetching user data:", error);

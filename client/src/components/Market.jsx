@@ -4,9 +4,12 @@ import productsData from "../components/utils/product.json";
 import Web3 from "web3";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { formatBalance } from "./utils/formatBalance";
+import {useNavigate} from "react-router-dom";
 
 const Market = () => {
   const [products, setProducts] = useState([]);
+  const [buyButton, setBuyButton] = useState(false);
+  const navigate = useNavigate()
   //let products = [];
    //  Initial Wallet State
    const initialState = {
@@ -280,6 +283,18 @@ const Market = () => {
     ];
 
     useEffect(() => {
+      fetch('verify', {
+        method: 'POST',
+      })
+      .then((r) => r.json())
+      .then((r) => {
+        if(r.message !== 'success') {
+          return;
+        } else {
+          setBuyButton(true);
+          return;
+        }
+      })
       fetch("/marketRetrieve", {
         method: "GET",
       })
@@ -422,12 +437,26 @@ const buyAsset = async (assetID, productPrice) => {
                   <p className="card-text">Seller: {product.owneraddress}</p>
                   <p className="card-text">Price: {product.assetprice} ETH</p>
 
-                  <button
-                    onClick={() => buyAsset(product.assetid, product.assetprice)}
-                    className="btn btn-primary"
-                  >
-                    Buy
-                  </button>
+                  {buyButton ? (
+                    <div>
+                      <button
+                        onClick={() => buyAsset(product.assetid, product.assetprice)}
+                        className="btn btn-primary"
+                      >
+                        Buy
+                      </button>
+                    </div>
+                  ):(
+                    <div>
+                      <button
+                        onClick={() => navigate('/login')}
+                        className="btn btn-primary"
+                      >
+                        Login to Buy Asset
+                      </button>
+                    </div>
+                  )}
+                  
                 </div>
               </div>
             </div>
