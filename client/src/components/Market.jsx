@@ -1,7 +1,6 @@
 import "./css/style.css";
 import React, { useState, useEffect } from "react";
 import productsData from "../components/utils/product.json";
-import rainbow from "../components/assets/rainbow-icon.png";
 import Web3 from "web3";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { formatBalance } from "./utils/formatBalance";
@@ -16,8 +15,6 @@ const Market = () => {
     chainID:"",
   };
 
-  //image source
-  const imageSource = "../src/components/assets/rainbow-icon.png"
 
   //  wallet Information
   const [wallet,setWallet] = useState(initialState);  
@@ -416,7 +413,7 @@ const buyAsset = async (assetID, productPrice) => {
                 <img
                   className="card-img-top"
 
-                  src={imageSource}
+                  src={product.imgsrc}
 
                   alt={product.assetname}
                 />
