@@ -7,8 +7,8 @@ import detectEthereumProvider from "@metamask/detect-provider";
 import { formatBalance } from "./utils/formatBalance";
 
 const Market = () => {
-  const [products, setProducts] = useState([]);
-
+  // const [products, setProducts] = useState([]);
+  let products = [];
    //  Initial Wallet State
    const initialState = {
     accounts:[],
@@ -279,10 +279,11 @@ const Market = () => {
       }
     ];
 
+    // var data; 
+
 
 
   useEffect(() => {
-
       // Set products from imported JSON data
       fetch("/marketRetrieve", {
         method: "GET",
@@ -290,12 +291,16 @@ const Market = () => {
       .then((r) => r.json())
       .then((r) => {
         if (r.message !== "No record") {
-          setProducts(r);
+          console.log("entered")
+          products = r
+          // setProducts(r);
+          // console.log(r)
+          console.log(products)
+          return;
         }
-
-        console.log(r)
       })
 
+      // setProducts(data);
       console.log(products);
   
   
@@ -410,7 +415,7 @@ const buyAsset = async (assetID, productPrice) => {
         {/* DISPLAY PRODUCTS */}
           <div className="row">
             {products.map((product) => {
-              <div key={index} className="col-sm-3 mt-3 canned-food">
+              <div key = {product.id} className="col-sm-3 mt-3 canned-food">
                 <div className="card" style={{ width: "13rem" }}>
                   <img
                     className="card-img-top"
