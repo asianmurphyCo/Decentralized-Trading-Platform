@@ -40,24 +40,6 @@ const Market = () => {
           </button>
         </div>
         {/* DISPLAY PRODUCTS */}
-        <div className="row">
-          <div className="col-sm-3 mt-3 canned-food">
-            <div className="card" style={{ width: "13rem" }}>
-              <img
-                className="card-img-top"
-                src={products.source}
-                alt="product_img"
-              />
-              <div className="card-body">
-                <h5 className="card-title">{products.name}</h5>
-                <p className="card-text">{products.price} ETH</p>
-                <a href="#" className="btn btn-primary">
-                  Add to Cart
-                </a>
-              </div>
-            </div>
-          </div>
-
           <div className="row">
             {products.map((product, index) => (
               <div key={index} className="col-sm-3 mt-3 canned-food">
@@ -84,7 +66,6 @@ const Market = () => {
           {/* END of product list */}
         </div>
       </div>
-    </div>
   );
 };
 export default Market;
