@@ -103,6 +103,12 @@ const Header = (props) => {
                     Market
                   </Link>
                 </NavDropdown.Item>
+
+                <NavDropdown.Item href="" className="text-light headerItem">
+                  <Link className="headerItem" to="/sell_asset">
+                    Sell Your Asset
+                  </Link>
+                </NavDropdown.Item>
               </NavDropdown>
             </Nav>
             <Form className="d-flex">
