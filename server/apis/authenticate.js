@@ -11,7 +11,6 @@ module.exports = async (req, res) => {
         // fetching user with the right username from db
 
         const user = await pool.query(`SELECT * FROM user_login WHERE username = '${username}'`);
-        console.log(user)
         const fetchedUser = user.rows;
 
         

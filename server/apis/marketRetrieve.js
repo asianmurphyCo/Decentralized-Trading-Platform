@@ -4,12 +4,14 @@
 const pool = require('../database.js')
 
 module.exports = async(req, res) => {
-    const digitalAsset = await pool.query(`SELECT * FROM digital_assets`).rows;
+    const digitalAsset = await pool.query(`SELECT * FROM digital_assets`);
 
-    if (digitalAsset.length === 0) {
+    console.log(digitalAsset.rows)
+
+    if (digitalAsset.rows.length === 0) {
         return res.status(404).json({message: "No record"});
     }
     
-    return res.json(digitalAsset)
+    return res.send(digitalAsset.rows)
 }
 
