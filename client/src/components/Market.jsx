@@ -8,7 +8,7 @@ import { formatBalance } from "./utils/formatBalance";
 
 const Market = () => {
   // const [products, setProducts] = useState([]);
-  let products = [];
+  
    //  Initial Wallet State
    const initialState = {
     accounts:[],
@@ -282,7 +282,7 @@ const Market = () => {
     // var data; 
 
 
-
+    let products = [];
   useEffect(() => {
       // Set products from imported JSON data
       fetch("/marketRetrieve", {
@@ -298,10 +298,12 @@ const Market = () => {
           console.log(products)
           return;
         }
+        console.log("no product found")
       })
 
+      
       // setProducts(data);
-      console.log(products);
+      // console.log(products);
   
   
     const refreshAccounts = (accounts) => {
@@ -351,7 +353,7 @@ const Market = () => {
     getProvider();
     initWeb3();
 
-  }, []);
+  },[]);
 
   const updateWallet = async (accounts) => {
     const balance = formatBalance(
