@@ -8,7 +8,7 @@ import { formatBalance } from "./utils/formatBalance";
 
 const Market = () => {
   const [products, setProducts] = useState([]);
-
+  //let products = [];
    //  Initial Wallet State
    const initialState = {
     accounts:[],
@@ -279,24 +279,22 @@ const Market = () => {
       }
     ];
 
-
-
-  useEffect(() => {
-
-      // Set products from imported JSON data
+    useEffect(() => {
       fetch("/marketRetrieve", {
         method: "GET",
       })
-      .then((r) => r.json())
-      .then((r) => {
-        if (r.message !== "No record") {
-          setProducts(r);
-        }
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.message !== "No record") {
+            setProducts(data);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
 
-        console.log(r)
-      })
-
-      console.log(products);
+      // setProducts(data);
+      //console.log(products);
   
   
     const refreshAccounts = (accounts) => {
@@ -409,31 +407,29 @@ const buyAsset = async (assetID, productPrice) => {
         </div>
         {/* DISPLAY PRODUCTS */}
         <div className="row">
-          {products.map((product, index) => {
-            return (
-              <div key={index} className="col-sm-3 mt-3 canned">
-                <div className="card" style={{ width: "13rem" }}>
-                  <img
-                    className="card-img-top"
-                    src={product.source}
-                    alt={product.assetName}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{product.assetName}</h5>
-                    <p className="card-text">Seller: {product.ownerAddress}</p>
-                    <p className="card-text">Price: {product.assetPrice} ETH</p>
+          {products.map((product, index) => (
+            <div key={index} className="col-sm-3 mt-3 canned">
+              <div className="card" style={{ width: "13rem" }}>
+                <img
+                  className="card-img-top"
+                  src={product.source}
+                  alt={product.assetname}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{product.assetname}</h5>
+                  <p className="card-text">Seller: {product.owneraddress}</p>
+                  <p className="card-text">Price: {product.assetprice} ETH</p>
 
-                    <button
-                      onClick={() => buyAsset(product.assetID, product.assetPrice)}
-                      className="btn btn-primary"
-                    >
-                      Buy
-                    </button>
-                  </div>
+                  <button
+                    onClick={() => buyAsset(product.assetid, product.assetprice)}
+                    className="btn btn-primary"
+                  >
+                    Buy
+                  </button>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
           {/* END of product list */}
