@@ -11,8 +11,8 @@ import {
   TableRow,
   TablePagination,
 } from "@mui/material";
+
 import { FaArrowUp } from "react-icons/fa";
-import { FaArrowDown } from "react-icons/fa";
 
 function DashboardAPI({ searchTerm }) {
   const [backendData, setBackendData] = useState([]);

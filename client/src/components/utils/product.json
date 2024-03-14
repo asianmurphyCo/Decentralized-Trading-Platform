@@ -2,17 +2,26 @@
   "products": [
     {
       "name": "Smartphone",
-      "source": "",
+      "source": "../src/components/assets/rainbow-icon.png",
+      "address": "0xbeE605b0713B5296E6Fc1870C985aAC169172EF5",
       "price": 2.5
     },
     {
       "name": "Laptop",
-      "source": "",
+      "source": "../src/components/assets/rainbow-icon.png",
+      "address": "0xbeE605b0713B5296E6Fc1870C985aAC169172EF5",
       "price": 5.8
     },
     {
       "name": "Headphones",
-      "source": "",
+      "source": "../src/components/assets/rainbow-icon.png",
+      "address": "0xbeE605b0713B5296E6Fc1870C985aAC169172EF5",
+      "price": 0.7
+    },
+    {
+      "name": "Headphones",
+      "source": "../src/components/assets/rainbow-icon.png",
+      "address": "0xbeE605b0713B5296E6Fc1870C985aAC169172EF5",
       "price": 0.7
     }
   ]
