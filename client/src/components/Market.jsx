@@ -296,8 +296,8 @@ const Market = () => {
           console.error("Error fetching data:", error);
         });
 
+      
       // setProducts(data);
-      //console.log(products);
   
   
     const refreshAccounts = (accounts) => {
@@ -347,7 +347,7 @@ const Market = () => {
     getProvider();
     initWeb3();
 
-  }, []);
+  },[]);
 
   const updateWallet = async (accounts) => {
     const balance = formatBalance(
@@ -415,7 +415,9 @@ const buyAsset = async (assetID, productPrice) => {
               <div className="card" style={{ width: "13rem" }}>
                 <img
                   className="card-img-top"
+
                   src={imageSource}
+
                   alt={product.assetname}
                 />
                 <div className="card-body">
