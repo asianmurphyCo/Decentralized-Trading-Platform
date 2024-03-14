@@ -9,13 +9,11 @@ module.exports = async (req, res) => {
 
     try {
         // fetching user with the right username from db
+
         const user = await pool.query(`SELECT * FROM user_login WHERE username = '${username}'`);
+        console.log(user)
         const fetchedUser = user.rows;
-        console.log(fetchedUser)
-        console.log(encryptedUserPwd)
-        console.log(fetchedUser.userpwd !== encryptedUserPwd)
-        console.log(fetchedUser.userpwd)
-        console.log(encryptedUserPwd)
+
         
         // if there is a user with that same username, compare their passwords
         // if the creds are right, create a jwt token and set it to the cookie of the user with status 200
@@ -35,6 +33,8 @@ module.exports = async (req, res) => {
             
             res.status(200).json({message: 'success', token: token});
             
+        } else {
+            return res.status(404).json({message: 'User not found'});
         }
     } catch(err) {
         console.error(err);
