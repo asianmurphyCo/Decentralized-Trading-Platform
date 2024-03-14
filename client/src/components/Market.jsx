@@ -408,9 +408,10 @@ const buyAsset = async (assetID, productPrice) => {
           </button>
         </div>
         {/* DISPLAY PRODUCTS */}
-          <div className="row">
-            {products.map((product) => {
-              <div key={index} className="col-sm-3 mt-3 canned-food">
+        <div className="row">
+          {products.map((product, index) => {
+            return (
+              <div key={index} className="col-sm-3 mt-3 canned">
                 <div className="card" style={{ width: "13rem" }}>
                   <img
                     className="card-img-top"
@@ -422,14 +423,18 @@ const buyAsset = async (assetID, productPrice) => {
                     <p className="card-text">Seller: {product.ownerAddress}</p>
                     <p className="card-text">Price: {product.assetPrice} ETH</p>
 
-                    <button onClick={buyAsset(product.assetID, product.assetPrice)} className="btn btn-primary">
+                    <button
+                      onClick={() => buyAsset(product.assetID, product.assetPrice)}
+                      className="btn btn-primary"
+                    >
                       Buy
                     </button>
                   </div>
                 </div>
               </div>
-            })}
-          </div>
+            );
+          })}
+        </div>
 
           {/* END of product list */}
         </div>

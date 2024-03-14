@@ -11,7 +11,6 @@ const { MongoClient } = require('mongodb');
 const jwt = require('jsonwebtoken');
 const cookieParser = require("cookie-parser");
 
-
 const app = express();  
 
 // MongoDB connection setup
