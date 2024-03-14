@@ -16,6 +16,9 @@ const Market = () => {
     chainID:"",
   };
 
+  //image source
+  const imageSource = "../src/components/assets/rainbow-icon.png"
+
   //  wallet Information
   const [wallet,setWallet] = useState(initialState);  
 
@@ -295,7 +298,6 @@ const Market = () => {
 
       
       // setProducts(data);
-      // console.log(products);
   
   
     const refreshAccounts = (accounts) => {
@@ -413,7 +415,9 @@ const buyAsset = async (assetID, productPrice) => {
               <div className="card" style={{ width: "13rem" }}>
                 <img
                   className="card-img-top"
-                  src={product.source}
+
+                  src={imageSource}
+
                   alt={product.assetname}
                 />
                 <div className="card-body">
