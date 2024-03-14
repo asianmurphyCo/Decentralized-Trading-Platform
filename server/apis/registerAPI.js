@@ -5,13 +5,14 @@ module.exports = async (req, res) => {
     console.log(req.body);
 
     try {
-        const existedUsername = await pool.query(`SELECT * FROM user_login WHERE username = '${regUsername}'`).rows;
+        const existedUsername = (await pool.query(`SELECT * FROM user_login WHERE username = '${regUsername}'`)).rows;
 
         console.log(regUsername);
         console.log(regPwd);
+        console.log(existedUsername);
 
-        if (existedUsername === undefined) {
-            const usernameInput = await pool.query(`INSERT INTO user_login (userId, username, userPwd) VALUES (1234567, '${regUsername}', '${regPwd}');`)
+        if (existedUsername.length === 0) {
+            await pool.query(`INSERT INTO user_login (username, userPwd) VALUES ('${regUsername}', '${regPwd}');`)
             return res.status(200).json({status: "200", message: "success"});
         } else {
             return res.status(404).json({status: "404", message: "This username has been registered."});

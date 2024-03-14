@@ -5,29 +5,15 @@ require("dotenv").config();
 module.exports = async (req, res) => {
     const {username, password} = req.body
 
-    console.log(req.body);
-    console.log(username);
-    console.log(password);
-
-
-    // const user = db.get('user').value().filter((user) => username === user.username)
-
-    //TODO: CHUA FETCH DUOC
-    // const userJSON = fetch('/database.json');
-    // console.log(userJSON);
-
-    // // console.log(userJSON);
-
-    // const data = userJSON.json();
-    // console.log(data);
-
-    // dummy user for api test
-
     try {
+        // fetching user with the right username from db
         const user = await pool.query(`SELECT * FROM user_login WHERE username = '${username}'`);
         const fetchedUser = user.rows[0];
-
-        if (user !== "") {
+        console.log(user)
+        // if there is a user with that same username, compare their passwords
+        // if the creds are right, create a jwt token and set it to the cookie of the user with status 200
+        // otherwise, return status code 401 with invalid login message
+        if (user.rows.length !== 0) {
             if (fetchedUser.userpwd !== password) {
                 return res.status(401).json({message: 'Invalid login'});        
             } 

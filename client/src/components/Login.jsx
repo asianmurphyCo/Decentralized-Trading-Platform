@@ -11,6 +11,13 @@ import { useEffect } from "react";
 
 const Login = (props) => {
   useEffect(() => {
+    // fetch('/verify', {
+    //   method: 'POST',
+    // })
+    // .then((r) => r.json())
+    // .then((r) => {
+
+    // })
     const token = localStorage.getItem("token");
 
     if (token) {
