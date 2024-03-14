@@ -423,7 +423,7 @@ function SellAsset(props) {
 
         //  Convert Ether into Wei
         const amountInWei = web3.utils.toWei(assetPrice,'ether');
-
+        const userAddress = wallet.accounts[0];
         //  Call Sell Asset
         try{
             await myContract.methods.setDigitalAsset(assetName,amountInWei).send({
@@ -432,6 +432,22 @@ function SellAsset(props) {
             })
             .on('ItemCreate', (item) => {
                 console.log("Item: ", item);
+
+                fetch('/sellAsset', {
+                  method: 'POST',
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({assetName, assetDesc, amountInWei, userAddress}),
+                })
+                .then((r) => r.json())
+                .then((r) => {
+                  if (r.message === 'success') {
+                    return;
+                  } else {
+                    console.error(r.message);
+                  }
+                })
             })
         } catch(error){
             console.error("Error:", error);
