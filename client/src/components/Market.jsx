@@ -4,13 +4,23 @@ import productsData from "../components/utils/product.json";
 import rainbow from "../components/assets/rainbow-icon.png";
 
 const Market = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState({});
 
   useEffect(() => {
     // Set products from imported JSON data
-    console.log(productsData.products); // Log the imported data
-    setProducts(productsData.products);
-  }, []);
+
+    fetch("/retrieveMarket", {
+      method: "GET",
+    })
+    .then((r) => r.json())
+    .then((r) => {
+      if (r.message !== "No record") {
+        setProducts(r);
+      }
+      
+    })
+    
+  }, {});
 
   // Render page
   return (
@@ -49,8 +59,8 @@ const Market = () => {
                 alt="product_img"
               />
               <div className="card-body">
-                <h5 className="card-title">{products.name}</h5>
-                <p className="card-text">{products.price} ETH</p>
+                <h5 className="card-title">{products.assetName}</h5>
+                <p className="card-text">{products.assetPrice} ETH</p>
                 <a href="#" className="btn btn-primary">
                   Add to Cart
                 </a>
@@ -68,9 +78,9 @@ const Market = () => {
                     alt={product.name}
                   />
                   <div className="card-body">
-                    <h5 className="card-title">{product.name}</h5>
-                    <p className="card-text">Seller: {product.address}</p>
-                    <p className="card-text">Price: {product.price} ETH</p>
+                    <h5 className="card-title">{product.assetName}</h5>
+                    <p className="card-text">Seller: {product.ownerAddress}</p>
+                    <p className="card-text">Price: {product.assetPrice} ETH</p>
 
                     <a href="#" className="btn btn-primary">
                       Buy

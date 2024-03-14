@@ -84,6 +84,30 @@ export default defineConfig({
           proxyReq.setHeader('Origin', 'http://localhost:5173');
         },
       },
+
+      '/sellAsset': {
+        target: 'http://localhost:5038/',
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '^/sellAsset': '',
+        },
+        onProxyReq(proxyReq) {
+          proxyReq.setHeader('Origin', 'http://localhost:5173');
+        },
+      },
+
+      '/marketRetrieve': {
+        target: 'http://localhost:5038/',
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '^/marketRetrieve': '',
+        },
+        onProxyReq(proxyReq) {
+          proxyReq.setHeader('Origin', 'http://localhost:5173');
+        },
+      },
     },
   },
 });
