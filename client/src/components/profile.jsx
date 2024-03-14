@@ -155,7 +155,26 @@ const Profile = (props) => {
                     <p className="mb-0">Username</p>
                   </div>
                   <div className="col-sm-9">
-                    <p className="text-muted mb-0">{localStorage.getItem("user")}</p>
+                    <p className="text-muted mb-0">
+                      {localStorage.getItem("user")}
+                    </p>
+                  </div>
+                </div>
+                <hr />
+                <div className="row">
+                  <div className="col-sm-3">
+                    <p className="mb-0">Firstname</p>
+                  </div>
+                  <div className="col-sm-9">
+                    <p className="text-muted mb-0">Guest</p>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-sm-3">
+                    <p className="mb-0">Lastname</p>
+                  </div>
+                  <div className="col-sm-9">
+                    <p className="text-muted mb-0">User</p>
                   </div>
                 </div>
                 <hr />
@@ -168,22 +187,14 @@ const Profile = (props) => {
                   </div>
                 </div>
                 <hr />
-                <div className="row">
-                  <div className="col-sm-3">
-                    <p className="mb-0">Phone</p>
-                  </div>
-                  <div className="col-sm-9">
-                    <p className="text-muted mb-0">0912345678</p>
-                  </div>
-                </div>
-                <hr />
 
                 <div className="row">
                   <div className="col-sm-3">
                     <p className="mb-0">Wallet Address</p>
                   </div>
                   <div className="col-sm-9">
-                    <p className="text-muted mb-0">{wallet.accounts[0]}</p> {/* Improvement needed for when user have multiple Accounts*/}
+                    <p className="text-muted mb-0">{wallet.accounts[0]}</p>{" "}
+                    {/* Improvement needed for when user have multiple Accounts*/}
                   </div>
                 </div>
                 <hr />
