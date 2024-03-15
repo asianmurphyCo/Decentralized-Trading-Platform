@@ -1,136 +1,137 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
-
+import "dotenv/config";
+const server = process.env.REACT_APP_API;
 
 export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/database': {
-        target: 'http://localhost:5035',
+      "/database": {
+        target: server,
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/database': '',
+          "^/database": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader('Origin', 'http://localhost:5173');
+          proxyReq.setHeader("Origin", "http://localhost:5173");
         },
       },
-      '/api': {
-        target: 'http://localhost:5035/',
+      "/api": {
+        target: server,
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/api': '',
+          "^/api": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader('Origin', 'http://localhost:5173');
+          proxyReq.setHeader("Origin", "http://localhost:5173");
         },
       },
-      '/authenticate': {
-        target: 'http://localhost:5036/',
+      "/authenticate": {
+        target: server,
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/authenticate': '',
+          "^/authenticate": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader('Origin', 'http://localhost:5173');
+          proxyReq.setHeader("Origin", "http://localhost:5173");
         },
       },
-      '/verify': {
-        target: 'http://localhost:5036/',
+      "/verify": {
+        target: server,
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/verify': '',
+          "^/verify": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader('Origin', 'http://localhost:5173');
+          proxyReq.setHeader("Origin", "http://localhost:5173");
         },
       },
-      '/logout': {
-        target: 'http://localhost:5036/',
+      "/logout": {
+        target: server,
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/logout': '',
+          "^/logout": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader('Origin', 'http://localhost:5173');
-        },
-      },
-
-      '/retrieveProfile': {
-        target: 'http://localhost:5037/',
-        changeOrigin: true,
-        secure: false,
-        pathRewrite: {
-          '^/retrieveProfile': '',
-        },
-        onProxyReq(proxyReq) {
-          proxyReq.setHeader('Origin', 'http://localhost:5173');
+          proxyReq.setHeader("Origin", "http://localhost:5173");
         },
       },
 
-      '/registerAPI': {
-        target: 'http://localhost:5037/',
+      "/retrieveProfile": {
+        target: server,
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/registerAPI': '',
+          "^/retrieveProfile": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader('Origin', 'http://localhost:5173');
+          proxyReq.setHeader("Origin", "http://localhost:5173");
         },
       },
 
-      '/sellAsset': {
-        target: 'http://localhost:5038/',
+      "/registerAPI": {
+        target: server,
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/sellAsset': '',
+          "^/registerAPI": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader('Origin', 'http://localhost:5173');
+          proxyReq.setHeader("Origin", "http://localhost:5173");
         },
       },
 
-      '/marketRetrieve': {
-        target: 'http://localhost:5038/',
+      "/sellAsset": {
+        target: server,
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/marketRetrieve': '',
+          "^/sellAsset": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader('Origin', 'http://localhost:5173');
+          proxyReq.setHeader("Origin", "http://localhost:5173");
         },
       },
 
-      '/transactionHistoryAPI': {
-        target: 'http://localhost:5038/',
+      "/marketRetrieve": {
+        target: server,
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/transactionHistoryAPI': '',
+          "^/marketRetrieve": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader('Origin', 'http://localhost:5173');
+          proxyReq.setHeader("Origin", "http://localhost:5173");
         },
       },
 
-      '/uploadTransaction': {
-        target: 'http://localhost:5038/',
+      "/transactionHistoryAPI": {
+        target: server,
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/uploadTransaction': '',
+          "^/transactionHistoryAPI": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader('Origin', 'http://localhost:5173');
+          proxyReq.setHeader("Origin", "http://localhost:5173");
+        },
+      },
+
+      "/uploadTransaction": {
+        target: server,
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          "^/uploadTransaction": "",
+        },
+        onProxyReq(proxyReq) {
+          proxyReq.setHeader("Origin", "http://localhost:5173");
         },
       },
     },
