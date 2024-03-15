@@ -12,7 +12,6 @@ import TransactionHistory from "./components/transactionHistory";
 import Trade from "./components/trade";
 import Market from "./components/Market";
 import SellAsset from "./components/SellAsset";
-import userAsset from "./components/userAsset";
 import {useState} from 'react';
 import { useEffect } from "react";
 
