@@ -10,11 +10,11 @@ const { MongoClient } = require('mongodb');
 //var db = low(adapter);
 const jwt = require('jsonwebtoken');
 const cookieParser = require("cookie-parser");
-
+require("dotenv").config();
 const app = express();  
 
 // MongoDB connection setup
-const uri = 'mongodb+srv://admin:JQ9zHxTAk3KidFsd@dashboard.g6mojcq.mongodb.net/?retryWrites=true&w=majority';
+const uri = process.env.MONGODB_URL;
 const client = new MongoClient(uri);
 
 // Middleware setup
