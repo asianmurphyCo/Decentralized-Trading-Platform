@@ -166,18 +166,19 @@ function Trade(props) {
         .on('receipt', (receipt) => {
           console.log('Transaction Receipt',receipt);
           
-          let txID = receipt.blockHash;
-          let txDate = Date.now;
-          let txNote = receipt.status;
+          let txID = receipt.blockHash; 
+          let dateElapse = Date.now();
+          let txDate = new Date(dateElapse);
+          // let txNote = receipt.status;
           let userAddr = wallet.accounts[0];
           
 
-          fetch('/sellAsset', {
+          fetch('/uploadTransaction', {
             method: 'POST',
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ txID, txDate, amount, txNote, userAddr, targetAddress, username}),
+            body: JSON.stringify({txID, txDate, amount, userAddr, targetAddress, username}),
           })
           .then((r) => r.json())
           .then((r) => {

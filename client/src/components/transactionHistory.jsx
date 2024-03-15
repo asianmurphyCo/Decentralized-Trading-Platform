@@ -23,30 +23,31 @@ function TransactionHistory(props) {
   const [page, setPage] = useState(0);
   const username = localStorage.getItem("user");
 
-  const {isLoggedIn} = props;
+  const { isLoggedIn } = props;
 
   //  Setting up rowsPerPage useState
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-
   //  Fetch data from url
   useEffect(() => {
-    fetch('/transactionHistory', {
-      method: 'POST',
+    fetch("/transactionHistoryAPI", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username }),
     })
-    .then((r) => r.json())
-    .then((r) => {
-      if (r.message !== "No record") {
-        setData(r);
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.message !== "No record") {
+          setData(data);
+        }
+
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   }, []);
 
   //  If not logged in, won't return
@@ -98,11 +99,11 @@ function TransactionHistory(props) {
                   Date & Time
                 </TableCell>
                 <TableCell align="center" className="text-white fw-bold">
-                  Type
+                  From Address
                 </TableCell>{" "}
                 {/*Buy,Swap,Sell,Transfer */}
                 <TableCell align="center" className="text-white fw-bold">
-                  Asset
+                  To Address
                 </TableCell>{" "}
                 {/* Type of Asset */}
                 <TableCell align="center" className="text-white fw-bold">
@@ -124,9 +125,9 @@ function TransactionHistory(props) {
             <TableBody>
               {data
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((d) => (
+                .map((d, index) => (
                   <TableRow
-                    key={d.transaction_id}
+                    key={index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell
@@ -135,22 +136,22 @@ function TransactionHistory(props) {
                       scope="row"
                       className="text-white fw-bold"
                     >
-                      {d.transaction_id}
+                      {d.transid}
                     </TableCell>
                     <TableCell align="center" className="text-white fw-bold">
-                      {d.date_time}
+                      {d.transdate}
                     </TableCell>
                     <TableCell align="center" className="text-white fw-bold">
-                      {d.type}
+                      {d.useraddress}
                     </TableCell>
                     <TableCell align="center" className="text-white fw-bold">
-                      {d.asset}
+                      {d.taraddress}
                     </TableCell>
                     <TableCell align="center" className="text-white fw-bold">
-                      {d.amount}
+                      {d.trans_amount}
                     </TableCell>
                     <TableCell align="center" className="text-white fw-bold">
-                      {d.status}
+                      Completed
                     </TableCell>
                     <TableCell align="center" className="text-white fw-bold">
                       {d.confirmations}
@@ -158,7 +159,6 @@ function TransactionHistory(props) {
                   </TableRow>
                 ))}
             </TableBody>
-
             <TableRow align="right">
               <Box>
                 <TablePagination

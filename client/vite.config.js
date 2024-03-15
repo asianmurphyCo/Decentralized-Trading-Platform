@@ -109,12 +109,12 @@ export default defineConfig({
         },
       },
 
-      '/transactionHistory': {
+      '/transactionHistoryAPI': {
         target: 'http://localhost:5038/',
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/transactionHistory': '',
+          '^/transactionHistoryAPI': '',
         },
         onProxyReq(proxyReq) {
           proxyReq.setHeader('Origin', 'http://localhost:5173');

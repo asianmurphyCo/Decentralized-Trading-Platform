@@ -1,6 +1,6 @@
 import "./css/style.css";
+import { filterByCategory } from "./js/function";
 import React, { useState, useEffect } from "react";
-import productsData from "../components/utils/product.json";
 import Web3 from "web3";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { formatBalance } from "./utils/formatBalance";
@@ -17,6 +17,12 @@ const Market = () => {
     balance:"",
     chainID:"",
   };
+
+    const [categoryFilter, setCategoryFilter] = useState("all");
+
+    const handleFilter = (category) => {
+      setCategoryFilter(category);
+    };
 
 
   //  wallet Information
@@ -404,68 +410,91 @@ const buyAsset = async (assetID, productPrice) => {
         <div className="menu-btns mb-3">
           <button
             type="button"
-            className="menu-btn active-btn"
-            data-category="all"
+            className={
+              categoryFilter === "all" ? "menu-btn active-btn" : "menu-btn"
+            }
+            onClick={() => handleFilter("all")}
           >
             All
           </button>
           <button
             type="button"
-            className="menu-btn"
-            data-category="canned-food"
+            className={
+              categoryFilter === "New" ? "menu-btn active-btn" : "menu-btn"
+            }
+            onClick={() => handleFilter("New")}
           >
             New products
           </button>
-          <button type="button" className="menu-btn" data-category="vegetable">
-            Top Favorite
+          <button
+            type="button"
+            className={
+              categoryFilter === "Top"
+                ? "menu-btn active-btn"
+                : "menu-btn"
+            }
+            onClick={() => handleFilter("Top")}
+          >
+            Trending products
           </button>
         </div>
         {/* DISPLAY PRODUCTS */}
         <div className="row">
-          {products.map((product, index) => (
-            <div key={index} className="col-sm-3 mt-3 canned">
-              <div className="card" style={{ width: "13rem" }}>
-                <img
-                  className="card-img-top"
+          {products.map((product, index) => {
+            if (categoryFilter === 'all' || product.category === categoryFilter) {
+              return (
+                <div
+                  key={index}
+                  className={`col-sm-3 mt-3 ${product.category}`}
+                >
+                  <div className="card" style={{ width: "13rem" }}>
+                    <img
+                      className="card-img-top"
+                      src={product.imgsrc}
+                      alt={product.assetname}
+                    />
+                    <div className="card-body">
+                      <h5 className="card-title">{product.assetname}</h5>
+                      <p className="card-text">
+                        Seller: {product.owneraddress}
+                      </p>
+                      <p className="card-text">
+                        Price: {product.assetprice} ETH
+                      </p>
 
-                  src={product.imgsrc}
-
-                  alt={product.assetname}
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{product.assetname}</h5>
-                  <p className="card-text">Seller: {product.owneraddress}</p>
-                  <p className="card-text">Price: {product.assetprice} ETH</p>
-
-                  {buyButton ? (
-                    <div>
-                      <button
-                        onClick={() => buyAsset(product.assetid, product.assetprice)}
-                        className="btn btn-primary"
-                      >
-                        Buy
-                      </button>
+                      {buyButton ? (
+                        <div>
+                          <button
+                            onClick={() =>
+                              buyAsset(product.assetid, product.assetprice)
+                            }
+                            className="btn btn-primary"
+                          >
+                            Buy
+                          </button>
+                        </div>
+                      ) : (
+                        <div>
+                          <button
+                            onClick={() => navigate("/login")}
+                            className="btn btn-primary"
+                          >
+                            Login to Buy Asset
+                          </button>
+                        </div>
+                      )}
                     </div>
-                  ):(
-                    <div>
-                      <button
-                        onClick={() => navigate('/login')}
-                        className="btn btn-primary"
-                      >
-                        Login to Buy Asset
-                      </button>
-                    </div>
-                  )}
-                  
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              );
+            }
+            return null;
+          })}
         </div>
 
-          {/* END of product list */}
-        </div>
+        {/* END of product list */}
       </div>
+    </div>
   );
 };
 export default Market;

@@ -427,7 +427,6 @@ footer {
 /* TRADE PAGE */
 
 /* Product page */
-/* buttons */
 .menu-btns {
     display: flex;
     justify-content: center;
@@ -461,5 +460,5 @@ footer {
     width: 100%;
 }
 .active-btn {
-    color: #157347;
+    color: white !important;
 }
