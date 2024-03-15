@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css'
 import Header from './components/header';
@@ -11,6 +12,7 @@ import TransactionHistory from "./components/transactionHistory";
 import Trade from "./components/trade";
 import Market from "./components/Market";
 import SellAsset from "./components/SellAsset";
+import userAsset from "./components/userAsset";
 import {useState} from 'react';
 import { useEffect } from "react";
 
@@ -59,6 +61,7 @@ function App() {
             <Route path="/trade" element={<Trade isLoggedIn={isLoggedIn} />} />
             <Route path="/market" element={<Market />} />
             <Route path="/sell_asset" element={<SellAsset isLoggedIn = {isLoggedIn}/>}/>
+            <Route path="/userAsset" element={<userAsset/>}/>
           </Routes>
           <Footer />
         </div>

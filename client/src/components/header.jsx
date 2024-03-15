@@ -1,3 +1,4 @@
+
 // import
 import "./css/style.css";
 
@@ -133,9 +134,16 @@ const Header = (props) => {
                   </Link>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
+                <NavDropdown.Item className="headerItem">
+                  <Link className="headerItem" to="/userAsset">
+                    Asset
+                  </Link>
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
                 <NavDropdown.Item className="headerItem" onClick={Logout}>
                   Log out
                 </NavDropdown.Item>
+                
               </NavDropdown>
             ) : (
               <button
