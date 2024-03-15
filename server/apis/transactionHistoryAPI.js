@@ -6,6 +6,7 @@ module.exports = async(req, res) => {
     try {
         const user = await pool.query(`SELECT * FROM user_login WHERE username = '${username}'`)
         const userId = user.rows[0].userid;
+        console.log(userId);
         
         const transactionHistory = await pool.query(`SELECT * FROM transactions_history WHERE userid = '${userId}'`);
 
