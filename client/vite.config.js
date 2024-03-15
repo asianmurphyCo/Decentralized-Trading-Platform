@@ -2,6 +2,8 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import "dotenv/config";
 const server = process.env.REACT_APP_API;
+const client = process.env.REACT_APP_URL;
+// http://localhost:5173
 
 export default defineConfig({
   plugins: [react()],
@@ -15,7 +17,7 @@ export default defineConfig({
           "^/database": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader("Origin", "http://localhost:5173");
+          proxyReq.setHeader("Origin", client);
         },
       },
       "/api": {
@@ -26,7 +28,7 @@ export default defineConfig({
           "^/api": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader("Origin", "http://localhost:5173");
+          proxyReq.setHeader("Origin", client);
         },
       },
       "/authenticate": {
@@ -37,7 +39,7 @@ export default defineConfig({
           "^/authenticate": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader("Origin", "http://localhost:5173");
+          proxyReq.setHeader("Origin", client);
         },
       },
       "/verify": {
@@ -48,7 +50,7 @@ export default defineConfig({
           "^/verify": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader("Origin", "http://localhost:5173");
+          proxyReq.setHeader("Origin", client);
         },
       },
       "/logout": {
@@ -59,7 +61,7 @@ export default defineConfig({
           "^/logout": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader("Origin", "http://localhost:5173");
+          proxyReq.setHeader("Origin", client);
         },
       },
 
@@ -71,7 +73,7 @@ export default defineConfig({
           "^/retrieveProfile": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader("Origin", "http://localhost:5173");
+          proxyReq.setHeader("Origin", client);
         },
       },
 
@@ -83,7 +85,7 @@ export default defineConfig({
           "^/registerAPI": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader("Origin", "http://localhost:5173");
+          proxyReq.setHeader("Origin", client);
         },
       },
 
@@ -95,7 +97,7 @@ export default defineConfig({
           "^/sellAsset": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader("Origin", "http://localhost:5173");
+          proxyReq.setHeader("Origin", client);
         },
       },
 
@@ -107,7 +109,7 @@ export default defineConfig({
           "^/marketRetrieve": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader("Origin", "http://localhost:5173");
+          proxyReq.setHeader("Origin", client);
         },
       },
 
@@ -119,7 +121,7 @@ export default defineConfig({
           "^/transactionHistoryAPI": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader("Origin", "http://localhost:5173");
+          proxyReq.setHeader("Origin", client);
         },
       },
 
@@ -131,7 +133,7 @@ export default defineConfig({
           "^/uploadTransaction": "",
         },
         onProxyReq(proxyReq) {
-          proxyReq.setHeader("Origin", "http://localhost:5173");
+          proxyReq.setHeader("Origin", client);
         },
       },
     },
