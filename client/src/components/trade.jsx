@@ -13,6 +13,9 @@ import {useNavigate} from 'react-router-dom'
 function Trade(props) {
   const [firstRender, setFirsRender] = useState(true);
   const navigate = useNavigate()
+
+  //  Get username
+  const username = localStorage.getItem("user");
   
   //  Initial Wallet State
   const initialState = {
@@ -32,6 +35,7 @@ function Trade(props) {
 
   //  Transaction Amount
   const [amount,setAmount] = useState('');
+
 
 
   //  Web 3 Instance
@@ -161,6 +165,31 @@ function Trade(props) {
         })
         .on('receipt', (receipt) => {
           console.log('Transaction Receipt',receipt);
+          
+          let txID = receipt.blockHash;
+          let txDate = Date.now;
+          let txNote = receipt.status;
+          let userAddr = wallet.accounts[0];
+          
+
+          fetch('/sellAsset', {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ txID, txDate, amount, txNote, userAddr, targetAddress, username}),
+          })
+          .then((r) => r.json())
+          .then((r) => {
+            if (r.message === 'success') {
+              return;
+            } else {
+              console.error(r.message);
+            }
+          })
+          
+
+          
         })
         console.log('Result:', result);
       } catch (error) {

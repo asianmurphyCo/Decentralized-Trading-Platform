@@ -108,6 +108,30 @@ export default defineConfig({
           proxyReq.setHeader('Origin', 'http://localhost:5173');
         },
       },
+
+      '/transactionHistory': {
+        target: 'http://localhost:5038/',
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '^/transactionHistory': '',
+        },
+        onProxyReq(proxyReq) {
+          proxyReq.setHeader('Origin', 'http://localhost:5173');
+        },
+      },
+
+      '/uploadTransaction': {
+        target: 'http://localhost:5038/',
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '^/uploadTransaction': '',
+        },
+        onProxyReq(proxyReq) {
+          proxyReq.setHeader('Origin', 'http://localhost:5173');
+        },
+      },
     },
   },
 });

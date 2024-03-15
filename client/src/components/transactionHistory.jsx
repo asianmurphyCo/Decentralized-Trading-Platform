@@ -4,7 +4,6 @@
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
-import axios from "axios";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -22,25 +21,32 @@ function TransactionHistory(props) {
   // Fetching data from Client-Side Data for Front-end
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
+  const username = localStorage.getItem("user");
 
-  const isLoggedIn = props;
+  const {isLoggedIn} = props;
 
   //  Setting up rowsPerPage useState
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  //  Change URL later due to being broke, cannot afford good api
-  const url = "/data/mock_transaction.json";
 
   //  Fetch data from url
   useEffect(() => {
-    axios
-      .get(url)
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    fetch('/transactionHistory', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username }),
+    })
+    .then((r) => r.json())
+    .then((r) => {
+      if (r.message !== "No record") {
+        setData(r);
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
   }, []);
 
   //  If not logged in, won't return

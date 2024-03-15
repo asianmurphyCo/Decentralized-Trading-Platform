@@ -133,12 +133,8 @@ const Header = (props) => {
                     Profile
                   </Link>
                 </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item className="headerItem">
-                  <Link className="headerItem" to="/userAsset">
-                    Asset
-                  </Link>
-                </NavDropdown.Item>
+             
+                
                 <NavDropdown.Divider />
                 <NavDropdown.Item className="headerItem" onClick={Logout}>
                   Log out
