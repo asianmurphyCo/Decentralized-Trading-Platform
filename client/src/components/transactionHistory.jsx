@@ -160,7 +160,7 @@ function TransactionHistory(props) {
             </TableBody>
 
             <TableRow align="right">
-              <Box>
+              {/* <Box>
                 <TablePagination
                   rowsPerPageOptions={[10, 20, 30]}
                   component="div"
@@ -172,7 +172,7 @@ function TransactionHistory(props) {
                   variant="outlined"
                   className="text-white mt-2 mb-2"
                 />
-              </Box>
+              </Box> */}
             </TableRow>
           </Table>
         </TableContainer>
