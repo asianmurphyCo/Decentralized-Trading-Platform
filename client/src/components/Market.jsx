@@ -1,7 +1,6 @@
 import "./css/style.css";
 import { filterByCategory } from "./js/function";
 import React, { useState, useEffect } from "react";
-import productsData from "../components/utils/product.json";
 import Web3 from "web3";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { formatBalance } from "./utils/formatBalance";

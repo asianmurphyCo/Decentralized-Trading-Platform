@@ -39,10 +39,12 @@ function TransactionHistory(props) {
       body: JSON.stringify({ username }),
     })
     .then((r) => r.json())
-    .then((r) => {
-      if (r.message !== "No record") {
-        setData(r);
-      }
+    .then((data) => {
+      if (data.message !== "No record") {
+        setData(data);
+      } 
+      
+      console.log(data)
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
