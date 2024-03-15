@@ -1,7 +1,7 @@
 const pool = require('../database.js')
 
 module.exports = async(req, res) => {
-    const {transID, transDate, trans_amount, transNote, userAddress, tarAddress, username} = req.body;
+    const {txID, txDate, amount, txNote, userAddr, targetAddress, username} = req.body;
 
     try {
         var userId = await pool.query(`SELECT userId FROM user_login WHERE username = '${username}'`)
@@ -9,7 +9,7 @@ module.exports = async(req, res) => {
 
         if (userId) {
             await pool.query(`INSERT INTO transactions_history (transID, transDate, trans_amount, transNote, userAddress, tarAddress, userId) 
-            VALUES ('${transID}', '${transDate}', '${trans_amount}', '${transNote}', '${userAddress}', '${tarAddress}', '${userId}')`);
+            VALUES ('${txID}', '${txDate}', '${amount}', '${txNote}', '${userAddr}', '${targetAddress}', '${userId}')`);
 
             return res.status(200).json({message: 'success'})
         }
