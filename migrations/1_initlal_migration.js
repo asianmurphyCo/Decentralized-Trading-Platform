@@ -1,5 +1,5 @@
-const DigitalAssets = artifacts.require("DigitalAssets")
+const Migrations = artifacts.require("Migrations");
 
-module.exports = function(deployer){
-    deployer.deploy(DigitalAssets);
-}
+module.exports = function (deployer) {
+  deployer.deploy(Migrations);
+};
