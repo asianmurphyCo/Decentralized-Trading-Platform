@@ -31,7 +31,7 @@ function TransactionHistory(props) {
 
   //  Fetch data from url
   useEffect(() => {
-    fetch('/transactionHistory', {
+    fetch('/transactionHistoryAPI', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -127,14 +127,12 @@ function TransactionHistory(props) {
                 .map((d) => (
                   <TableRow
                     key={d.transaction_id}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                     <TableCell
                       align="center"
                       component="th"
                       scope="row"
-                      className="text-white fw-bold"
-                    >
+                      className="text-white fw-bold">
                       {d.transaction_id}
                     </TableCell>
                     <TableCell align="center" className="text-white fw-bold">
@@ -158,9 +156,8 @@ function TransactionHistory(props) {
                   </TableRow>
                 ))}
             </TableBody>
-
             <TableRow align="right">
-              {/* <Box>
+              <Box>
                 <TablePagination
                   rowsPerPageOptions={[10, 20, 30]}
                   component="div"
@@ -172,7 +169,7 @@ function TransactionHistory(props) {
                   variant="outlined"
                   className="text-white mt-2 mb-2"
                 />
-              </Box> */}
+              </Box>
             </TableRow>
           </Table>
         </TableContainer>
