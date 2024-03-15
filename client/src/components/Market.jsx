@@ -11,7 +11,12 @@ const Market = () => {
   const [buyButton, setBuyButton] = useState(false);
   const navigate = useNavigate()
   //let products = [];
-   //  Initial Wallet State
+
+  //  Get Username
+
+  const username = localStorage.getItem("user");
+  
+  //  Initial Wallet State
    const initialState = {
     accounts:[],
     balance:"",
@@ -38,7 +43,7 @@ const Market = () => {
     const [web3,setWeb3] = useState({});
 
     //  Set Contract
-    let contractAddress = '0x5b5d1fc964aE9407276Baf6767ca77D9bE920342';
+    let contractAddress = '0x301362488C5C4fb9dFc1F439D4Ed1b54f4DE3FA4'; //  Will Change depends on the deployment
     let contractABI = [
       {
         "inputs": [],
@@ -380,20 +385,47 @@ const Market = () => {
     setWallet({ accounts, balance, chainId });        
 };
 
-const buyAsset = async (assetID, productPrice) => {
+const buyAsset = async (assetID, productPrice, oldOwnerAddress) => {
+
+    //  Store Previous Owner Address
+    let targetAddress = oldOwnerAddress;
 
     //  Create a Smart Contract Instance
     var myContract = new web3.eth.Contract(contractABI,contractAddress);
 
-
+    //  Convert Ether into Wei
+    const amountInWei = web3.utils.toWei(productPrice,'ether');
 
     //  Call purchaseAsset
-    await myContract.methods.purchaseAsset(assetID,productPrice).send({
+    await myContract.methods.purchaseAsset(assetID).send({
       from: wallet.accounts[0],
-      value: productPrice  //  Price of Item When Called
+      value: amountInWei  //  Price of Item When Called
     })
-    .on('ItemPurchased', (receipt) => {
+    .on('receipt', (receipt) => {
       console.log(receipt);
+
+      let txID = receipt.blockHash; 
+      let dateElapse = Date.now();
+      let txDate = new Date(dateElapse);
+      // let txNote = receipt.status;
+      let userAddr = wallet.accounts[0];
+      
+
+      fetch('/uploadTransaction', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({txID, txDate, amount, userAddr, targetAddress, username}),
+      })
+      .then((r) => r.json())
+      .then((r) => {
+        if (r.message === 'success') {
+          return;
+        } else {
+          console.error(r.message);
+        }
+      })
     })
 }
 
@@ -466,7 +498,7 @@ const buyAsset = async (assetID, productPrice) => {
                         <div>
                           <button
                             onClick={() =>
-                              buyAsset(product.assetid, product.assetprice)
+                              buyAsset(product.assetid+2, product.assetprice, product.owneraddress)
                             }
                             className="btn btn-primary"
                           >

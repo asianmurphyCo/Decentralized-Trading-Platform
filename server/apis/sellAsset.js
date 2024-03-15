@@ -2,12 +2,17 @@
 const pool = require('../database.js')
 
 module.exports = async(req, res) => {
-    const {itemName, itemDes, itemPrice, ownerAddress} = req.body
+    const {assetName, assetDesc, assetPrice, userAddress} = req.body
 
     try {
-        await pool.query(`INSERT INTO digital_assets (assetName, assetDesc, assetPrice, ownerAddress) 
-        VALUES ('${itemName}', '${itemDes}', '${itemPrice}', '${ownerAddress}')`);
 
+        console.log(assetName);
+        console.log(assetDesc);
+        console.log(assetPrice);
+        console.log(userAddress);
+        await pool.query(`INSERT INTO digital_assets (imgsrc,assetName, assetDesc, assetPrice, ownerAddress) 
+        VALUES ('../src/components/assets/rainbow-icon.png','${assetName}', '${assetDesc}', '${assetPrice}', '${userAddress}')`);
+        
         return res.status(200).json({status: "200", message: "success"});
     } catch (err) {
         console.error(err);

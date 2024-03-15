@@ -43,7 +43,7 @@ function SellAsset(props) {
   const [web3, setWeb3] = useState({});
 
         //  Set Contract
-        let contractAddress = '0x5b5d1fc964aE9407276Baf6767ca77D9bE920342';
+        let contractAddress = '0x301362488C5C4fb9dFc1F439D4Ed1b54f4DE3FA4'; //  Will Change depends on the deployment
         let contractABI = [
           {
             "inputs": [],
@@ -430,7 +430,7 @@ function SellAsset(props) {
                 from: wallet.accounts[0],
                 gas: 2000000    // Adjust Gas Limit
             })
-            .on('ItemCreate', (item) => {
+            .on('receipt', (item) => {
                 console.log("Item: ", item);
 
                 fetch('/sellAsset', {
@@ -438,7 +438,7 @@ function SellAsset(props) {
                   headers: {
                     "Content-Type": "application/json",
                   },
-                  body: JSON.stringify({assetName, assetDesc, amountInWei, userAddress}),
+                  body: JSON.stringify({assetName, assetDesc, assetPrice, userAddress}),
                 })
                 .then((r) => r.json())
                 .then((r) => {
@@ -505,7 +505,7 @@ function SellAsset(props) {
                       id="asset_desc"
                       name="asset_desc"
                       type="text"
-                      placeholder="Asset Name"
+                      placeholder="Asset Description"
                     />
                   </div>
                 </div>
