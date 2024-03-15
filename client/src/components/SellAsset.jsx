@@ -43,7 +43,7 @@ function SellAsset(props) {
   const [web3, setWeb3] = useState({});
 
         //  Set Contract
-        let contractAddress = '0x0Af64453375966Ed7E6deb57D81B400cCa997a03';
+        let contractAddress = '0x5b5d1fc964aE9407276Baf6767ca77D9bE920342';
         let contractABI = [
           {
             "inputs": [],
