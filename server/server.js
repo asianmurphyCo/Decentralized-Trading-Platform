@@ -14,6 +14,7 @@ const retrieveProfile = require('./apis/retrieveProfile');
 const registerAPI = require('./apis/registerAPI');
 const marketRetrieve = require('./apis/marketRetrieve');
 const sellAsset = require('./apis/sellAsset');
+const transactionHistory = require('./apis/transactionHistory');
 
 app.get('/api', (req, res) => {
   res.json({ users: ['user1', 'user2', 'user3'] });
@@ -32,6 +33,7 @@ app.post("/retrieveProfile", retrieveProfile);
 app.post("/registerAPI", registerAPI);
 app.get("/marketRetrieve", marketRetrieve);
 app.post("/sellAsset", sellAsset);
+app.post("/transactionHistory", transactionHistory);
 
 const server1 = app.listen(port1, () => {
   console.log(`Server is running on port ${port1}`);
