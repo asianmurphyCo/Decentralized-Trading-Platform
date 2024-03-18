@@ -29,7 +29,7 @@ useEffect(() => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      const data = response.json();
+      const data = await response.json();
       setBackendData(data);
       console.log(data);
     } catch (error) {
