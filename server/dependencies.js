@@ -12,9 +12,6 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const app = express();  
-app.use(express.json());
-// var cors = require("cors");
-// app.use(cors());
 
 // MongoDB connection setup
 const uri = process.env.MONGODB_URL;
