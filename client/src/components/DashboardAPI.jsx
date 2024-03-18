@@ -21,17 +21,24 @@ function DashboardAPI({ searchTerm }) {
   const [filteredResults, setFilteredResults] = useState([]);
   const [sortDirection, setSortDirection] = useState({}); // State to track sort direction of each column
 
-  useEffect(() => {
-    fetch("/database")
-      .then((response) => response.json())
-      .then((data) => {
-        setBackendData(data);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch("/database");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      setBackendData(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  fetchData();
+}, []);
+
 
   useEffect(() => {
     const filteredData = backendData.filter((d) =>
