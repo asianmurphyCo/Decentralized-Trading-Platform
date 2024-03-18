@@ -22,7 +22,7 @@ function DashboardAPI({ searchTerm }) {
   const [sortDirection, setSortDirection] = useState({}); // State to track sort direction of each column
 
   useEffect(() => {
-    fetch("/database")
+    fetch("https://decentralized-trading-platform.onrender.com/database")
       .then((response) => response.json())
       .then((data) => {
         setBackendData(data);

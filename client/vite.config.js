@@ -2,8 +2,9 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import "dotenv/config";
 const server = process.env.REACT_APP_API;
-const client = process.env.REACT_APP_URL;
-// const client = "http://localhost:5173";
+// const client = process.env.REACT_APP_API;
+// console.log(client);
+const client = "https://decentralized-trading-platform.onrender.com";
 
 export default defineConfig({
   plugins: [react()],
