@@ -26,6 +26,7 @@ function DashboardAPI({ searchTerm }) {
       .then((response) => response.json())
       .then((data) => {
         setBackendData(data);
+        console.log(data);
       })
       .catch((error) => {
         console.log(error);
