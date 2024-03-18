@@ -25,10 +25,11 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       const response = await fetch("/database");
+      console.log(response)
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      const data = await response.json();
+      const data = response.json();
       setBackendData(data);
       console.log(data);
     } catch (error) {
