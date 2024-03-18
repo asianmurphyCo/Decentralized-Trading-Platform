@@ -24,7 +24,7 @@ app.get('/api', (req, res) => {
 // Route for fetching coin list
 app.get('/database', async (req, res) => {
   const coinlist = await dashboard.getCoinList();
-  res.status(200).send(coinlist);
+  res.status(200).json(coinlist);
 });
 
 app.post("/authenticate", authenticate);

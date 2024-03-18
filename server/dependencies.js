@@ -1,17 +1,19 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const logger = require('morgan');
-const { MongoClient } = require('mongodb');
+const express = require("express");
+const bodyParser = require("body-parser");
+const logger = require("morgan");
+const { MongoClient } = require("mongodb");
 //const bcrypt = require('bcrypt');
 //var cors = require('cors');
 //var low = require('lowdb');
 //var FileSync = require('lowdb/adapters/FileSync');
 //var adapter = new FileSync('./database.json');
 //var db = low(adapter);
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
-const app = express();  
+const app = express();
+const cors = require("cors");
+app.use(cors({ origin: true }));
 
 // MongoDB connection setup
 const uri = process.env.MONGODB_URL;
@@ -22,10 +24,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(logger('dev'));
-app.use(cookieParser())
+app.use(logger("dev"));
+app.use(cookieParser());
 
-// Export 
+// Export
 module.exports = {
   client,
   app,
