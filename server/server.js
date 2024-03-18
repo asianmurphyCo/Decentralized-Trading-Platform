@@ -16,6 +16,7 @@ const marketRetrieve = require('./apis/marketRetrieve');
 const sellAsset = require('./apis/sellAsset');
 const transactionHistoryAPI = require('./apis/transactionHistoryAPI');
 const uploadTransaction = require('./apis/uploadTransaction');
+var cors = require("cors");
 
 app.get('/api', (req, res) => {
   res.json({ users: ['user1', 'user2', 'user3'] });
