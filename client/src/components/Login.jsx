@@ -11,17 +11,17 @@ import { useEffect } from "react";
 
 const Login = (props) => {
   useEffect(() => {
-    fetch('/verify', {
-      method: 'POST',
+    fetch("https://decentralized-trading-platform.onrender.com/verify", {
+      method: "POST",
     })
-    .then((r) => r.json())
-    .then((r) => {
-      if (r.message === "success") {
-        navigate("/profile");
-      } else {
-        return
-      }
-    })
+      .then((r) => r.json())
+      .then((r) => {
+        if (r.message === "success") {
+          navigate("/profile");
+        } else {
+          return;
+        }
+      });
     // const token = localStorage.getItem("token");
 
     // if (token) {
@@ -99,7 +99,7 @@ const Login = (props) => {
   // };
 
   const logIn = () => {
-    fetch("/authenticate", {
+    fetch("https://decentralized-trading-platform.onrender.com/authenticate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

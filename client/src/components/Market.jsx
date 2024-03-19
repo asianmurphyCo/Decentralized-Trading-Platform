@@ -306,7 +306,7 @@ const Market = () => {
           return;
         }
       })
-      fetch("/marketRetrieve", {
+      fetch("https://decentralized-trading-platform.onrender.com/marketRetrieve", {
         method: "GET",
       })
         .then((response) => response.json())
